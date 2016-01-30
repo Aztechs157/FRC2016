@@ -41,6 +41,38 @@ public class TeleopDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	// Set Control Values
+    	double left;
+    	double right;
+    	
+    	// Arcade
+    	double arcX = Robot.oi.arcadeStick.getX();
+    	double arcY = Robot.oi.arcadeStick.getY();
+    	
+    	left = arcY + arcX;
+    	right = arcY - arcX;
+    	   	
+    	// Tank
+      	left += Robot.oi.leftTankStick.getY();
+    	right += Robot.oi.rightTankStick.getY();
+    	
+    	// Logitech
+    	double logX = Robot.oi.pitController.getLeftX();
+    	double logY = Robot.oi.pitController.getLeftY();
+    	
+    	double tempLeft = logX + logY;
+    	double tempRight = logX - logY;
+    	
+    	left += tempLeft;
+    	right += tempRight;
+    	
+    	
+    	// Feed Control Values to Drive
+    	Robot.drive.setLeftDrive(left);
+    	Robot.drive.setRightDrive(right);
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
