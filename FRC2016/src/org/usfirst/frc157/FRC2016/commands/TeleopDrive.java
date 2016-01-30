@@ -66,13 +66,11 @@ public class TeleopDrive extends Command {
     	
     	left += tempLeft;
     	right += tempRight;
-    	
-    	
+    	    	
     	// Feed Control Values to Drive
     	Robot.drive.setLeftDrive(left);
     	Robot.drive.setRightDrive(right);
-    	
-    	
+    	    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
