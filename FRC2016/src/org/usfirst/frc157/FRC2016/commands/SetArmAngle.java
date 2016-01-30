@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class SetArmAngle extends Command {
 
-    public SetArmAngle() {
+    public SetArmAngle(double degrees) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
