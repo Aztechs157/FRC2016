@@ -30,14 +30,16 @@ public class Arm extends Subsystem {
 
 	public enum Position
 	{
-		FULL_DOWN           (-20.0),
-		FRENCH_FRIES_DOWN   (-15.0),
-		LOW_BAR_TRAVEL      (-10.0),
-		HOME                (0.0),    // Starting postion is defined as 0, all other angles are refernced to it
-		GAME_START          (0.0),
-		DRAWBRIDGE_GRAB     (50.0),
-		TOWER_SCALE         (80.0),
-		FULL_UP             (110.0);
+		FULL_DOWN           (-20.0),  // Minimum Shoulder Angle
+		FRENCH_FRIES_DOWN   (-15.0),  // Push down fries to this Angle before crossing
+		GRAB_BOULDER        (-12.0),  // Angle to use to grab a boulder
+		LOW_BAR_TRAVEL      (-10.0),  // Angle to use to go under low bar
+		PREPARE_FOR_BOULDER (10.0),   // Normal Bar Angle (ready to grab boulder)
+		HOME                (0.0),    // Starting Angle is defined as 0, all other angles are referenced to it ~30 degrees
+		GAME_START          (0.0),    // Game Start Angle (arm is inside legal starting box) 
+		DRAWBRIDGE_GRAB     (20.0),   // Angle required to start Drawbridge Grab
+		TOWER_SCALE         (50.0),   // Angle to use to extend ladder to scale tower
+		FULL_UP             (70.0);   // Maximum shoulder Angle
 
 		private final double angle;  // in degrees
 
