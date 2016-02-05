@@ -10,6 +10,10 @@ import edu.wpi.first.wpilibj.SPI.Port;
 
 public class Ultrasonics {
 
+	private final static float UltrasonicKickoffPulseLenght = (float) 0.00001; // seconds 
+//	private final static float UltrasonicKickoffPulseLenght = (float) 0.001; // seconds 
+	private final static double DoubleReadTolerance = (double)0.005; //volts
+	
 	public enum UltrasonicSensor
 	{
 		// Name       Index, muxAddr, SPI Byte,   V/in,   min, max    Min, Max ensor range are in inches
@@ -95,46 +99,50 @@ public class Ultrasonics {
 			int idx = 0;
 			double sensorVoltage, sensorVoltageOldRead; // sensor reads - must mach when read to be considered valid
 			byte data[] = {(byte)0x00};
+			// Set up the ultrasonic scan order
 			byte address[] = {
-					(byte)0x80,
-					(byte)0x90,
-					(byte)0xA0,
-					(byte)0xB0,
-					(byte)0xC0,
-					(byte)0xD0,
-					(byte)0xE0,
-					(byte)0xF0};
+					Ultrasonics.UltrasonicSensor.FRONT_LEFT.spiByte,
+					Ultrasonics.UltrasonicSensor.FRONT_LEFT.spiByte,
+					Ultrasonics.UltrasonicSensor.FRONT_RIGHT.spiByte,
+					Ultrasonics.UltrasonicSensor.RIGHT_FRONT.spiByte,
+					Ultrasonics.UltrasonicSensor.RIGHT_REAR.spiByte,
+					Ultrasonics.UltrasonicSensor.REAR_RIGHT.spiByte,
+					Ultrasonics.UltrasonicSensor.REAR_LEFT.spiByte,
+					Ultrasonics.UltrasonicSensor.LEFT_REAR.spiByte,
+					Ultrasonics.UltrasonicSensor.LEFT_FRONT.spiByte
+					};
 
 			// pulse the DIO to kickstart the ultrasonics into automatically reading ranges
 			ultrasonics.ultrasonicKickstartLine.set(false);
 			boolean notInterrupted;
-			do {
-				try { Thread.sleep(1); notInterrupted = true; } catch(Exception e) {notInterrupted = false;};  // sleep for a millisecond
-			} while (!notInterrupted);
-			ultrasonics.ultrasonicKickstartLine.set(true);
-			do {
-				try { Thread.sleep(1); } catch(Exception e) {notInterrupted = false;};  // sleep for a millisecond
-			} while (!notInterrupted);
-			ultrasonics.ultrasonicKickstartLine.set(false);
+//			do {
+//				try { Thread.sleep(1); notInterrupted = true; } catch(Exception e) {notInterrupted = false;};  // sleep for a millisecond
+//			} while (!notInterrupted);
+//			ultrasonics.ultrasonicKickstartLine.set(true);
+//			do {
+//				try { Thread.sleep(1); } catch(Exception e) {notInterrupted = false;};  // sleep for a millisecond
+//			} while (!notInterrupted);
+//			ultrasonics.ultrasonicKickstartLine.set(false);
 
+			ultrasonics.ultrasonicKickstartLine.pulse(RobotMap.NavUltrasonicKickstartLineDigitalOut, UltrasonicKickoffPulseLenght);
+			
 			while(!stop)
 			{
 				for(UltrasonicSensor sensor: UltrasonicSensor.values())
 				{
-					// TODO send SPI commend to mux to address correct sensor
-					System.out.println("Send SPI mux select for sensor #" + sensor.muxAddress);
-					// read the analog input (two in a row must match to avoid reading on an update)
+					// TODO verify that the SPI command is correct for the LTC1390 8 Channel Analog Mux
 					data[0] = address[idx%8];	
 					idx++;
 					if(idx == 8) {idx = 0;}
 					ultrasonics.muxSPI.write(data, 1); 
 					
+					// read the analog input (two in a row must match to avoid reading on an update)
 					sensorVoltage = ultrasonics.muxedUltrasonicInput.getVoltage();
 					do 
 					{
 						sensorVoltageOldRead = sensorVoltage;
 						sensorVoltage = ultrasonics.muxedUltrasonicInput.getVoltage();
-					} while (sensorVoltage != sensorVoltageOldRead);
+					} while (Math.abs(sensorVoltage - sensorVoltageOldRead) > DoubleReadTolerance);
 					
 					// Convert voltage to inches (and limit it to sensor range capability)
 			        double distanceInInches = sensorVoltage / sensor.voltsPerInch;
