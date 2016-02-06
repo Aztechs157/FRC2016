@@ -65,13 +65,13 @@ public class LogitechController extends GenericHID
 	
 	double centerValue[] =
 	{ 0, 0, 0, 0, 0, 0, 0, 0 };
-	// Stick Axes (Note: Mode button switches LeftX betwen Gamepad and Stick
-	private static final int m_kAxisLeftX = 1; // Left -
-	private static final int m_kAxisLeftY = 2; // Up -
-	private static final int m_kAxisRightX = 4; // Left -
-	private static final int m_kAxisRightY = 5; // Up -
+	// Stick Axes (Note: Mode button switches LeftX between Gamepad and Stick
+	private static final int m_kAxisLeftX = 1; // Left - Right
+	private static final int m_kAxisLeftY = 2; // Up - Down
+	private static final int m_kAxisRightX = 4; // Left - Right
+	private static final int m_kAxisRightY = 5; // Up - Down
 	// Stick Buttons
-	private static final int m_kButtonLeftTop = 9;
+	private static final int m_kButtonLeftTop = 9;    
 	private static final int m_kButtonRightTop = 10;
 	// Gamepad Axes
 	private static final int m_kAxisGameX = 6; // Left -
@@ -81,10 +81,10 @@ public class LogitechController extends GenericHID
 	private static final int m_kButtonRightB = 6;
 	private static final int m_kAxisTriggers = 3; // Left Trigger +, Right Trigger -
 	// Right Side Buttons
-	private static final int m_kButtonA = 1;
-	private static final int m_kButtonB = 2;
-	private static final int m_kButtonX = 3;
-	private static final int m_kButtonY = 4;
+	private static final int m_kButtonA = 1;  //A button
+	private static final int m_kButtonB = 2;  //B button
+	private static final int m_kButtonX = 3;  //X button
+	private static final int m_kButtonY = 4;  //Y button
 	// Central Buttons
 	private static final int m_kButtonStart = 8;
 	private static final int m_kButtonBack = 7;
