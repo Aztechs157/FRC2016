@@ -190,5 +190,7 @@ public class Arm extends Subsystem {
     	// run arm in until it reaches the end
     	return true;
     }
-
+    
+    
+    //TODO Motors must be wired so that Positive Power increases encoder count
 }

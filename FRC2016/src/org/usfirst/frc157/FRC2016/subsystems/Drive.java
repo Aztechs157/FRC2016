@@ -81,8 +81,14 @@ public class Drive extends Subsystem {
     	// Set the followers
     	leftDriveB.changeControlMode(CANTalon.TalonControlMode.Follower);
     	leftDriveB.set(leftDriveA.getDeviceID());
+    	//leftDriveB.reverseOutput(false);
     	rightDriveB.changeControlMode(CANTalon.TalonControlMode.Follower);
     	rightDriveB.set(rightDriveA.getDeviceID());
+    	//rightDriveB.reverseOutput(false);
+    	
+    	// TODO consider setting ramp rate
     }
+    
+    //TODO Motors must be wired so that Positive Power increases encoder count
 }
 
