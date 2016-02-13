@@ -40,9 +40,25 @@ public class Navigation extends Subsystem {
     }
 	
 	//   TODO provide a nav subsystem API
-    double getPitch()
+    public double getPitch()
     {
-    	return 7;//imu.get();
+    	return imu.getPitch();
     }
+    public double getRoll()
+    {
+    	return imu.getRoll();
+    }
+    public double getYaw()
+    {
+    	return imu.getYaw();
+    }
+    public double getHeading()
+    {
+    	return imu.getAngle();
+    }
+//    public double getPitch()
+//    {
+//    	return imu.get();
+//    }
 }
 
