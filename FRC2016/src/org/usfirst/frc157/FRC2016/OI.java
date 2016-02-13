@@ -218,15 +218,15 @@ public class OI {
         operatorButtonTrigger.whileHeld(new PrintIMUOutput("IMU"));
         operatorButton2.whenPressed(new PrintButton("O Button 2"));
         operatorButton3.whenPressed(new PrintButton("O Button 3"));
-        operatorButton4.whenPressed(new PrintButton("O Button 4"));
+        operatorButton4.whileHeld(new PrintIRRange());
         operatorButton5.whenPressed(new PrintButton("O Button 5"));
         operatorButton6.whenPressed(new PrintButton("O Button 6"));
         operatorButton7.whenPressed(new PrintButton("O Button 7"));
         operatorButton8.whenPressed(new PrintButton("O Button 8"));
-        operatorButton9.whenPressed(new PrintButton("O Button 9"));
-        operatorButton10.whenPressed(new PrintButton("O Button 10"));
-        operatorButton11.whenPressed(new PrintButton("O Button 11"));
-        operatorButton12.whenPressed(new PrintButton("O Button 12"));
+        operatorButton9.whenPressed(new TurnToHeading(0));
+        operatorButton10.whenPressed(new TurnToHeading(180));
+        operatorButton11.whenPressed(new TurnToHeading(90));
+        operatorButton12.whenPressed(new TurnToHeading(-90));
         
 
         logitechDriverButtonLeftB.whenPressed(new PrintButton("P Button LeftB"));

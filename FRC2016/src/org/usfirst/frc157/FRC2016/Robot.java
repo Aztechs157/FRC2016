@@ -85,6 +85,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	Robot.navigation.resetZeroHeading();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 

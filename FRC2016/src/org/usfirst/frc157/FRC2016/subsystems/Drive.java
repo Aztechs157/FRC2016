@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -66,11 +67,13 @@ public class Drive extends Subsystem {
     public void setLeftDrive(double drive)
     {
     	leftDriveA.set(-drive);
+    	SmartDashboard.putDouble("LeftDrive", drive);
     }
 
     public void setRightDrive(double drive)
     {
     	rightDriveB.set(drive);    	
+    	SmartDashboard.putDouble("RighttDrive", drive);
     }
     
     private void configureControllers()
