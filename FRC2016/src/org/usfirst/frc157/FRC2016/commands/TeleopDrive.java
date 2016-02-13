@@ -50,8 +50,10 @@ public class TeleopDrive extends Command {
     	double arcX = Robot.oi.operator.getX();
     	double arcY = Robot.oi.operator.getY();
     	
-    	left = arcY + arcX;
-    	right = arcY - arcX;
+    	double arcRot = Robot.oi.operator.getZ();
+    	
+    	left = arcY - arcX - arcRot/2;
+    	right = arcY + arcX + arcRot/2;
     	   	
     	// Tank
       	left += Robot.oi.driverLeft.getY();

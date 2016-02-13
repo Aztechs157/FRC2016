@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TurnToHeading extends Command {
 
-	private final static double HEADING_TOLERANCE = 2.0;
+	private final static double HEADING_TOLERANCE = 5.0;
 	private double targetHeading;
 	
     public TurnToHeading(double heading) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	requires(Robot.drive);
     	targetHeading = heading;
     }
 
@@ -34,8 +34,8 @@ public class TurnToHeading extends Command {
     	System.out.print("D:" + deltaHeading);
     	System.out.println(" L:" + left + " R:" + right);
 
-    	Robot.drive.setLeftDrive(left);
-    	Robot.drive.setRightDrive(right);
+    	Robot.drive.setLeftDrive(left/2);
+    	Robot.drive.setRightDrive(right/2);
     	
     }
 

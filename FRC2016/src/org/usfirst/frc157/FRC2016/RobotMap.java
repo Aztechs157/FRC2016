@@ -45,7 +45,7 @@ public class RobotMap {
 	public final static int BallLeftShooterTalonID = 8;
 	public final static int BallRIghtShooterTalonID = 9;
 	public final static int BallRetireverTalonID = 10;	
-	public final static int BallIRRangefinderAnalogIn =11;
+	public final static int BallIRRangefinderAnalogIn = 2;
 	
 	public final static int NavUltrasonicRangefinderAnalogIn = 1;
 	public final static int NavUltrasonicKickstartLineDigitalOut = 2;
