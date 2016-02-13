@@ -72,7 +72,7 @@ public class Drive extends Subsystem {
 
     public void setRightDrive(double drive)
     {
-    	rightDriveB.set(drive);    	
+    	rightDriveA.set(drive);    	
     	SmartDashboard.putDouble("RighttDrive", drive);
     }
     
