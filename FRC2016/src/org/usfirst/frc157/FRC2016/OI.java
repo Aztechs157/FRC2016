@@ -67,7 +67,8 @@ public class OI {
     private JoystickButton driverRightButton9; // Button 9 - Base Near Right
     private JoystickButton driverRightButton10; // Button 10 - Base Right Close
     private JoystickButton driverRightButton11; // Button 11 - Base RIght Away
-
+    private JoystickButton driverRightButton12; // Button 12
+    
     public Joystick driverRight;
     private JoystickButton driverLeftButtonTrigger; // Button 1 - Trigger
     private JoystickButton driverLeftButton2; // Button 2 - Stick down
@@ -80,7 +81,8 @@ public class OI {
     private JoystickButton driverLeftButton9; // Button 9 - Base Near Right
     private JoystickButton driverLeftButton10; // Button 10 - Base Right Close
     private JoystickButton driverLeftButton11; // Button 11 - Base RIght Away
-
+    private JoystickButton driverLeftButton12; // Button 12
+    
     public Joystick operator;
     private JoystickButton operatorButtonTrigger; // Button 1 - Trigger
     private JoystickButton operatorButton2; // Button 2 - Stick down
@@ -93,7 +95,8 @@ public class OI {
     private JoystickButton operatorButton9; // Button 9 - Base Near Right
     private JoystickButton operatorButton10; // Button 10 - Base Right Close
     private JoystickButton operatorButton11; // Button 11 - Base RIght Away
-
+    private JoystickButton operatorButton12; // Button 12
+    
     public LogitechController logitechDriver;
     private LogitechControllerButton logitechDriverButtonLeftB; // Left Button (Above Trigger)
     private LogitechControllerButton logitechDriverButtonRightB; // Right Button (Above Trigger)
@@ -105,10 +108,8 @@ public class OI {
     private LogitechControllerButton logitechDriverButtonY; // Y Button (Yellow)
     private LogitechControllerButton logitechDriverButtonStart; // Start Button
     private LogitechControllerButton logitechDriverButtonBack; // Back Button
-    private LogitechControllerButton logitechDriverButtonLeftTrigger; // Left Trigger (Used as
-                                                                      // button)
-    private LogitechControllerButton logitechDriverButtonRightTrigger; // Right Trigger (Used as
-                                                                       // button)
+    private LogitechControllerButton logitechDriverButtonLeftTrigger; // Left Trigger (Used as button)
+    private LogitechControllerButton logitechDriverButtonRightTrigger; // Right Trigger (Used as button)
     private LogitechControllerButton logitechDriverButtonGameUp; // Game Pad Up
     private LogitechControllerButton logitechDriverButtonGameDown; // Game Pad Down
     private LogitechControllerButton logitechDriverButtonGameLeft; // Game Pad Left
@@ -140,6 +141,7 @@ public class OI {
         driverLeftButton9 = new JoystickButton(driverLeft, 9);
         driverLeftButton10 = new JoystickButton(driverLeft, 10);
         driverLeftButton11 = new JoystickButton(driverLeft, 11);
+        driverLeftButton12 = new JoystickButton(driverLeft, 12);
 
         driverRightButtonTrigger = new JoystickButton(driverRight, 1);
         driverRightButton2 = new JoystickButton(driverRight, 2);
@@ -152,6 +154,7 @@ public class OI {
         driverRightButton9 = new JoystickButton(driverRight, 9);
         driverRightButton10 = new JoystickButton(driverRight, 10);
         driverRightButton11 = new JoystickButton(driverRight, 11);
+        driverRightButton12 = new JoystickButton(driverRight, 12);
 
         operatorButtonTrigger = new JoystickButton(operator, 1);
         operatorButton2 = new JoystickButton(operator, 2);
@@ -164,6 +167,7 @@ public class OI {
         operatorButton9 = new JoystickButton(operator, 9);
         operatorButton10 = new JoystickButton(operator, 10);
         operatorButton11 = new JoystickButton(operator, 11);
+        operatorButton12 = new JoystickButton(operator, 12);
 
         logitechDriverButtonLeftB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonLeftB.value);
         logitechDriverButtonRightB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonRightB.value);
@@ -196,6 +200,7 @@ public class OI {
         driverLeftButton9.whenPressed(new PrintButton("L Button 9"));
         driverLeftButton10.whenPressed(new PrintButton("L Button 10"));
         driverLeftButton11.whenPressed(new PrintButton("L Button 11"));
+        driverLeftButton12.whenPressed(new PrintButton("L Button 12"));
 
         driverRightButtonTrigger.whenPressed(new PrintButton("R Button T"));
         driverRightButton2.whenPressed(new PrintButton("R Button 2"));
@@ -208,8 +213,9 @@ public class OI {
         driverRightButton9.whenPressed(new PrintButton("R Button 9"));
         driverRightButton10.whenPressed(new PrintButton("R Button 10"));
         driverRightButton11.whenPressed(new PrintButton("R Button 11"));
+        driverRightButton12.whenPressed(new PrintButton("R Button 12"));
         
-        operatorButtonTrigger.whenPressed(new PrintButton("O Button T"));
+        operatorButtonTrigger.whileHeld(new PrintIMUOutput("IMU"));
         operatorButton2.whenPressed(new PrintButton("O Button 2"));
         operatorButton3.whenPressed(new PrintButton("O Button 3"));
         operatorButton4.whenPressed(new PrintButton("O Button 4"));
@@ -220,6 +226,7 @@ public class OI {
         operatorButton9.whenPressed(new PrintButton("O Button 9"));
         operatorButton10.whenPressed(new PrintButton("O Button 10"));
         operatorButton11.whenPressed(new PrintButton("O Button 11"));
+        operatorButton12.whenPressed(new PrintButton("O Button 12"));
         
 
         logitechDriverButtonLeftB.whenPressed(new PrintButton("P Button LeftB"));

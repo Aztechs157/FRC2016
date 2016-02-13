@@ -97,6 +97,7 @@ public class Ultrasonics {
 		@Override
 		public void run() {
 			int idx = 0;
+			double distanceInInches;
 			double sensorVoltage, sensorVoltageOldRead; // sensor reads - must mach when read to be considered valid
 			byte data[] = {(byte)0x00};
 			// Set up the ultrasonic scan order
@@ -145,7 +146,7 @@ public class Ultrasonics {
 					} while (Math.abs(sensorVoltage - sensorVoltageOldRead) > DoubleReadTolerance);
 					
 					// Convert voltage to inches (and limit it to sensor range capability)
-			        double distanceInInches = sensorVoltage / sensor.voltsPerInch;
+					distanceInInches = sensorVoltage / sensor.voltsPerInch;
 			        distanceInInches = (distanceInInches > sensor.maxRangeInches) ? sensor.maxRangeInches : distanceInInches;
 			        distanceInInches = (distanceInInches < sensor.minRangeInches) ? sensor.minRangeInches : distanceInInches;  
 			        
