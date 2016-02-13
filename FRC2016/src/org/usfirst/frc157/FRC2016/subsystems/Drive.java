@@ -65,7 +65,7 @@ public class Drive extends Subsystem {
     
     public void setLeftDrive(double drive)
     {
-    	leftDriveA.set(drive);
+    	leftDriveA.set(-drive);
     }
 
     public void setRightDrive(double drive)

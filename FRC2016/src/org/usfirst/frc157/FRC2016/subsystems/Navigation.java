@@ -40,5 +40,9 @@ public class Navigation extends Subsystem {
     }
 	
 	//   TODO provide a nav subsystem API
+    double getPitch()
+    {
+    	return 7;//imu.get();
+    }
 }
 
