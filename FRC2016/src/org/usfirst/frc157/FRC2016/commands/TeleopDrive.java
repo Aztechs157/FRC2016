@@ -46,22 +46,21 @@ public class TeleopDrive extends Command {
     	double left;
     	double right;
     	
-    	// Arcade
-    	double arcX = Robot.oi.operator.getX();
-    	double arcY = Robot.oi.operator.getY();
-    	
-    	double arcRot = Robot.oi.operator.getZ();
+    	// Arcade (arcade on one stick with stick Z for rotate in place (twist))
+    	double arcX = Robot.oi.operator.getX();   // left/right stick
+    	double arcY = Robot.oi.operator.getY();   // forward/backward stick
+    	double arcRot = Robot.oi.operator.getZ(); // twist stick
     	
     	left = arcY - arcX - arcRot/2;
     	right = arcY + arcX + arcRot/2;
     	   	
-    	// Tank
-      	left += Robot.oi.driverLeft.getY();
-    	right += Robot.oi.driverRight.getY();
+    	// Tank  (Tank on two sticks)
+      	left += Robot.oi.driverLeft.getY();      // forward/backward left stick
+    	right += Robot.oi.driverRight.getY();    // forward/backward right stick
     	
-    	// Logitech
-    	double logX = Robot.oi.logitechDriver.getLeftX();
-    	double logY = Robot.oi.logitechDriver.getLeftY();
+    	// Logitech  (Arcade mode on left stick)
+    	double logX = Robot.oi.logitechDriver.getLeftX();  // forward/backward left stick
+    	double logY = Robot.oi.logitechDriver.getLeftY();  // left/right left stick
     	
     	double tempLeft = logX + logY;
     	double tempRight = logX - logY;
