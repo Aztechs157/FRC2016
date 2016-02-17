@@ -61,7 +61,33 @@ public class Arm extends Subsystem {
 		MANUAL;
 	}
 
+	private class SensorCal
+	{
+		int zeroAngleReading;
+		int maxAngleReading;
+		double maxAngleDegrees;
+		
+		double readingsPerDegree;
+		
+		SensorCal(int zeroReading, int maxReading, double maxDegrees)
+		{
+			 zeroAngleReading = zeroReading;
+			 maxAngleReading = maxReading;
+			 maxAngleDegrees = maxDegrees;
+			
+			 double readingsPerDegree = ((double)(maxAngleReading - zeroAngleReading))/(maxDegrees);
+		}
+		
+		public double readingToDegrees(double reading)
+		{
+			return (reading - zeroAngleReading) *  readingsPerDegree;
+		}
+	}
 	
+	private SensorCal cal = new SensorCal(350, 700, 90.0);
+	
+	private static final double compensationVoltageAtZero = 6.0; //Volts
+		
 	private ArmMode armMode;
 	private ArmMode extenderMode;
 	
@@ -160,14 +186,7 @@ public class Arm extends Subsystem {
     	//      return false
     	return true;
     }
-    
-    public double getShoulderAngle()
-    {
-    	double angle = 0;
-    	// read the angle from the encoder
-    	return angle;
-    }
-    
+       
     public boolean shoulderGotoAngle(double angle)
     {
     	setExtenderMode(ArmMode.AUTOMATIC);
@@ -191,6 +210,45 @@ public class Arm extends Subsystem {
     	return true;
     }
     
+    public double getShoulderAngle()
+    {
+    	return cal.readingToDegrees(shoulderMotor.getAnalogInRaw());    	
+    }
     
-    //TODO Motors must be wired so that Positive Power increases encoder count
+    public double getShoulderGravityCompensation()
+    {
+    	double compensation = Math.cos(getShoulderAngle()) * compensationVoltageAtZero;
+    	return compensation;
+    }
+    
+    private class ShoulderTask implements Runnable
+    {
+    	double output;
+    	boolean stop;
+    	boolean enableOutput;
+    	
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			stop = false;
+			while(!stop)
+			{
+				output = 0;				
+				if(enableOutput)
+				{
+					output += getShoulderGravityCompensation();
+					shoulderMotor.set(output);
+				}
+			}
+		}
+
+		public void enable()
+		{
+			enableOutput = true;
+		}
+		public void disable()
+		{
+			enableOutput = false;
+		}
+    }
 }
