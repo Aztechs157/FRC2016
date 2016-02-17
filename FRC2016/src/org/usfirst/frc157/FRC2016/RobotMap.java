@@ -33,12 +33,12 @@ public class RobotMap {
 	
 	public final static int DriveLeftATalonID = 3;
 	public final static int DriveLeftBTalonID = 1;
-	public final static int DriveRightATalonID = 5;
-	public final static int DriveRightBTalonID = 7;
+	public final static int DriveRightATalonID = 6;
+	public final static int DriveRightBTalonID = 8;
 	
 	public final static int ArmShoulderTalonID = 2;
-	public final static int ArmExtenderATalonID = 4;
-	public final static int ArmExtenderBTalonID = 6;
+	public final static int ArmExtenderATalonID = 5;
+	public final static int ArmExtenderBTalonID = 7;
 	
 	public final static int ArmHomeSwitchDigitalInID = 9;
 	
@@ -50,6 +50,7 @@ public class RobotMap {
 	public final static int NavUltrasonicRangefinderAnalogIn = 1;
 	public final static int NavUltrasonicKickstartLineDigitalOut = 2;
 	public final static Port NavUltrasonicMuxSPIPort = SPI.Port.kOnboardCS0;
+	public static RobotDrive roboDrive;
 	
 	public final static int NavIMUInterruptDigitalIn = 0;  // DO NOT CHANGE - hard coded/hardware based in IMU class
 	public final static Port NavIMUSPIPort = SPI.Port.kMXP; // DO NOT CHANGE - hard coded/hardware based in IMU class
