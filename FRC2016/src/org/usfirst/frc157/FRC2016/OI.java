@@ -97,6 +97,16 @@ public class OI {
     private JoystickButton operatorButton11; // Button 11 - Base RIght Away
     private JoystickButton operatorButton12; // Button 12
     
+    private JoystickPOVButton operatorHatFore;      // Hat Button Forward
+    private JoystickPOVButton operatorHatForeRight; // Hat Button Forward Right
+    private JoystickPOVButton operatorHatRight;     // Hat Button Right
+    private JoystickPOVButton operatorHatAftRight;  // Hat Button Aft Right
+    private JoystickPOVButton operatorHatAft;       // Hat Button Aft
+    private JoystickPOVButton operatorHatAftLeft;   // Hat Button Aft Left
+    private JoystickPOVButton operatorHatLeft;      // Hat Button Left
+    private JoystickPOVButton operatorHatForeLeft;  // Hat Button Forward Left
+    
+    
     public LogitechController logitechDriver;
     private LogitechControllerButton logitechDriverButtonLeftB; // Left Button (Above Trigger)
     private LogitechControllerButton logitechDriverButtonRightB; // Right Button (Above Trigger)
@@ -168,6 +178,15 @@ public class OI {
         operatorButton10 = new JoystickButton(operator, 10);
         operatorButton11 = new JoystickButton(operator, 11);
         operatorButton12 = new JoystickButton(operator, 12);
+    
+        operatorHatFore = new JoystickPOVButton(operator, 0);
+        operatorHatForeRight = new JoystickPOVButton(operator, 45);
+        operatorHatRight = new JoystickPOVButton(operator, 90);
+        operatorHatAftRight = new JoystickPOVButton(operator, 135);
+        operatorHatAft = new JoystickPOVButton(operator, 180);
+        operatorHatAftLeft = new JoystickPOVButton(operator, 225);
+        operatorHatLeft = new JoystickPOVButton(operator, 270);
+        operatorHatForeLeft = new JoystickPOVButton(operator, 315);
 
         logitechDriverButtonLeftB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonLeftB.value);
         logitechDriverButtonRightB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonRightB.value);
@@ -228,6 +247,15 @@ public class OI {
         operatorButton11.whenPressed(new TurnToHeading(90));
         operatorButton12.whenPressed(new TurnToHeading(-90));
         
+        operatorHatFore.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
+        operatorHatForeRight.whenPressed(new PrintButton("O  Hat Fore Right"));
+        operatorHatRight.whenPressed(new PrintButton("O  Hat Right"));
+        operatorHatAftRight.whenPressed(new PrintButton("O  Hat Aft Right"));
+        operatorHatAft.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
+        operatorHatAftLeft.whenPressed(new PrintButton("O  Hat Aft Left"));
+        operatorHatLeft.whenPressed(new PrintButton("O  Hat Left"));
+        operatorHatForeLeft.whenPressed(new PrintButton("O  Hat Fore Left"));
+
 
         logitechDriverButtonLeftB.whenPressed(new PrintButton("P Button LeftB"));
         logitechDriverButtonRightB.whenPressed(new PrintButton("P Button RightB"));
