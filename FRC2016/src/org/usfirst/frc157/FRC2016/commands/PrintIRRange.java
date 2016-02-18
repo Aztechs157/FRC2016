@@ -22,13 +22,12 @@ public class PrintIRRange extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	System.out.print("Range = " + Robot.ballHandler.getBoulderRange()/2.54);
+    	System.out.print("Range = " + Robot.ballHandler.getBoulderRange()/2.54);
 //    	System.out.print(RobotMap.modeSelect.getPosition().postionName);
 //    	System.out.print(" E-" + Robot.arm.getArmExtendedSwitch());
 //    	System.out.print(" R-" + Robot.arm.getArmRetractedSwitch());
 //    	System.out.print(" S-" + Robot.arm.getShoulderHomeSwitch());
 
-    	System.out.print(Robot.oi.operator.getPOV() + " ");
     	System.out.println(" <");
     }
 

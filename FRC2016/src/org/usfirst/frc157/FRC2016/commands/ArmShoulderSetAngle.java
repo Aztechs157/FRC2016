@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetArmAngle extends Command {
+public class ArmShoulderSetAngle extends Command {
 
-    public SetArmAngle(double degrees) {
+    public ArmShoulderSetAngle(double degrees) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

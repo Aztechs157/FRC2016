@@ -234,14 +234,14 @@ public class OI {
         driverRightButton11.whenPressed(new PrintButton("R Button 11"));
         driverRightButton12.whenPressed(new PrintButton("R Button 12"));
         
-        operatorButtonTrigger.whileHeld(new GrabBoulderManual());
-        operatorButton2.whileHeld(new GrabBoulderAuto());
+        operatorButtonTrigger.whileHeld(new GrabBoulderManual());     // Trigger
+        operatorButton2.whileHeld(new GrabBoulderAuto());             // Thumb Button
         operatorButton3.whenPressed(new PrintButton("O Button 3"));
-        operatorButton4.whileHeld(new PrintIRRange());
+        operatorButton4.whenPressed(new PrintButton("O Button 4"));
         operatorButton5.whenPressed(new PrintButton("O Button 5"));
         operatorButton6.whenPressed(new PrintButton("O Button 6"));
-        operatorButton7.whenPressed(new PrintIMUOutput("IMU"));
-        operatorButton8.whileHeld(new PrintButton("O Button 8"));
+        operatorButton7.whileHeld(new PrintIMUOutput("IMU"));
+        operatorButton8.whileHeld(new PrintIRRange());
         operatorButton9.whenPressed(new TurnToHeading(0));
         operatorButton10.whenPressed(new TurnToHeading(180));
         operatorButton11.whenPressed(new TurnToHeading(90));
