@@ -85,6 +85,18 @@ public class Ultrasonics {
 		ultrasonicTask.start();
 	}
 	
+	public double getRange(UltrasonicSensor sensor)
+	{
+		double range = ranges[sensor.index];
+		double checkRange = ranges[sensor.index];
+		
+		while(range != checkRange)
+		{
+			checkRange = range;
+			range = ranges[sensor.index];
+		}
+		return range;
+	}
 	
 	private static class UltrasonicTask implements Runnable {
 		private boolean stop = false;

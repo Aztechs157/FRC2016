@@ -32,8 +32,7 @@ public class Navigation extends Subsystem {
     	if(imu == null)
     	{	
     		imu = new ADIS16448_IMU();
-    		imu.calibrate();
-    		
+    		imu.calibrate();   		
     		resetZeroHeading();
     	}
     	
