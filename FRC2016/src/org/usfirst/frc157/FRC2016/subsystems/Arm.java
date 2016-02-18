@@ -11,6 +11,7 @@
 
 package org.usfirst.frc157.FRC2016.subsystems;
 
+import org.usfirst.frc157.FRC2016.Robot;
 import org.usfirst.frc157.FRC2016.RobotMap;
 import org.usfirst.frc157.FRC2016.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -20,7 +21,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -41,7 +42,6 @@ public class Arm extends Subsystem {
 		DRAWBRIDGE_GRAB     (20.0),   // Angle required to start Drawbridge Grab
 		TOWER_SCALE         (50.0),   // Angle to use to extend ladder to scale tower
 		FULL_UP             (70.0);   // Maximum shoulder Angle
-
 		private final double angle;  // in degrees
 
 		Position(double angle) {
@@ -53,7 +53,9 @@ public class Arm extends Subsystem {
 			// returns the angle associated with the position
 			return this.angle;
 		}
+		
 	}
+	private final Timer t1 = RobotMap.time;
 	
 	public enum ArmMode
 	{
@@ -141,6 +143,14 @@ public class Arm extends Subsystem {
     		break;
     	}
     	return true;
+    }
+    private boolean extendTimer(){
+     if (t1.getMatchTime()>=130){
+         return true;
+     }
+     else{
+         return false;
+     }
     }
     
     public boolean setExtenderMode(ArmMode mode)
