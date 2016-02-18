@@ -11,8 +11,6 @@
 
 package org.usfirst.frc157.FRC2016;
 
-import org.usfirst.frc157.FRC2016.commands.PrintButton;
-import org.usfirst.frc157.FRC2016.commands.TeleopDrive;
 import org.usfirst.frc157.FRC2016.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -218,7 +216,7 @@ public class OI {
         driverRightButton12.whenPressed(new PrintButton("R Button 12"));
         
         operatorButtonTrigger.whileHeld(new GrabBoulderManual());
-        operatorButton2.whenPressed(new PrintButton("O Button 2"));
+        operatorButton2.whileHeld(new GrabBoulderAuto());
         operatorButton3.whenPressed(new PrintButton("O Button 3"));
         operatorButton4.whileHeld(new PrintIRRange());
         operatorButton5.whenPressed(new PrintButton("O Button 5"));

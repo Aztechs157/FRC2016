@@ -216,6 +216,7 @@ public class Arm extends Subsystem {
     {
     	setupExtenderMotors(ArmMode.AUTOMATIC);
     	shoulder.setTargetAngle(angle);
+    	shoulder.enable();
     	return true;
     }
     
@@ -326,12 +327,12 @@ public class Arm extends Subsystem {
 				//  and accelerating rapidly as the arm rises.
 				
 				// INTEGRAL Term
-				/// build up the error sum term (integral) when the angle is close
+				/// slowly build up the error sum term (integral) when the angle is close
 				if(Math.abs(error) < INTEGRAL_LIMIT)
 				{
 					sumError += CONTROL_I * error;
 				}
-				else  // zero the term when we are further away
+				else  // zero the term when we are further away (prevents windup)
 				{
 					sumError = 0;
 				}

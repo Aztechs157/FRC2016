@@ -31,7 +31,7 @@ public class GrabBoulderManual extends Command {
     protected void initialize() {
     	Robot.arm.shoulderGotoPosition(Position.GRAB_BOULDER);
     	Robot.ballHandler.startIntake();
-    	System.out.println("GRAB BOULDER - move arme down, start intake motors");
+    	System.out.println("MANUAL GRAB BOULDER - move arme down, start intake motors");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -47,7 +47,7 @@ public class GrabBoulderManual extends Command {
     protected void end() {
     	Robot.ballHandler.stopAll();
     	Robot.arm.shoulderGotoPosition(Position.PREPARE_FOR_BOULDER);
-    	System.out.println("GRAB BOULDER - move arm back up, stop intake motors");
+    	System.out.println("MANUAL GRAB BOULDER - move arm back up, stop intake motors");
     }
 
     // Called when another command which requires one or more of the same
@@ -55,6 +55,6 @@ public class GrabBoulderManual extends Command {
     protected void interrupted() {
     	Robot.ballHandler.stopAll();
     	Robot.arm.shoulderGotoPosition(Position.PREPARE_FOR_BOULDER);
-    	System.out.println("GRAB BOULDER INTERRUPTED- move arm back up, stop intake motors");
+    	System.out.println("MANUAL GRAB BOULDER INTERRUPTED- move arm back up, stop intake motors");
     }
 }
