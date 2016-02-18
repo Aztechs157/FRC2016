@@ -27,7 +27,6 @@ public class PrintIRRange extends Command {
 //    	System.out.print(" E-" + Robot.arm.getArmExtendedSwitch());
 //    	System.out.print(" R-" + Robot.arm.getArmRetractedSwitch());
 //    	System.out.print(" S-" + Robot.arm.getShoulderHomeSwitch());
-
     	System.out.println(" <");
     }
 

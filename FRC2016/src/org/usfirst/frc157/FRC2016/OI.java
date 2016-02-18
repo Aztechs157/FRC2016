@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import org.usfirst.frc157.FRC2016.subsystems.*;
+import org.usfirst.frc157.FRC2016.subsystems.Arm.Position;
 
 
 /**
@@ -236,14 +237,14 @@ public class OI {
         
         operatorButtonTrigger.whileHeld(new GrabBoulderManual());     // Trigger
         operatorButton2.whileHeld(new GrabBoulderAuto());             // Thumb Button
-        operatorButton3.whenPressed(new PrintButton("O Button 3"));
-        operatorButton4.whenPressed(new PrintButton("O Button 4"));
-        operatorButton5.whenPressed(new PrintButton("O Button 5"));
-        operatorButton6.whenPressed(new PrintButton("O Button 6"));
+        operatorButton3.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle())); // Button 3
+        operatorButton4.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));      // Button 4
+        operatorButton5.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 5
+        operatorButton6.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 6
         operatorButton7.whileHeld(new PrintIMUOutput("IMU"));
-        operatorButton8.whileHeld(new PrintIRRange());
+        operatorButton8.whileHeld(new PrintButton("O Button 10"));
         operatorButton9.whenPressed(new TurnToHeading(0));
-        operatorButton10.whenPressed(new TurnToHeading(180));
+        operatorButton10.whenPressed(new PrintIRRange());
         operatorButton11.whenPressed(new TurnToHeading(90));
         operatorButton12.whenPressed(new TurnToHeading(-90));
         

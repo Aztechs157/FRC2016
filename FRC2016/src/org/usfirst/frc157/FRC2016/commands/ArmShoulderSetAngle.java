@@ -1,5 +1,8 @@
 package org.usfirst.frc157.FRC2016.commands;
 
+import org.usfirst.frc157.FRC2016.Robot;
+import org.usfirst.frc157.FRC2016.subsystems.Arm.Position;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -7,13 +10,17 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ArmShoulderSetAngle extends Command {
 
-    public ArmShoulderSetAngle(double degrees) {
+	private double angle;
+	
+    public ArmShoulderSetAngle(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	this.angle = angle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+		Robot.arm.shoulderGotoAngle(angle);
     }
 
     // Called repeatedly when this Command is scheduled to run

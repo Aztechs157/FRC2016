@@ -52,7 +52,7 @@ public class Arm extends Subsystem {
 			this.angle = angle;
 		}
 		
-		double angle()
+		public double angle()
 		{
 			// returns the angle associated with the position
 			return this.angle;
