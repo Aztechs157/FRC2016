@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class GrabBoulderManual extends Command {
 
+	
+	// TODO worry about resetting of grabber after attempt
+	
     public GrabBoulderManual() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

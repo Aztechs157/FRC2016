@@ -42,6 +42,8 @@ public class RobotMap {
 	public final static int ArmExtenderBTalonID = 7;
 	
 	public final static int ArmHomeSwitchDigitalInID = 9;
+	public final static int ArmExtendedSwitchDigitalInID = 8;
+	public final static int ArmRetractedSwitchDigitalInID = 7;
 	
 	public final static int BallLeftShooterTalonID = 8;
 	public final static int BallRIghtShooterTalonID = 9;

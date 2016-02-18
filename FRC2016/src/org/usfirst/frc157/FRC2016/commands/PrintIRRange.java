@@ -20,7 +20,11 @@ public class PrintIRRange extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Range = " + Robot.ballHandler.getBoulderRange()/2.54);
+//    	System.out.print("Range = " + Robot.ballHandler.getBoulderRange()/2.54);
+    	System.out.print(" E-" + Robot.arm.getArmExtendedSwitch());
+    	System.out.print(" R-" + Robot.arm.getArmRetractedSwitch());
+    	System.out.print(" S-" + Robot.arm.getShoulderHomeSwitch());
+    	System.out.println(" <");
     }
 
     // Make this return true when this Command no longer needs to run execute()

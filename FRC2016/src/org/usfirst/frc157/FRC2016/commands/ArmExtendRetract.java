@@ -2,44 +2,42 @@ package org.usfirst.frc157.FRC2016.commands;
 
 import org.usfirst.frc157.FRC2016.Robot;
 
-import edu.wpi.first.wpilibj.RobotBase;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class LaunchBoulder extends Command {
+public class ArmExtendRetract extends Command {
 
-	private double startTime;
-	private final static double SHOT_DURATION = 0.5; // seconds
+	private boolean extend;
+	private boolean finished;
 	
-    public LaunchBoulder() {
+    public ArmExtendRetract(boolean extendRequest) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	extend = extendRequest;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	startTime = Timer.getFPGATimestamp();
-    	Robot.ballHandler.startShoot();
+    	finished = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(extend && Robot.arm.extendAllowedByTime())
+    	{
+    		finished = Robot.arm.armExtend();
+    	}
+    	else  // can always retract
+    	{
+    		finished = Robot.arm.armRetract();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	// Once the shot duration time is done, stop
-    	if(Timer.getFPGATimestamp() > (startTime + SHOT_DURATION))
-    	{
-    		return true;
-    	}
-    	else
-    	{    	
-    		return false;
-    	}
+        return finished;
     }
 
     // Called once after isFinished returns true
