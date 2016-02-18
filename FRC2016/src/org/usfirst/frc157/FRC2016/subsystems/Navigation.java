@@ -72,5 +72,42 @@ public class Navigation extends Subsystem {
     {
     	initialHeading = imu.getAngle(); 
     }
+    
+    public enum Side
+    {
+    	FRONT,
+    	RIGHT,
+    	REAR,
+    	LEFT;
+    }
+    public double ultrasonicHeading(Side side, double range1, double range2)
+    {
+    	double heading = 0;
+    	return heading;
+    }
+    
+    public class Location
+    {
+    	double x;
+    	double y;
+    	Location()
+    	{
+    		x=0; y=0;
+    	}
+    }
+    public class NavData
+    {
+    	double distance;
+    	double heading;
+    	NavData()
+    	{
+    		distance = 0; heading = 0;
+    	}
+    }
+    public NavData navigationToPoint(Location start, Location end)
+    {
+    	NavData navData = new NavData();
+    	return navData;
+    }
 }
 
