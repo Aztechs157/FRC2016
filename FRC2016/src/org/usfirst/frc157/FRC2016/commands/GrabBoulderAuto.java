@@ -57,7 +57,6 @@ public class GrabBoulderAuto extends Command {
     	{
     	case WAIT_FOR_IN_RANGE:
     	{
-    		System.out.print("r");
     		// while we are waiting for the ball to be in range, if we notice it is in grabbable range
     		if(Robot.ballHandler.isBallGrabable() == true)
     		{
@@ -70,7 +69,6 @@ public class GrabBoulderAuto extends Command {
     	break;
     	case WAIT_FOR_IN_HOLDER:
     	{
-    		System.out.print("h");
       		// while we are waiting for the ball to get in the hopper, if we notice it is in the hopper
     		if(Robot.ballHandler.isBallInHolder() == true)
     		{
