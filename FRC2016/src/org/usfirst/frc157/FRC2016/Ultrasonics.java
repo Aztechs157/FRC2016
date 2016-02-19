@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Ultrasonics {
 
@@ -59,6 +60,8 @@ public class Ultrasonics {
 		if(muxedUltrasonicInput == null)
 		{
 			muxedUltrasonicInput = new AnalogInput(analogInput);
+			muxedUltrasonicInput.setAverageBits(1);
+			muxedUltrasonicInput.setOversampleBits(1);
 		}
 		if(ultrasonicKickstartLine == null)
 		{
@@ -70,10 +73,16 @@ public class Ultrasonics {
 		}
 		
 
+//		muxSPI.setClockRate(1000000);
+//		muxSPI.setChipSelectActiveHigh();
+//		muxSPI.setClockActiveHigh();
+//		muxSPI.setMSBFirst();
+//		muxSPI.setSampleDataOnRising();
+		
 		muxSPI.setClockRate(1000000);
 		muxSPI.setChipSelectActiveHigh();
 		muxSPI.setClockActiveHigh();
-		muxSPI.setMSBFirst();
+		muxSPI.setLSBFirst();
 		muxSPI.setSampleDataOnRising();
 		
 		byte toSend[] = {(byte)0xAA, (byte)0x05};
@@ -97,7 +106,6 @@ public class Ultrasonics {
 		}
 		return range;
 	}
-	
 	private static class UltrasonicTask implements Runnable {
 		private boolean stop = false;
 		Ultrasonics ultrasonics;
@@ -115,7 +123,6 @@ public class Ultrasonics {
 			// Set up the ultrasonic scan order
 			byte address[] = {
 					Ultrasonics.UltrasonicSensor.FRONT_LEFT.spiByte,
-					Ultrasonics.UltrasonicSensor.FRONT_LEFT.spiByte,
 					Ultrasonics.UltrasonicSensor.FRONT_RIGHT.spiByte,
 					Ultrasonics.UltrasonicSensor.RIGHT_FRONT.spiByte,
 					Ultrasonics.UltrasonicSensor.RIGHT_REAR.spiByte,
@@ -127,7 +134,7 @@ public class Ultrasonics {
 
 			// pulse the DIO to kickstart the ultrasonics into automatically reading ranges
 			ultrasonics.ultrasonicKickstartLine.set(false);
-			boolean notInterrupted;
+//			boolean notInterrupted;
 //			do {
 //				try { Thread.sleep(1); notInterrupted = true; } catch(Exception e) {notInterrupted = false;};  // sleep for a millisecond
 //			} while (!notInterrupted);
@@ -142,23 +149,24 @@ public class Ultrasonics {
 			////////////////////////////////////////////////////////////////////////////////////////
 			/// TASK LOOP //////////////////////////////////////////////////////////////////////////
 			////////////////////////////////////////////////////////////////////////////////////////
+			double now;	
+
 			while(!stop)
 			{
 				for(UltrasonicSensor sensor: UltrasonicSensor.values())
 				{
 					// TODO verify that the SPI command is correct for the LTC1390 8 Channel Analog Mux
-					data[0] = address[idx%8];	
-					idx++;
-					if(idx == 8) {idx = 0;}
+					data[0] = sensor.spiByte;	
 					ultrasonics.muxSPI.write(data, 1); 
-					
+
+//				    now = Timer.getFPGATimestamp();
+//					int x = 6;
+//					do
+//					{
+//						x = x * 7;
+//					} while ((now - Timer.getFPGATimestamp()) < 0.005);
 					// read the analog input (two in a row must match to avoid reading on an update)
-					sensorVoltage = ultrasonics.muxedUltrasonicInput.getVoltage();
-					do 
-					{
-						sensorVoltageOldRead = sensorVoltage;
-						sensorVoltage = ultrasonics.muxedUltrasonicInput.getVoltage();
-					} while (Math.abs(sensorVoltage - sensorVoltageOldRead) > DoubleReadTolerance);
+					sensorVoltage = ultrasonics.muxedUltrasonicInput.getAverageVoltage();
 					
 					// Convert voltage to inches (and limit it to sensor range capability)
 					distanceInInches = sensorVoltage / sensor.voltsPerInch;
@@ -166,7 +174,8 @@ public class Ultrasonics {
 			        distanceInInches = (distanceInInches < sensor.minRangeInches) ? sensor.minRangeInches : distanceInInches;  
 			        
 			        // store the range for use
-			        ultrasonics.ranges[sensor.index] = distanceInInches;
+//			        ultrasonics.ranges[sensor.index] = distanceInInches;
+			        ultrasonics.ranges[sensor.index] = (ultrasonics.ranges[sensor.index] + sensorVoltage)/2;
  				}
 			}
 			////////////////////////////////////////////////////////////////////////////////////////
