@@ -31,12 +31,12 @@ public class ArmShoulderManual extends Command {
     	if(direction == Direction.UP)
     	{
     		Robot.arm.shoulderGotoPosition(Position.FULL_UP);
-    		System.out.println("Set Arm Shoulder - FULL UP");
+    		System.out.println("Set Arm Shoulder - FULL UP" + Position.FULL_UP.angle());
     	}
     	else if(direction == Direction.DOWN)
     	{
     		Robot.arm.shoulderGotoPosition(Position.FULL_DOWN);
-    		System.out.println("Set Arm Shoulder - FULL DOWN");
+    		System.out.println("Set Arm Shoulder - FULL DOWN" + Position.FULL_DOWN.angle());
     	}
     		
     }

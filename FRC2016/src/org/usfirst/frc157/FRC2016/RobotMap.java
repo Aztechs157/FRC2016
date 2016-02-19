@@ -37,7 +37,7 @@ public class RobotMap {
 	public final static int DriveRightATalonID = 6;
 	public final static int DriveRightBTalonID = 8;
 	
-	public final static int ArmShoulderTalonID = 11; // temporarily, should be 2;
+	public final static int ArmShoulderTalonID = 2;
 	public final static int ArmExtenderATalonID = 4;
 	public final static int ArmExtenderBTalonID = 7;
 	
