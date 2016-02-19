@@ -17,14 +17,14 @@ public class Ultrasonics {
 	public enum UltrasonicSensor
 	{
 		// Name       Index, muxAddr, SPI Byte,   V/in,   min, max    Min, Max ensor range are in inches
-		FRONT_LEFT    (0,    0,       (byte)0x80, 0.0098, 6.0, 254.0),
-		FRONT_RIGHT   (1,    1,       (byte)0x90, 0.0098, 6.0, 254.0),
-		RIGHT_FRONT   (2,    2,       (byte)0xA0, 0.0098, 6.0, 254.0),
-		RIGHT_REAR    (3,    3,       (byte)0xB0, 0.0098, 6.0, 254.0),
-		REAR_RIGHT    (4,    4,       (byte)0xC0, 0.0098, 6.0, 254.0),
-		REAR_LEFT     (5,    5,       (byte)0xD0, 0.0098, 6.0, 254.0),
-		LEFT_REAR     (6,    6,       (byte)0xE0, 0.0098, 6.0, 254.0),
-		LEFT_FRONT    (7,    7,       (byte)0xF0, 0.0098, 6.0, 254.0);
+		FRONT_LEFT    (0,    0,       (byte)0x08, 0.0098, 6.0, 254.0),
+		FRONT_RIGHT   (1,    1,       (byte)0x09, 0.0098, 6.0, 254.0),
+		RIGHT_FRONT   (2,    2,       (byte)0x0A, 0.0098, 6.0, 254.0),
+		RIGHT_REAR    (3,    3,       (byte)0x0B, 0.0098, 6.0, 254.0),
+		REAR_RIGHT    (4,    4,       (byte)0x0C, 0.0098, 6.0, 254.0),
+		REAR_LEFT     (5,    5,       (byte)0x0D, 0.0098, 6.0, 254.0),
+		LEFT_REAR     (6,    6,       (byte)0x0E, 0.0098, 6.0, 254.0),
+		LEFT_FRONT    (7,    7,       (byte)0x0F, 0.0098, 6.0, 254.0);
 
 		private final int    index;
 		private final int    muxAddress;

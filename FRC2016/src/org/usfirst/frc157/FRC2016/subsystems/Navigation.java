@@ -5,6 +5,7 @@ import org.usfirst.frc157.FRC2016.Ultrasonics;
 import org.usfirst.frc157.FRC2016.ADIS16448_IMU.ReadTask;
 import org.usfirst.frc157.FRC2016.RobotMap;
 
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -70,6 +71,11 @@ public class Navigation extends Subsystem {
     public void resetZeroHeading()
     {
     	initialHeading = imu.getAngle(); 
+    }
+    
+    public double getUltrasonicRange(Ultrasonics.UltrasonicSensor sensor)
+    {
+    	return ultrasonics.getRange(sensor);
     }
     
     public enum Side

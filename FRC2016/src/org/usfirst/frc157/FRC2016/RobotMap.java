@@ -32,20 +32,20 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class RobotMap {
 	
-	public final static int DriveLeftATalonID = 3;
-	public final static int DriveLeftBTalonID = 1;
+	public final static int DriveLeftATalonID = 1;
+	public final static int DriveLeftBTalonID = 3;
 	public final static int DriveRightATalonID = 6;
 	public final static int DriveRightBTalonID = 8;
 	
 	public final static int ArmShoulderTalonID = 11; // temporarily, should be 2;
-	public final static int ArmExtenderATalonID = 5;
+	public final static int ArmExtenderATalonID = 4;
 	public final static int ArmExtenderBTalonID = 7;
 	
 	public final static int ArmHomeSwitchDigitalInID = 9;
 	public final static int ArmExtendedSwitchDigitalInID = 8;
 	public final static int ArmRetractedSwitchDigitalInID = 7;
 	
-	public final static int BallLeftShooterTalonID = 8;
+	public final static int BallLeftShooterTalonID = 5;
 	public final static int BallRIghtShooterTalonID = 9;
 	public final static int BallRetireverTalonID = 10;	
 	public final static int BallIRRangefinderAnalogIn = 2;
