@@ -85,6 +85,11 @@ public class Drive extends Subsystem {
     	SmartDashboard.putDouble("RightDrive", drive);
     }
 
+    public void setBrakeModeOn(boolean setBrakeOn)
+    {
+    		rightDriveA.enableBrakeMode(setBrakeOn);
+    }
+    
     private void configureControllers()
     {
     	leftDriveA.changeControlMode(CANTalon.TalonControlMode.PercentVbus);

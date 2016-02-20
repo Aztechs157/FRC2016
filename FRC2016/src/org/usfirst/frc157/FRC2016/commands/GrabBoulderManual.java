@@ -36,11 +36,20 @@ public class GrabBoulderManual extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Robot.ballHandler.isBallInHolder())
+    	{
+        	Robot.ballHandler.stopAll();    		
+    	}
+    	if(Robot.oi.operator.getPOV(0) == 180)
+    	{
+    		Robot.arm.shoulderGotoAngle(Position.GRAB_BOULDER.angle()-3.0);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+//    	return Robot.ballHandler.isBallInHolder();
+    	return false;
     }
 
     // Called once after isFinished returns true

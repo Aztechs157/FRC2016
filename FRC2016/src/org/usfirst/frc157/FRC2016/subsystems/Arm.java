@@ -36,16 +36,17 @@ public class Arm extends Subsystem {
 		
 	public enum Position
 	{
-		FULL_DOWN           (-20.0),  // Minimum Shoulder Angle
-		FRENCH_FRIES_DOWN   (-15.0),  // Push down fries to this Angle before crossing
-		GRAB_BOULDER        (-12.0),  // Angle to use to grab a boulder
-		LOW_BAR_TRAVEL      (-10.0),  // Angle to use to go under low bar
+		FULL_DOWN           (-1.5),  // Minimum Shoulder Angle
+		FRENCH_FRIES_DOWN   (-1.0),  // Push down fries to this Angle before crossing
+		GRAB_BOULDER        (6.0),  // Angle to use to grab a boulder
+		LOW_BAR_TRAVEL      (0.0),  // Angle to use to go under low bar
+		CLEAR_FOR_SHOT      (25.0),  //  Angle to move arm to to shoot
 		PREPARE_FOR_BOULDER (10.0),   // Normal Bar Angle (ready to grab boulder)
 		HOME                (0.0),    // Starting Angle is defined as 0, all other angles are referenced to it ~30 degrees
-		GAME_START          (0.0),    // Game Start Angle (arm is inside legal starting box) 
+		GAME_START          (70.0),    // Game Start Angle (arm is inside legal starting box) 
 		DRAWBRIDGE_GRAB     (20.0),   // Angle required to start Drawbridge Grab
-		TOWER_SCALE         (50.0),   // Angle to use to extend ladder to scale tower
-		FULL_UP             (70.0);   // Maximum shoulder Angle
+		TOWER_SCALE         (90.0),   // Angle to use to extend ladder to scale tower
+		FULL_UP             (90.0);   // Maximum shoulder Angle
 		private final double angle;  // in degrees
 
 		Position(double angle) {
@@ -97,8 +98,25 @@ public class Arm extends Subsystem {
 		}
 	}
 	
-	private SensorCal cal = new SensorCal(922, 539, 90.0);
-	
+	////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////
+	// Calibrate the arm here
+	//   Use the web page to get these values roborio-157.frc.local
+	//   on talon 2 (the shoulder motor)
+	//   use the self test button in each of these positions and enter the values below
+	//   Position 1 - arm at 0 degrees (parallel to frame) is the first value below
+	//   Position 2 - arm at 90 degrees (perpendicular to frame) is the second position
+	//   Number three is the angle the second number was taken at
+	//
+	//  the number you want is the ADC value in the Analog section of the self test page
+	//     don't forget to refresh...
+	//
+	////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////	
+	private SensorCal cal = new SensorCal(886, 532, 90.0);
+	////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////
+
 	private static final double compensationVoltageAtZero = 6.0; //Volts
 		
 	private ArmMode armMode;
@@ -155,7 +173,11 @@ public class Arm extends Subsystem {
      
     public boolean setShoulderMode(ArmMode mode)
     {
+//    	shoulderMotor.changeControlMode(TalonControlMode.Voltage);
     	shoulderMotor.changeControlMode(TalonControlMode.PercentVbus);
+//    	shoulderMotor.enableBrakeMode(true);
+		shoulderMotor.enable();
+
     	return true;
     }
     
@@ -273,9 +295,12 @@ public class Arm extends Subsystem {
     private class ShoulderTask implements Runnable
     {
 
-    	public static final double CONTROL_P = 0.125;
-    	public static final double CONTROL_I = 0.05;
+    	public static final double CONTROL_P = 0.75;
+    	public static final double CONTROL_I = 0.0125;
     	public static final double INTEGRAL_LIMIT = 5.0; // degrees
+    	
+    	public static final double MIN_OUTPUT = -11.0; // Volts
+    	public static final double MAX_OUTPUT =  11.0; //Volts
 
     	Arm arm;
     	double output;
@@ -302,6 +327,8 @@ public class Arm extends Subsystem {
     			angle = Position.FULL_UP.angle();
     		}
     		targetAngle = angle;
+        	System.out.println("\n\n+++++++++++++++++++++ TARGET   to: " + angle);
+
     	}
     	
 		@Override
@@ -342,12 +369,31 @@ public class Arm extends Subsystem {
 				// output is proportional to the error and the integrated (summed) error
 				output = CONTROL_P * (error + sumError);				
 				
+
+//				output += getShoulderGravityCompensation();
+
+//				System.out.print("t" + targetAngle + " a" + getShoulderAngle() + "  e" + error + "  s"+ sumError + "  o" + output);
+
+				// Bound the output
+				if(output < MIN_OUTPUT) { output = MIN_OUTPUT;}
+				if(output > MAX_OUTPUT) { output = MAX_OUTPUT;}
+				
+//				System.out.print(" b" + output);
+
+				output = output/12;
+				
 				if(enableOutput)
 				{
-//  TODO: Uncomment before making arm work
-//					output += getShoulderGravityCompensation();
-//					shoulderMotor.set(output);
-//					System.out.println(" " + output);
+//					System.out.print("t" + targetAngle + " a" + getShoulderAngle() + "  e" + error + "  s"+ sumError + "  o" + output);
+					shoulderMotor.set(output);
+//					System.out.println(" >>> ");
+				}
+//				System.out.println("");
+				try {
+//					Thread.sleep(0, 500000);  // 500 000 Nanoseconds is 0.5 milliseconds
+					Thread.sleep(20, 000000);  // 500 000 Nanoseconds is 0.5 milliseconds
+				} catch (InterruptedException e) {
+					// DON'T CARE, JUST WANT TO WAIT...
 				}
 			}
 			////////////////////////////////////////////////////////////////////////////////////////

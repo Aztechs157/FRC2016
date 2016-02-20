@@ -48,7 +48,7 @@ public class Ultrasonics {
 	private DigitalOutput ultrasonicKickstartLine;
 	private SPI muxSPI;
 
-    double ranges[] = new double[8];
+    volatile double ranges[] = new double[8];
     
 	public Ultrasonics(int analogInput, int kickstartLineDigtalOutput, Port spiPort)
 	{

@@ -27,6 +27,7 @@ public class TurnToHeading extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.drive.setBrakeModeOn(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,15 +45,15 @@ public class TurnToHeading extends Command {
     	}
     	
     	
-    	if(Math.abs(deltaHeading) <  INTEGRATION_TOLERANCE)
-    	{
-    		sumDeltaHeading = sumDeltaHeading + INTEGRATION_CONSTANT * deltaHeading;
-    	}
-    	else
-    	{
-    		sumDeltaHeading = 0;
-    	}
-    	
+//    	if(Math.abs(deltaHeading) <  INTEGRATION_TOLERANCE)
+//    	{
+//    		sumDeltaHeading = sumDeltaHeading + INTEGRATION_CONSTANT * deltaHeading;
+//    	}
+//    	else
+//    	{
+//    		sumDeltaHeading = 0;
+//    	}
+//    	
     	double driveValue = deltaHeading * DELTA_CONSTANT + sumDeltaHeading;
 
     	double left = -driveValue;
@@ -80,10 +81,12 @@ public class TurnToHeading extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drive.setBrakeModeOn(false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.drive.setBrakeModeOn(false);
     }
 }
