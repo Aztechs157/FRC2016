@@ -240,7 +240,7 @@ public class OI {
         operatorButton3.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle())); // Button 3
         operatorButton4.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));      // Button 4
         //operatorButton7.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 7
-        operatorButton7.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 7
+        //operatorButton7.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 7
         operatorButton5.whenPressed(new ArmShoulderSetAngle(Position.CLEAR_FOR_SHOT.angle()));   // Button 5
         operatorButton8.whileHeld(new PrintIMUOutput("IMU"));
         operatorButton9.whenPressed(new PrintButton("O Button 10"));
