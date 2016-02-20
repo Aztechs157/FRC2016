@@ -47,9 +47,9 @@ public class TeleopDrive extends Command {
     	double right;
     	
     	// Arcade (arcade on one stick with stick Z for rotate in place (twist))
-    	double arcX = Robot.oi.operator.getX();   // left/right stick
-    	double arcY = Robot.oi.operator.getY();   // forward/backward stick
-    	double arcRot = Robot.oi.operator.getZ(); // twist stick
+    	double arcX = 0;//Robot.oi.operator.getX();   // left/right stick
+    	double arcY = 0;//Robot.oi.operator.getY();   // forward/backward stick
+    	double arcRot = 0;//Robot.oi.operator.getZ(); // twist stick
     	
     	left = arcY - arcX - arcRot/2;
     	right = arcY + arcX + arcRot/2;

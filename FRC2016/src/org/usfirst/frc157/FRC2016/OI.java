@@ -222,7 +222,7 @@ public class OI {
         driverLeftButton11.whenPressed(new PrintButton("L Button 11"));
         driverLeftButton12.whenPressed(new PrintButton("L Button 12"));
 
-        driverRightButtonTrigger.whileHeld(new GrabBoulderManual());
+        driverRightButtonTrigger.whileHeld(new LaunchBoulder());
         driverRightButton2.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
         driverRightButton3.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));
         driverRightButton4.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
@@ -239,10 +239,11 @@ public class OI {
         operatorButton2.whenPressed(new LaunchBoulder());             // Thumb Button
         operatorButton3.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle())); // Button 3
         operatorButton4.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));      // Button 4
-        operatorButton5.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 5
-        operatorButton6.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 6
-        operatorButton7.whileHeld(new PrintIMUOutput("IMU"));
-        operatorButton8.whenPressed(new PrintButton("O Button 10"));
+        //operatorButton7.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 7
+        operatorButton7.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 7
+        operatorButton5.whenPressed(new ArmShoulderSetAngle(Position.CLEAR_FOR_SHOT.angle()));   // Button 5
+        operatorButton8.whileHeld(new PrintIMUOutput("IMU"));
+        operatorButton9.whenPressed(new PrintButton("O Button 10"));
 //        operatorButton9.whenPressed(new TurnToHeading(0));
         operatorButton10.whileHeld(new PrintIRRange());
 //        operatorButton11.whenPressed(new TurnToHeading(90));
