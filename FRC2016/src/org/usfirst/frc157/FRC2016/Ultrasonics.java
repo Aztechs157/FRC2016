@@ -13,30 +13,27 @@ public class Ultrasonics {
 
 	private final static float UltrasonicKickoffPulseLenght = (float) 0.00001; // seconds 
 //	private final static float UltrasonicKickoffPulseLenght = (float) 0.001; // seconds 
-	private final static double DoubleReadTolerance = (double)0.005; //volts
 	
 	public enum UltrasonicSensor
 	{
-		// Name       Index, muxAddr, SPI Byte,   V/in,   min, max    Min, Max ensor range are in inches
-		FRONT_LEFT    (0,    0,       (byte)0x08, 0.0098, 6.0, 254.0),
-		FRONT_RIGHT   (1,    1,       (byte)0x09, 0.0098, 6.0, 254.0),
-		RIGHT_FRONT   (2,    2,       (byte)0x0A, 0.0098, 6.0, 254.0),
-		RIGHT_REAR    (3,    3,       (byte)0x0B, 0.0098, 6.0, 254.0),
-		REAR_RIGHT    (4,    4,       (byte)0x0C, 0.0098, 6.0, 254.0),
-		REAR_LEFT     (5,    5,       (byte)0x0D, 0.0098, 6.0, 254.0),
-		LEFT_REAR     (6,    6,       (byte)0x0E, 0.0098, 6.0, 254.0),
-		LEFT_FRONT    (7,    7,       (byte)0x0F, 0.0098, 6.0, 254.0);
+		// Name       Index, SPI Byte,   V/in,   min, max    Min, Max ensor range are in inches
+		FRONT_LEFT    (0,    (byte)0x08, 0.0098, 6.0, 254.0),
+		FRONT_RIGHT   (1,    (byte)0x09, 0.0098, 6.0, 254.0),
+		RIGHT_FRONT   (2,    (byte)0x0A, 0.0098, 6.0, 254.0),
+		RIGHT_REAR    (3,    (byte)0x0B, 0.0098, 6.0, 254.0),
+		REAR_RIGHT    (4,    (byte)0x0C, 0.0098, 6.0, 254.0),
+		REAR_LEFT     (5,    (byte)0x0D, 0.0098, 6.0, 254.0),
+		LEFT_REAR     (6,    (byte)0x0E, 0.0098, 6.0, 254.0),
+		LEFT_FRONT    (7,    (byte)0x0F, 0.0098, 6.0, 254.0);
 
-		private final int    index;
-		private final int    muxAddress;
-		private final byte   spiByte;
-		private final double voltsPerInch;
-		private final double minRangeInches;
-		private final double maxRangeInches;
+		private final int    index;            // Ordinal index (for storing value in array)
+		private final byte   spiByte;          // Byte to write to SPI to setup mux to read this sensor (mux uses low nibble)
+		private final double voltsPerInch;     // volts/inch sensor calibration data
+		private final double minRangeInches;   // minimum range for sensor
+		private final double maxRangeInches;   // maximum range for sensor
 
-		UltrasonicSensor(int index, int muxAddress, byte spiByte, double voltsPerInch, double minRangeInches, double maxRangeInches) {
+		UltrasonicSensor(int index, byte spiByte, double voltsPerInch, double minRangeInches, double maxRangeInches) {
 			this.index = index;
-			this.muxAddress = muxAddress;
 			this.spiByte = spiByte;
 			this.voltsPerInch = voltsPerInch;
 			this.minRangeInches = minRangeInches;
@@ -44,17 +41,21 @@ public class Ultrasonics {
 		}
 	}
 
+	// ranges is where the ultrasonic task stores the range data readings (in unprocessed format)
+	//  volatile since the task changes it asynchronously to the rest of the bot
+	//  accesses should be protected with "synchronized(ranges)" to prevent conflicting accesses 
+    volatile double reading[] = new double[8];
+    
+
 	private AnalogInput muxedUltrasonicInput;
 	private DigitalOutput ultrasonicKickstartLine;
 	private SPI muxSPI;
 
-    volatile double ranges[] = new double[8];
-    
 	public Ultrasonics(int analogInput, int kickstartLineDigtalOutput, Port spiPort)
 	{
 		for(int idx=0; idx<8; idx++)
 		{
-			ranges[idx]=-1;
+			reading[idx]=-1;
 		}
 		
 		if(muxedUltrasonicInput == null)
@@ -85,30 +86,37 @@ public class Ultrasonics {
 		muxSPI.setLSBFirst();
 		muxSPI.setSampleDataOnRising();
 		
-		byte toSend[] = {(byte)0xAA, (byte)0x05};
-		muxSPI.write(toSend, 2);  // Fake Data
-		
 		// start the thread that will just keep reading the ultrasonics
 		ultrasonicTask = new Thread(new UltrasonicTask(this));
 		ultrasonicTask.setDaemon(true);
 		ultrasonicTask.start();
 	}
 	
-	public double getRange(UltrasonicSensor sensor)
+	public double getRangeInInches(UltrasonicSensor sensor)
 	{
-		double range = ranges[sensor.index];
-		double checkRange = ranges[sensor.index];
-		
-		while(range != checkRange)
+		double sensorVoltage = -10;
+		synchronized(reading)
 		{
-			checkRange = range;
-			range = ranges[sensor.index];
+			sensorVoltage = reading[sensor.index];
 		}
-		return range;
+		
+		// Convert voltage to inches (and limit it to sensor range capability)
+		double distanceInInches = sensorVoltage / sensor.voltsPerInch;
+		distanceInInches = (distanceInInches > sensor.maxRangeInches) ? sensor.maxRangeInches : distanceInInches;
+		distanceInInches = (distanceInInches < sensor.minRangeInches) ? sensor.minRangeInches : distanceInInches;  
+
+		return distanceInInches;
 	}
+	
+	
+	// Class for the thread that cycles through the ultrasonic sensors 
+	//   setting the analog mux address and reading the associated sensor data
 	private static class UltrasonicTask implements Runnable {
+		
+		private static final double ULTRASONIC_STABILIZED_READ_TOLERANCE = 0.1;
 		private boolean stop = false;
 		Ultrasonics ultrasonics;
+		
 		public UltrasonicTask(Ultrasonics parent) {
 			stop = false;
 			ultrasonics = parent;
@@ -116,21 +124,11 @@ public class Ultrasonics {
 
 		@Override
 		public void run() {
-			int idx = 0;
+
 			double distanceInInches;
-			double sensorVoltage, sensorVoltageOldRead; // sensor reads - must mach when read to be considered valid
-			byte data[] = {(byte)0x00};
-			// Set up the ultrasonic scan order
-			byte address[] = {
-					Ultrasonics.UltrasonicSensor.FRONT_LEFT.spiByte,
-					Ultrasonics.UltrasonicSensor.FRONT_RIGHT.spiByte,
-					Ultrasonics.UltrasonicSensor.RIGHT_FRONT.spiByte,
-					Ultrasonics.UltrasonicSensor.RIGHT_REAR.spiByte,
-					Ultrasonics.UltrasonicSensor.REAR_RIGHT.spiByte,
-					Ultrasonics.UltrasonicSensor.REAR_LEFT.spiByte,
-					Ultrasonics.UltrasonicSensor.LEFT_REAR.spiByte,
-					Ultrasonics.UltrasonicSensor.LEFT_FRONT.spiByte
-					};
+
+			double sensorVoltage, sensorVoltageOldRead; // sensor reads - must approximately match when read to be considered valid
+			byte spiCommand[] = {(byte)0x00};
 
 			// pulse the DIO to kickstart the ultrasonics into automatically reading ranges
 			ultrasonics.ultrasonicKickstartLine.set(false);
@@ -155,27 +153,32 @@ public class Ultrasonics {
 			{
 				for(UltrasonicSensor sensor: UltrasonicSensor.values())
 				{
-					// TODO verify that the SPI command is correct for the LTC1390 8 Channel Analog Mux
-					data[0] = sensor.spiByte;	
-					ultrasonics.muxSPI.write(data, 1); 
+					// Write the LT1390 addressing nibble (4 bits) via the SPI bus
+					spiCommand[0] = sensor.spiByte;	
+					ultrasonics.muxSPI.write(spiCommand, 1); 
 
-//				    now = Timer.getFPGATimestamp();
-//					int x = 6;
-//					do
-//					{
-//						x = x * 7;
-//					} while ((now - Timer.getFPGATimestamp()) < 0.005);
+					// wait for the reading to stablilze
+					try {
+						Thread.sleep(5);     // milliseconds
+					} catch (InterruptedException e) {
+						// DO NOTHING
+					}
+					
 					// read the analog input (two in a row must match to avoid reading on an update)
 					sensorVoltage = ultrasonics.muxedUltrasonicInput.getAverageVoltage();
-					
-					// Convert voltage to inches (and limit it to sensor range capability)
-					distanceInInches = sensorVoltage / sensor.voltsPerInch;
-			        distanceInInches = (distanceInInches > sensor.maxRangeInches) ? sensor.maxRangeInches : distanceInInches;
-			        distanceInInches = (distanceInInches < sensor.minRangeInches) ? sensor.minRangeInches : distanceInInches;  
-			        
+					do
+					{
+						sensorVoltageOldRead = sensorVoltage;
+						sensorVoltage = ultrasonics.muxedUltrasonicInput.getAverageVoltage();
+					}  while(Math.abs(sensorVoltage - sensorVoltageOldRead) < ULTRASONIC_STABILIZED_READ_TOLERANCE);
+
 			        // store the range for use
-//			        ultrasonics.ranges[sensor.index] = distanceInInches;
-			        ultrasonics.ranges[sensor.index] = (ultrasonics.ranges[sensor.index] + sensorVoltage)/2;
+					synchronized(ultrasonics.reading)
+					{						
+						ultrasonics.reading[sensor.index] = sensorVoltage;
+						// uncomment following for lightly averaged sensor readings
+//						ultrasonics.reading[sensor.index] = (ultrasonics.reading[sensor.index] + sensorVoltage)/2;
+					}
  				}
 			}
 			////////////////////////////////////////////////////////////////////////////////////////

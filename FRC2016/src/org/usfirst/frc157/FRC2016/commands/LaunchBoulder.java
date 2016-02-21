@@ -17,10 +17,11 @@ public class LaunchBoulder extends Command {
 	private final static double SHOT_DURATION = 0.5; // seconds
 	private boolean shooterStarted;
 	
-    public LaunchBoulder() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    }
+	public LaunchBoulder() {
+		// Use requires() here to declare subsystem dependencies
+		requires(Robot.arm);
+		requires(Robot.ballHandler);
+	}
 
     // Called just before this Command runs the first time
     protected void initialize() {

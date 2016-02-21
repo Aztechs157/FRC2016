@@ -22,7 +22,7 @@ public class ArmShoulderManual extends Command {
 	
     public ArmShoulderManual(Direction direction) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.arm);
     	this.direction = direction;
     }
 

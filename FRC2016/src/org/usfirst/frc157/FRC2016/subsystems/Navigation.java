@@ -75,7 +75,7 @@ public class Navigation extends Subsystem {
     
     public double getUltrasonicRange(Ultrasonics.UltrasonicSensor sensor)
     {
-    	return ultrasonics.getRange(sensor);
+    	return ultrasonics.getRangeInInches(sensor);
     }
     
     public enum Side

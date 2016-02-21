@@ -14,7 +14,7 @@ public class ArmShoulderSetAngle extends Command {
 	
     public ArmShoulderSetAngle(double angle) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.arm);
     	this.angle = angle;
     }
 

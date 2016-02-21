@@ -14,7 +14,7 @@ public class ArmExtendRetract extends Command {
 	
     public ArmExtendRetract(boolean extendRequest) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.arm);
     	extend = extendRequest;
     }
 
