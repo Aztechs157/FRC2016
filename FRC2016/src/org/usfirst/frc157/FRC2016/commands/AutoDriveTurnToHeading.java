@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TurnToHeading extends Command {
+public class AutoDriveTurnToHeading extends Command {
 
 	private final static double HEADING_TOLERANCE = 2.0;      // degrees
 	private final static double INTEGRATION_TOLERANCE = 20.0; // degrees
@@ -18,11 +18,12 @@ public class TurnToHeading extends Command {
 	private double targetHeading;
 	private double sumDeltaHeading;
 	
-    public TurnToHeading(double heading) {
+    public AutoDriveTurnToHeading(double heading) {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.drive);
     	targetHeading = heading;
     	sumDeltaHeading = 0;
+    	Robot.drive.stopAuto(false);
     }
 
     // Called just before this Command runs the first time
@@ -68,6 +69,13 @@ public class TurnToHeading extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	
+    	// if auto drive has been overridden, this command completes
+    	if(Robot.drive.stopAuto())
+    	{
+    		return true;
+    	}
+    	
     	if(Math.abs((Robot.navigation.getHeading() - targetHeading)%360) < HEADING_TOLERANCE)
     	{
     		// TODO do we want to set brake mode here?

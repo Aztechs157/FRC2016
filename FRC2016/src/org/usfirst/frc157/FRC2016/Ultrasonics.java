@@ -32,6 +32,7 @@ public class Ultrasonics {
 		private final double minRangeInches;   // minimum range for sensor
 		private final double maxRangeInches;   // maximum range for sensor
 
+		
 		UltrasonicSensor(int index, byte spiByte, double voltsPerInch, double minRangeInches, double maxRangeInches) {
 			this.index = index;
 			this.spiByte = spiByte;
@@ -39,12 +40,30 @@ public class Ultrasonics {
 			this.minRangeInches = minRangeInches;
 			this.maxRangeInches = maxRangeInches;
 		}
+		
+		// set the numnber of sensors defined in the enum automatically
+		private static final int NumSensors = UltrasonicSensor.values().length;
 	}
 
+	private static final int MAX_ULTRASONIC_RANGE_TIME = 50; // milliseconds (from Maxbotics LV-MaxSonar EZ Series datasheet)
+	private static final int ULTRASONIC_LOOP_TIME = MAX_ULTRASONIC_RANGE_TIME * UltrasonicSensor.NumSensors;  // milliseconds
+	
 	// ranges is where the ultrasonic task stores the range data readings (in unprocessed format)
 	//  volatile since the task changes it asynchronously to the rest of the bot
 	//  accesses should be protected with "synchronized(ranges)" to prevent conflicting accesses 
-    volatile double reading[] = new double[8];
+	public class Reading
+	{
+		double value;
+		double time;
+		
+		Reading(double value, double time)
+		{
+			this.value = value;
+			this.time = time;
+		}
+	}
+    volatile Reading reading[] = new Reading[8];
+    
     
 
 	private AnalogInput muxedUltrasonicInput;
@@ -55,7 +74,11 @@ public class Ultrasonics {
 	{
 		for(int idx=0; idx<8; idx++)
 		{
-			reading[idx]=-1;
+			synchronized(reading)
+			{
+				reading[idx].value = -1;
+				reading[idx].time  =  0;				
+			}
 		}
 		
 		if(muxedUltrasonicInput == null)
@@ -95,11 +118,12 @@ public class Ultrasonics {
 	public double getRangeInInches(UltrasonicSensor sensor)
 	{
 		double sensorVoltage = -10;
+		
 		synchronized(reading)
 		{
-			sensorVoltage = reading[sensor.index];
+			sensorVoltage = reading[sensor.index].value;
 		}
-		
+
 		// Convert voltage to inches (and limit it to sensor range capability)
 		double distanceInInches = sensorVoltage / sensor.voltsPerInch;
 		distanceInInches = (distanceInInches > sensor.maxRangeInches) ? sensor.maxRangeInches : distanceInInches;
@@ -108,6 +132,26 @@ public class Ultrasonics {
 		return distanceInInches;
 	}
 	
+	public Reading getSensorReadingInInches(UltrasonicSensor sensor)
+	{
+		double sensorVoltage = -10;
+		double timeOfReading = 0;
+		
+		synchronized(reading)
+		{
+			sensorVoltage = reading[sensor.index].value;
+			timeOfReading = reading[sensor.index].time;
+		}
+
+		// Convert voltage to inches (and limit it to sensor range capability)
+		double distanceInInches = sensorVoltage / sensor.voltsPerInch;
+		distanceInInches = (distanceInInches > sensor.maxRangeInches) ? sensor.maxRangeInches : distanceInInches;
+		distanceInInches = (distanceInInches < sensor.minRangeInches) ? sensor.minRangeInches : distanceInInches;  
+
+		Reading result = new Reading(distanceInInches, timeOfReading);
+		return result;
+	}
+
 	
 	// Class for the thread that cycles through the ultrasonic sensors 
 	//   setting the analog mux address and reading the associated sensor data
@@ -125,30 +169,32 @@ public class Ultrasonics {
 		@Override
 		public void run() {
 
-			double distanceInInches;
-
 			double sensorVoltage, sensorVoltageOldRead; // sensor reads - must approximately match when read to be considered valid
 			byte spiCommand[] = {(byte)0x00};
 
 			// pulse the DIO to kickstart the ultrasonics into automatically reading ranges
 			ultrasonics.ultrasonicKickstartLine.set(false);
-//			boolean notInterrupted;
-//			do {
-//				try { Thread.sleep(1); notInterrupted = true; } catch(Exception e) {notInterrupted = false;};  // sleep for a millisecond
-//			} while (!notInterrupted);
-//			ultrasonics.ultrasonicKickstartLine.set(true);
-//			do {
-//				try { Thread.sleep(1); } catch(Exception e) {notInterrupted = false;};  // sleep for a millisecond
-//			} while (!notInterrupted);
-//			ultrasonics.ultrasonicKickstartLine.set(false);
+
 
 			ultrasonics.ultrasonicKickstartLine.pulse(RobotMap.NavUltrasonicKickstartLineDigitalOut, UltrasonicKickoffPulseLenght);
-			
+
+			// wait for all the the ultrasonics to range at least once before reading them
+			double startTime = Timer.getFPGATimestamp();  // seconds
+			long waitTime = ULTRASONIC_LOOP_TIME;         // milliseconds
+			do
+			{
+				try {
+					Thread.sleep(waitTime);     // milliseconds
+				} catch (InterruptedException e) {
+					// if interrupted the next waitTime is the loop time less the time we already waited
+					waitTime = ULTRASONIC_LOOP_TIME - (long)((Timer.getFPGATimestamp() - startTime) * 1000.0);
+				}
+			}
+			while ((Timer.getFPGATimestamp() - startTime) <= (ULTRASONIC_LOOP_TIME + 1)); // 1ms extra to make sure this normally only waits once
+
 			////////////////////////////////////////////////////////////////////////////////////////
 			/// TASK LOOP //////////////////////////////////////////////////////////////////////////
 			////////////////////////////////////////////////////////////////////////////////////////
-			double now;	
-
 			while(!stop)
 			{
 				for(UltrasonicSensor sensor: UltrasonicSensor.values())
@@ -157,9 +203,11 @@ public class Ultrasonics {
 					spiCommand[0] = sensor.spiByte;	
 					ultrasonics.muxSPI.write(spiCommand, 1); 
 
-					// wait for the reading to stablilze
+					// wait for the reading to stabilize after the mux switches
+					// mux gets there in 400ns or less, it's less clear how long the roborio takes to get a stable reading
 					try {
-						Thread.sleep(5);     // milliseconds
+						Thread.sleep(1);     // milliseconds
+//						Thread.sleep(0, 500000);  // .5ms is 500000 ns
 					} catch (InterruptedException e) {
 						// DO NOTHING
 					}
@@ -175,9 +223,10 @@ public class Ultrasonics {
 			        // store the range for use
 					synchronized(ultrasonics.reading)
 					{						
-						ultrasonics.reading[sensor.index] = sensorVoltage;
+						ultrasonics.reading[sensor.index].time = Timer.getFPGATimestamp();
+						ultrasonics.reading[sensor.index].value = sensorVoltage;
 						// uncomment following for lightly averaged sensor readings
-//						ultrasonics.reading[sensor.index] = (ultrasonics.reading[sensor.index] + sensorVoltage)/2;
+//						ultrasonics.reading[sensor.index].value = (ultrasonics.reading[sensor.index].value + sensorVoltage)/2;
 					}
  				}
 			}

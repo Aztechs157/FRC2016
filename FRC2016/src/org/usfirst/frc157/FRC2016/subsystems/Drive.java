@@ -126,5 +126,14 @@ public class Drive extends Subsystem {
     	dist.combined = (dist.left + dist.right)/2;
     	return dist;
     }
+
+    private static boolean stopAutoDrive = false;
+	public void stopAuto(boolean stopAutoDrive) {
+		this.stopAutoDrive = true;
+	}
+	public boolean stopAuto()
+	{
+		return stopAutoDrive;
+	}
 }
 

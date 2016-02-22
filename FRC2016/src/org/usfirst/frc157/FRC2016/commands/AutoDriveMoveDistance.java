@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveDistance extends Command {
+public class AutoDriveMoveDistance extends Command {
 
 	private double leftSpeed;
 	private double rightSpeed;
@@ -18,7 +18,7 @@ public class MoveDistance extends Command {
 	// Note: be smart about setting the speeds and distance, it is possible to set
 	//   the arguments to this funciton such that it will never reach the disatance
 	//   e.g. spin in place will never get to the distance
-    public MoveDistance(double leftSpeed, double rightSpeed, double distance) {
+    public AutoDriveMoveDistance(double leftSpeed, double rightSpeed, double distance) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drive);
     	this.leftSpeed = leftSpeed;
@@ -32,6 +32,7 @@ public class MoveDistance extends Command {
     	Robot.drive.setLeftDrive(leftSpeed);
     	Robot.drive.setLeftDrive(rightSpeed); 
     	reachedDestination = false;    	
+    	Robot.drive.stopAuto(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,7 +45,13 @@ public class MoveDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return reachedDestination;
+    	// if auto drive has been overridden, this command completes
+    	if(Robot.drive.stopAuto())
+    	{
+    		return true;
+    	}
+    	
+        return (reachedDestination);
     }
 
     // Called once after isFinished returns true

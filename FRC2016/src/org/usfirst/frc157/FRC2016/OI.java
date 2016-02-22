@@ -70,6 +70,9 @@ public class OI {
     private JoystickButton driverRightButton11; // Button 11 - Base RIght Away
     private JoystickButton driverRightButton12; // Button 12
     
+    private JoystickAxisButton driverRightX;  // X Axis operation button
+    private JoystickAxisButton driverRightY;  // Y Axis operation button
+    
     public Joystick driverRight;
     private JoystickButton driverLeftButtonTrigger; // Button 1 - Trigger
     private JoystickButton driverLeftButton2; // Button 2 - Stick down
@@ -83,6 +86,9 @@ public class OI {
     private JoystickButton driverLeftButton10; // Button 10 - Base Right Close
     private JoystickButton driverLeftButton11; // Button 11 - Base RIght Away
     private JoystickButton driverLeftButton12; // Button 12
+
+    private JoystickAxisButton driverLeftX;  // X Axis operation button
+    private JoystickAxisButton driverLeftY;  // Y Axis operation button
     
     public Joystick operator;
     private JoystickButton operatorButtonTrigger; // Button 1 - Trigger
@@ -107,6 +113,9 @@ public class OI {
     private JoystickPOVButton operatorHatLeft;      // Hat Button Left
     private JoystickPOVButton operatorHatForeLeft;  // Hat Button Forward Left
     
+    private JoystickAxisButton operatorX;  // X Axis operation button
+    private JoystickAxisButton operatorY;  // Y Axis operation button
+    private JoystickAxisButton operatorZ;  // X Axis operation button
     
     public LogitechController logitechDriver;
     private LogitechControllerButton logitechDriverButtonLeftB; // Left Button (Above Trigger)
@@ -154,6 +163,9 @@ public class OI {
         driverLeftButton11 = new JoystickButton(driverLeft, 11);
         driverLeftButton12 = new JoystickButton(driverLeft, 12);
 
+        driverLeftX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
+        driverLeftY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
+        
         driverRightButtonTrigger = new JoystickButton(driverRight, 1);
         driverRightButton2 = new JoystickButton(driverRight, 2);
         driverRightButton3 = new JoystickButton(driverRight, 3);
@@ -166,6 +178,9 @@ public class OI {
         driverRightButton10 = new JoystickButton(driverRight, 10);
         driverRightButton11 = new JoystickButton(driverRight, 11);
         driverRightButton12 = new JoystickButton(driverRight, 12);
+
+        driverRightX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
+        driverRightY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
 
         operatorButtonTrigger = new JoystickButton(operator, 1);
         operatorButton2 = new JoystickButton(operator, 2);
@@ -188,6 +203,10 @@ public class OI {
         operatorHatAftLeft = new JoystickPOVButton(operator, 225);
         operatorHatLeft = new JoystickPOVButton(operator, 270);
         operatorHatForeLeft = new JoystickPOVButton(operator, 315);
+
+        operatorX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
+        operatorY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
+        operatorZ = new JoystickAxisButton(driverLeft, 2, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
 
         logitechDriverButtonLeftB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonLeftB.value);
         logitechDriverButtonRightB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonRightB.value);
@@ -222,6 +241,9 @@ public class OI {
         driverLeftButton11.whenPressed(new PrintButton("L Button 11"));
         driverLeftButton12.whenPressed(new PrintButton("L Button 12"));
 
+        driverLeftX.whenPressed(new AutoDriveStop("L X Motion"));
+        driverLeftY.whenPressed(new AutoDriveStop("L Y Motion"));
+
         driverRightButtonTrigger.whileHeld(new GrabBoulderManual());
         driverRightButton2.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
         driverRightButton3.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));
@@ -234,6 +256,9 @@ public class OI {
         driverRightButton10.whenPressed(new PrintButton("R Button 10"));
         driverRightButton11.whenPressed(new PrintButton("R Button 11"));
         driverRightButton12.whenPressed(new PrintButton("R Button 12"));
+        
+        driverRightX.whenPressed(new AutoDriveStop("R X Motion"));
+        driverRightY.whenPressed(new AutoDriveStop("R Y Motion"));
         
         operatorButtonTrigger.whileHeld(new GrabBoulderManual());     // Trigger
         operatorButton2.whenPressed(new LaunchBoulder());             // Thumb Button
@@ -257,6 +282,9 @@ public class OI {
         operatorHatLeft.whenPressed(new PrintButton("O  Hat Left"));
         operatorHatForeLeft.whenPressed(new PrintButton("O  Hat Fore Left"));
 
+        operatorX.whenPressed(new AutoDriveStop("O X Motion"));
+        operatorY.whenPressed(new AutoDriveStop("O Y Motion"));
+        operatorZ.whenPressed(new AutoDriveStop("O Z Motion"));
 
         logitechDriverButtonLeftB.whenPressed(new PrintButton("P Button LeftB"));
         logitechDriverButtonRightB.whenPressed(new PrintButton("P Button RightB"));
