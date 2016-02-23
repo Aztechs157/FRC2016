@@ -306,8 +306,8 @@ public class Arm extends Subsystem {
     	Arm arm;
     	double output;
     	boolean stop = false;
-    	boolean enableOutput;
-    	double targetAngle;
+    	volatile boolean enableOutput;
+    	volatile double targetAngle;
     	
     	public ShoulderTask(Arm parent)
     	{
@@ -327,7 +327,10 @@ public class Arm extends Subsystem {
     		{
     			angle = Position.FULL_UP.angle();
     		}
-    		targetAngle = angle;
+    		synchronized(arm)
+    		{
+    			targetAngle = angle;
+    		}
         	System.out.println("\n\n+++++++++++++++++++++ TARGET   to: " + angle);
 
     	}
@@ -343,8 +346,10 @@ public class Arm extends Subsystem {
 			////////////////////////////////////////////////////////////////////////////////////////
 			while(!stop)
 			{
-				error = targetAngle - getShoulderAngle();
-
+				synchronized(arm)
+				{
+					error = targetAngle - getShoulderAngle();
+				}
 				// This is not a real PI loop, but it is similar
 				//
 				//  We are proportional to our angular error but our error integration term
@@ -383,18 +388,21 @@ public class Arm extends Subsystem {
 
 				output = output/12;
 				
-				if(enableOutput)
+				synchronized(arm)
 				{
-//					System.out.print("t" + targetAngle + " a" + getShoulderAngle() + "  e" + error + "  s"+ sumError + "  o" + output);
-					shoulderMotor.set(output);
-//					System.out.println(" >>> ");
-				}
-//				System.out.println("");
-				try {
-//					Thread.sleep(0, 500000);  // 500 000 Nanoseconds is 0.5 milliseconds
-					Thread.sleep(20, 000000);  // 500 000 Nanoseconds is 0.5 milliseconds
-				} catch (InterruptedException e) {
-					// DON'T CARE, JUST WANT TO WAIT...
+					if(enableOutput)
+					{
+						//					System.out.print("t" + targetAngle + " a" + getShoulderAngle() + "  e" + error + "  s"+ sumError + "  o" + output);
+						shoulderMotor.set(output);
+						//					System.out.println(" >>> ");
+					}
+					//				System.out.println("");
+					try {
+						//					Thread.sleep(0, 500000);  // 500 000 Nanoseconds is 0.5 milliseconds
+						Thread.sleep(20, 000000);  // 500 000 Nanoseconds is 0.5 milliseconds
+					} catch (InterruptedException e) {
+						// DON'T CARE, JUST WANT TO WAIT...
+					}
 				}
 			}
 			////////////////////////////////////////////////////////////////////////////////////////
@@ -404,11 +412,17 @@ public class Arm extends Subsystem {
 
 		public void enable()
 		{
-			enableOutput = true;
+			synchronized(arm)
+			{
+				enableOutput = true;
+			}
 		}
 		public void disable()
 		{
-			enableOutput = false;
+			synchronized(arm)
+			{
+				enableOutput = false;
+			}
 		}
     }
 }
