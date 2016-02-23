@@ -36,6 +36,8 @@ public class AutoDriveSpeedForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Robot.drive.setLeftDrive(leftSpeed);
+        Robot.drive.setLeftDrive(rightSpeed);
         //Wait for time to lapse
     }
 

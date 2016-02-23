@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc157.FRC2016.subsystems.Navigation;
+import org.usfirst.frc157.FRC2016.AnalogSelectSwitch.SwitchPosition;
 import org.usfirst.frc157.FRC2016.commands.*;
 import org.usfirst.frc157.FRC2016.subsystems.*;
 

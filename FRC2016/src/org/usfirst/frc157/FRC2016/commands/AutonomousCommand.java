@@ -31,17 +31,19 @@ public class AutonomousCommand extends CommandGroup
         
         SwitchPosition switchPosition = RobotMap.modeSelect.getPosition();
         
+        System.out.println("Autonomous Switch: " + switchPosition);
+        
         switch(switchPosition)
         {
             case POSITION_1:
                 //drive straight forward low power
-                addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+                //addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
                 addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 3.0));
                 break;
 
             case POSITION_2:
                 //drive straight forward high power 
-                addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+                //addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
                 addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 3.0));
                 break;
 
