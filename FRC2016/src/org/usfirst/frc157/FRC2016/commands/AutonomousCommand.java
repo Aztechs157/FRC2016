@@ -12,9 +12,10 @@
 package org.usfirst.frc157.FRC2016.commands;
 
 
-import org.usfirst.frc.team157.robot.commands.DriveSpeedForTime;
+import org.usfirst.frc157.FRC2016.commands.AutoDriveSpeedForTime;
 import org.usfirst.frc157.FRC2016.Robot;
 import org.usfirst.frc157.FRC2016.RobotMap;
+import org.usfirst.frc157.FRC2016.subsystems.Arm;
 import org.usfirst.frc157.FRC2016.AnalogSelectSwitch.SwitchPosition;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -33,12 +34,15 @@ public class AutonomousCommand extends CommandGroup
         switch(switchPosition)
         {
             case POSITION_1:
-                //drive straight forward , both wheels 
-                addSequential(new AutoDriveMoveDistance(0.6, 0.6, 0.75));
+                //drive straight forward low power
+                addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+                addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 3.0));
                 break;
 
             case POSITION_2:
-                //unimplemented
+                //drive straight forward high power 
+                addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+                addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 3.0));
                 break;
 
             case POSITION_3:
