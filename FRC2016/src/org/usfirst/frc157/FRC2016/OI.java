@@ -241,8 +241,8 @@ public class OI {
         driverLeftButton11.whenPressed(new PrintButton("L Button 11"));
         driverLeftButton12.whenPressed(new PrintButton("L Button 12"));
 
-        driverLeftX.whenPressed(new AutoDriveStop("L X Motion"));
-        driverLeftY.whenPressed(new AutoDriveStop("L Y Motion"));
+//        driverLeftX.whenPressed(new AutoDriveStop("L X Motion"));
+//        driverLeftY.whenPressed(new AutoDriveStop("L Y Motion"));
 
         driverRightButtonTrigger.whileHeld(new GrabBoulderManual());
         driverRightButton2.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
@@ -257,8 +257,8 @@ public class OI {
         driverRightButton11.whenPressed(new PrintButton("R Button 11"));
         driverRightButton12.whenPressed(new PrintButton("R Button 12"));
         
-        driverRightX.whenPressed(new AutoDriveStop("R X Motion"));
-        driverRightY.whenPressed(new AutoDriveStop("R Y Motion"));
+//        driverRightX.whenPressed(new AutoDriveStop("R X Motion"));
+//        driverRightY.whenPressed(new AutoDriveStop("R Y Motion"));
         
         operatorButtonTrigger.whileHeld(new GrabBoulderManual());     // Trigger
         operatorButton2.whenPressed(new LaunchBoulder());             // Thumb Button
@@ -282,9 +282,9 @@ public class OI {
         operatorHatLeft.whenPressed(new PrintButton("O  Hat Left"));
         operatorHatForeLeft.whenPressed(new PrintButton("O  Hat Fore Left"));
 
-        operatorX.whenPressed(new AutoDriveStop("O X Motion"));
-        operatorY.whenPressed(new AutoDriveStop("O Y Motion"));
-        operatorZ.whenPressed(new AutoDriveStop("O Z Motion"));
+//        operatorX.whenPressed(new AutoDriveStop("O X Motion"));
+//        operatorY.whenPressed(new AutoDriveStop("O Y Motion"));
+//        operatorZ.whenPressed(new AutoDriveStop("O Z Motion"));
 
         logitechDriverButtonLeftB.whenPressed(new PrintButton("P Button LeftB"));
         logitechDriverButtonRightB.whenPressed(new PrintButton("P Button RightB"));
