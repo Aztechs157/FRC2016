@@ -232,10 +232,10 @@ public class OI {
         
         // Put print commands on all buttons
         driverLeftButtonTrigger.whileHeld(new GrabBoulderManual());
-//        driverLeftButton2.whenPressed(new TurnToHeading(180));
-//        driverLeftButton3.whenPressed(new TurnToHeading(0));
-//        driverLeftButton4.whenPressed(new TurnToHeading(-90));
-//        driverLeftButton5.whenPressed(new TurnToHeading(90));
+        driverLeftButton2.whenPressed(new AutoDriveTurnToHeading(180));
+        driverLeftButton3.whenPressed(new AutoDriveTurnToHeading(0));
+        driverLeftButton4.whenPressed(new AutoDriveTurnToHeading(-90));
+        driverLeftButton5.whenPressed(new AutoDriveTurnToHeading(90));
         driverLeftButton6.whenPressed(new PrintButton("L Button 6"));
         driverLeftButton7.whenPressed(new PrintButton("L Button 7"));
         driverLeftButton8.whenPressed(new PrintButton("L Button 8"));
