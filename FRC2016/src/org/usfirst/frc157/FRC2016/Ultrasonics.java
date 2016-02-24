@@ -76,9 +76,7 @@ public class Ultrasonics {
 		{
 			synchronized(reading)
 			{
-			    reading[idx] = new Reading(-1, 0);
-//				reading[idx].value = -1;
-//				reading[idx].time  =  0;				
+				reading[idx] = new Reading(-1.0, 0.0);
 			}
 		}
 		

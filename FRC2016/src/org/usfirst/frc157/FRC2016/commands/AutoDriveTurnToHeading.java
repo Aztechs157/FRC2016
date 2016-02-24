@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoDriveTurnToHeading extends Command {
 
 	private final static double HEADING_TOLERANCE = 2.0;      // degrees
-	private final static double INTEGRATION_TOLERANCE = 20.0; // degrees
+	private final static double INTEGRATION_TOLERANCE = 5.0; // degrees
 
-	private final static double DELTA_CONSTANT = (1.0/360.0);  // P type constant for PID like control below
-	private final static double INTEGRATION_CONSTANT = 0.01;    // I type constant for PID like control below
+	private final static double DELTA_CONSTANT = 0.1 * (1.0/360.0);  // P type constant for PID like control below
+	private final static double INTEGRATION_CONSTANT = 0.001;        // I type constant for PID like control below
 	
 	private double targetHeading;
 	private double sumDeltaHeading;
@@ -43,8 +43,7 @@ public class AutoDriveTurnToHeading extends Command {
     	while (deltaHeading < -180)
     	{
     		deltaHeading = deltaHeading + 360;
-    	}
-    	
+    	}    	
     	
 //    	if(Math.abs(deltaHeading) <  INTEGRATION_TOLERANCE)
 //    	{
@@ -78,7 +77,6 @@ public class AutoDriveTurnToHeading extends Command {
     	
     	if(Math.abs((Robot.navigation.getHeading() - targetHeading)%360) < HEADING_TOLERANCE)
     	{
-    		// TODO do we want to set brake mode here?
     		return true;
     	}
     	else
