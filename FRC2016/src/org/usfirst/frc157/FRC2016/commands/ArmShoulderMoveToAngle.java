@@ -18,12 +18,14 @@ public class ArmShoulderMoveToAngle extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.arm);
     	this.targetAngle = angle;
-    }
+    	System.out.println("ArmShoulderMoveToAngle(" + angle + ")");
+   }
 
     // Called just before this Command runs the first time
     protected void initialize() {
 		Robot.arm.shoulderGotoAngle(targetAngle);
-    }
+    	System.out.println("ArmShoulderMoveToAngle.initialize()");
+   }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {

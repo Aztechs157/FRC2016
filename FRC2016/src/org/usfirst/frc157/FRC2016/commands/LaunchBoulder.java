@@ -21,6 +21,7 @@ public class LaunchBoulder extends Command {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.arm);
 		requires(Robot.ballHandler);
+		System.out.println("LaunchBoulder()");
 	}
 
     // Called just before this Command runs the first time
@@ -28,6 +29,7 @@ public class LaunchBoulder extends Command {
     	Robot.arm.shoulderGotoPosition(Position.CLEAR_FOR_SHOT);
     	startTime = Timer.getFPGATimestamp();
     	shooterStarted = false;
+		System.out.println("LaunchBoulder.initialize()");
     }
 
     // Called repeatedly when this Command is scheduled to run

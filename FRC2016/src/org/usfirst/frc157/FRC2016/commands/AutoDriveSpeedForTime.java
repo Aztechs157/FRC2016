@@ -23,10 +23,12 @@ public class AutoDriveSpeedForTime extends Command {
         this.leftSpeed = leftSpeed;
     	this.rightSpeed = rightSpeed;
     	this.driveTimeSec = driveTimeSec;
+    	System.out.println("AutoDriveSpeedForTime(" + leftSpeed + ", " + rightSpeed  + ", " + driveTimeSec +")");
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("AutoDriveSpeedForTime.initialize()");
     	Robot.drive.setLeftDrive(leftSpeed);
     	Robot.drive.setLeftDrive(rightSpeed);
         Robot.drive.stopAuto(false);
@@ -36,8 +38,6 @@ public class AutoDriveSpeedForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.drive.setLeftDrive(leftSpeed);
-        Robot.drive.setLeftDrive(rightSpeed);
         //Wait for time to lapse
     }
 
@@ -46,6 +46,7 @@ public class AutoDriveSpeedForTime extends Command {
     	// if auto drive has been overridden, this command completes
     	if(Robot.drive.stopAuto())
     	{
+    		System.out.println("AutoDriveSpeedForTime.isFinished() - terminated on AutoStop()");
     		return true;
     	}
     
@@ -55,7 +56,8 @@ public class AutoDriveSpeedForTime extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drive.setLeftDrive(0.0);
-    	Robot.drive.setLeftDrive(0.0);    	
+    	Robot.drive.setLeftDrive(0.0);    
+    	System.out.println("AutoDriveSpeedForTime.end()");
     }
 
     // Called when another command which requires one or more of the same
@@ -63,5 +65,6 @@ public class AutoDriveSpeedForTime extends Command {
     protected void interrupted() {
     	Robot.drive.setLeftDrive(0.0);
     	Robot.drive.setLeftDrive(0.0);    	
+    	System.out.println("AutoDriveSpeedForTime.interrupted()");
     }
 }

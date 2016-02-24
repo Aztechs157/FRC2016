@@ -24,6 +24,7 @@ public class AutoDriveMoveDistance extends Command {
     	this.leftSpeed = leftSpeed;
     	this.rightSpeed = rightSpeed;
     	this.distance = Math.abs(distance);
+    	System.out.println("AutoDriveMoveDistance(" + leftSpeed + ", " + rightSpeed + ", " + distance +")");
     }
 
     // Called just before this Command runs the first time
@@ -33,7 +34,8 @@ public class AutoDriveMoveDistance extends Command {
     	Robot.drive.setLeftDrive(rightSpeed); 
     	reachedDestination = false;    	
     	Robot.drive.stopAuto(false);
-    }
+    	System.out.println("AutoDriveMoveDistance.initialize()");
+   }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {

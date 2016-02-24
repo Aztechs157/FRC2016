@@ -24,11 +24,13 @@ public class AutoDriveTurnToHeading extends Command {
     	targetHeading = heading;
     	sumDeltaHeading = 0;
     	Robot.drive.stopAuto(false);
+    	System.out.println("AutoDriveTurnToHeading(" + heading + ")");
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drive.setBrakeModeOn(true);
+    	System.out.println("AutoDriveTurnToHeading.initialize()");
     }
 
     // Called repeatedly when this Command is scheduled to run

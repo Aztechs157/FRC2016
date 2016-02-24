@@ -129,7 +129,7 @@ public class Drive extends Subsystem {
 
     private static boolean stopAutoDrive = false;
 	public void stopAuto(boolean stopAutoDrive) {
-		this.stopAutoDrive = true;
+		this.stopAutoDrive = stopAutoDrive;
 	}
 	public boolean stopAuto()
 	{

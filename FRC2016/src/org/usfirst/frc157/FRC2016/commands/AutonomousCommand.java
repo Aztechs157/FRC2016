@@ -25,41 +25,51 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCommand extends CommandGroup 
 {
 
-    public AutonomousCommand() {
-        
-        requires(Robot.drive);
-        
-        SwitchPosition switchPosition = RobotMap.modeSelect.getPosition();
-        
-        System.out.println("Autonomous Switch: " + switchPosition);
-        
-        switch(switchPosition)
-        {
-            case POSITION_1:
-                //drive straight forward low power
-                //addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-                addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 3.0));
-                break;
+	public AutonomousCommand() {
 
-            case POSITION_2:
-                //drive straight forward high power 
-                //addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-                addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 3.0));
-                break;
+		requires(Robot.drive);
 
-            case POSITION_3:
-                //unimplemented
-                break;
+		SwitchPosition switchPosition = RobotMap.modeSelect.getPosition();
 
-            case POSITION_4:
-                //unimplemented
-                break;
+		System.out.println("Autonomous Switch: " + switchPosition);
 
-            case POSITION_5:
-                //Do Nothing Autonomous mode
-                break;
-}
-        
+		switch(switchPosition)
+		{
+		case POSITION_1:
+			System.out.println("\n*********************************\n");
+			System.out.println("Autonomous Position 1");
+			//drive straight forward low power
+			//addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+			addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 3.0));
+			break;
 
-    }
+		case POSITION_2:
+			System.out.println("\n*********************************\n");
+			System.out.println("Autonomous Position 2");
+			//drive straight forward high power 
+			//addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+			addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 3.0));
+			break;
+
+		case POSITION_3:
+			System.out.println("\n*********************************\n");
+			System.out.println("Autonomous Position 3");
+			//unimplemented
+			break;
+
+		case POSITION_4:
+			System.out.println("\n*********************************\n");
+			System.out.println("Autonomous Position 4");
+			//unimplemented
+			break;
+
+		case POSITION_5:
+			System.out.println("\n*********************************\n");
+			System.out.println("Autonomous Position 5");
+			//Do Nothing Autonomous mode
+			break;
+		}
+
+ 
+	}
 }
