@@ -12,7 +12,7 @@ public class AutoDriveTurnToHeading extends Command {
 	private final static double HEADING_TOLERANCE = 2.0;      // degrees
 	private final static double INTEGRATION_TOLERANCE = 5.0; // degrees
 
-	private final static double DELTA_CONSTANT = 0.1 * (1.0/360.0);  // P type constant for PID like control below
+	private final static double DELTA_CONSTANT = 0.5 * (1.0/360.0);  // P type constant for PID like control below
 	private final static double INTEGRATION_CONSTANT = 0.001;        // I type constant for PID like control below
 	
 	private double targetHeading;
