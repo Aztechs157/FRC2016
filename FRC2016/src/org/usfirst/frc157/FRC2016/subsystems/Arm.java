@@ -11,6 +11,12 @@
 
 package org.usfirst.frc157.FRC2016.subsystems;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.usfirst.frc157.FRC2016.Robot;
 import org.usfirst.frc157.FRC2016.RobotMap;
 import org.usfirst.frc157.FRC2016.commands.*;
@@ -96,6 +102,17 @@ public class Arm extends Subsystem {
 //			System.out.println("Reading - " + reading + "  Angle - " + angle);
 			return angle;
 		}
+		
+		public void recalibrateLow(int lowReading)
+		{
+			
+		}
+		public void recalibrateHigh(int highReading)
+		{
+			
+		}
+		
+		
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,6 +168,42 @@ public class Arm extends Subsystem {
     		shoulderTask.start();
     	}
 
+//    	FileReader in = null;
+//    	FileWriter out = null;
+//    
+//    	try
+//    	{
+////    		in = new FileReader("input.txt");
+//    		// Apparently need full path...
+//    		out = new FileWriter("/home/lvuser/output.txt");
+//    		out.write("This is text");
+//    		// wrote some txt
+//    		out.close();
+////    		in.close();
+//    	}
+//    	catch (IOException e)
+//    	{
+//    		System.out.println("Probably don't have the file input.txt");
+//    	}
+//    	finally
+//    	{
+//    		if(in != null) {
+//    			try {
+//					in.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//    		}
+//    		if(out != null) {
+//    			try {
+//					out.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//    		}
+//    	}
     }
 
     public void  Enable()

@@ -163,7 +163,7 @@ public class OI {
         driverLeftButton9 = new JoystickButton(driverLeft, 9);
         driverLeftButton10 = new JoystickButton(driverLeft, 10);
         driverLeftButton11 = new JoystickButton(driverLeft, 11);
-        driverLeftButton12 = new JoystickButton(driverLeft, 12);
+//        driverLeftButton12 = new JoystickButton(driverLeft, 12);
 
         driverLeftX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
         driverLeftY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
@@ -179,7 +179,7 @@ public class OI {
         driverRightButton9 = new JoystickButton(driverRight, 9);
         driverRightButton10 = new JoystickButton(driverRight, 10);
         driverRightButton11 = new JoystickButton(driverRight, 11);
-        driverRightButton12 = new JoystickButton(driverRight, 12);
+//        driverRightButton12 = new JoystickButton(driverRight, 12);
 
         driverRightX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
         driverRightY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
@@ -195,7 +195,7 @@ public class OI {
         operatorButton9 = new JoystickButton(operator, 9);
         operatorButton10 = new JoystickButton(operator, 10);
         operatorButton11 = new JoystickButton(operator, 11);
-        operatorButton12 = new JoystickButton(operator, 12);
+//        operatorButton12 = new JoystickButton(operator, 12);
     
         operatorHatFore = new JoystickPOVButton(operator, 0);
         operatorHatForeRight = new JoystickPOVButton(operator, 45);
@@ -242,7 +242,7 @@ public class OI {
         driverLeftButton9.whenPressed(new PrintButton("L Button 9"));
         driverLeftButton10.whenPressed(new PrintButton("L Button 10"));
         driverLeftButton11.whenPressed(new PrintButton("L Button 11"));
-        driverLeftButton12.whenPressed(new PrintButton("L Button 12"));
+//        driverLeftButton12.whenPressed(new PrintButton("L Button 12"));
 
 //        driverLeftX.whenPressed(new AutoDriveStop("L X Motion"));
 //        driverLeftY.whenPressed(new AutoDriveStop("L Y Motion"));
@@ -258,7 +258,7 @@ public class OI {
         driverRightButton9.whenPressed(new PrintButton("R Button 9"));
         driverRightButton10.whenPressed(new PrintButton("R Button 10"));
         driverRightButton11.whenPressed(new PrintButton("R Button 11"));
-        driverRightButton12.whenPressed(new PrintButton("R Button 12"));
+//        driverRightButton12.whenPressed(new PrintButton("R Button 12"));
         
 //        driverRightX.whenPressed(new AutoDriveStop("R X Motion"));
 //        driverRightY.whenPressed(new AutoDriveStop("R Y Motion"));

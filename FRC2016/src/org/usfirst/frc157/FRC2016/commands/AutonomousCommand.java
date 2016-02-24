@@ -39,8 +39,9 @@ public class AutonomousCommand extends CommandGroup
 			System.out.println("\n*********************************\n");
 			System.out.println("Autonomous Position 1");
 			//drive straight forward low power
-			//addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
 			addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 3.0));
+			addSequential(new AutoDriveTurnToHeading(90));
 			break;
 
 		case POSITION_2:

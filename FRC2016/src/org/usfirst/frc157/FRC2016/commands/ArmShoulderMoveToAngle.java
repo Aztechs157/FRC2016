@@ -3,6 +3,7 @@ package org.usfirst.frc157.FRC2016.commands;
 import org.usfirst.frc157.FRC2016.Robot;
 import org.usfirst.frc157.FRC2016.subsystems.Arm.Position;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -11,8 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ArmShoulderMoveToAngle extends Command {
 
     public static final double AT_TARGET_RANGE = 3.0; //degrees
-    
+    private double startTime;
 	private double targetAngle;
+	
+	private static double COMMNAD_TIMEOUT = 3.0; // seconds
 	
     public ArmShoulderMoveToAngle(double angle) {
         // Use requires() here to declare subsystem dependencies
@@ -25,6 +28,8 @@ public class ArmShoulderMoveToAngle extends Command {
     protected void initialize() {
 		Robot.arm.shoulderGotoAngle(targetAngle);
     	System.out.println("ArmShoulderMoveToAngle.initialize()");
+    	
+    	startTime = Timer.getFPGATimestamp();
    }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,6 +38,11 @@ public class ArmShoulderMoveToAngle extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if((Timer.getFPGATimestamp() - startTime) > COMMNAD_TIMEOUT)
+    	{
+    		System.out.println("ArmShoulderMoveToAngle.isFinished(); - COMMAND_TIMEOUT");
+    		return true;
+    	}
         double error = targetAngle - Robot.arm.getShoulderAngle();
         return Math.abs(error) <= AT_TARGET_RANGE; 
     }

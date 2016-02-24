@@ -20,8 +20,8 @@ public class AutoDriveSpeedForTime extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drive);
     
-        this.leftSpeed = leftSpeed;
-    	this.rightSpeed = rightSpeed;
+        this.leftSpeed = -leftSpeed;
+    	this.rightSpeed = -rightSpeed;
     	this.driveTimeSec = driveTimeSec;
     	System.out.println("AutoDriveSpeedForTime(" + leftSpeed + ", " + rightSpeed  + ", " + driveTimeSec +")");
     }
@@ -30,7 +30,7 @@ public class AutoDriveSpeedForTime extends Command {
     protected void initialize() {
     	System.out.println("AutoDriveSpeedForTime.initialize()");
     	Robot.drive.setLeftDrive(leftSpeed);
-    	Robot.drive.setLeftDrive(rightSpeed);
+    	Robot.drive.setRightDrive(rightSpeed);
         Robot.drive.stopAuto(false);
 
     	endTime = Timer.getFPGATimestamp() + driveTimeSec;
@@ -56,7 +56,7 @@ public class AutoDriveSpeedForTime extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drive.setLeftDrive(0.0);
-    	Robot.drive.setLeftDrive(0.0);    
+    	Robot.drive.setRightDrive(0.0);    
     	System.out.println("AutoDriveSpeedForTime.end()");
     }
 
@@ -64,7 +64,7 @@ public class AutoDriveSpeedForTime extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.drive.setLeftDrive(0.0);
-    	Robot.drive.setLeftDrive(0.0);    	
+    	Robot.drive.setRightDrive(0.0);    	
     	System.out.println("AutoDriveSpeedForTime.interrupted()");
     }
 }
