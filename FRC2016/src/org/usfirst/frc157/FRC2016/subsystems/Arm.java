@@ -36,9 +36,9 @@ public class Arm extends Subsystem {
 		
 	public enum Position
 	{
-		FULL_DOWN           (-1.5),  // Minimum Shoulder Angle
+		FULL_DOWN           (-7.0),  // Minimum Shoulder Angle
 		FRENCH_FRIES_DOWN   (-1.0),  // Push down fries to this Angle before crossing
-		GRAB_BOULDER        (6.0),  // Angle to use to grab a boulder
+		GRAB_BOULDER        (-1.0),  // Angle to use to grab a boulder
 		LOW_BAR_TRAVEL      (0.0),  // Angle to use to go under low bar
 		CLEAR_FOR_SHOT      (25.0),  //  Angle to move arm to to shoot
 		PREPARE_FOR_BOULDER (10.0),   // Normal Bar Angle (ready to grab boulder)
@@ -114,7 +114,8 @@ public class Arm extends Subsystem {
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// Updated Mon 2/22/2016 after Week Zero axle repair
-	private SensorCal cal = new SensorCal(757, 239, 90.0);
+//	private SensorCal cal = new SensorCal(757, 239, 90.0);
+	private SensorCal cal = new SensorCal(820, 317, 90.0);
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -297,10 +298,10 @@ public class Arm extends Subsystem {
     {
 
     	public static final double CONTROL_P = 0.75;
-    	public static final double CONTROL_I = 0.0125;
+    	public static final double CONTROL_I = 0.0;//0.0125;
     	public static final double INTEGRAL_LIMIT = 5.0; // degrees
     	
-    	public static final double MIN_OUTPUT = -11.0; // Volts
+    	public static final double MIN_OUTPUT = -12.0; // Volts
     	public static final double MAX_OUTPUT =  11.0; //Volts
 
     	Arm arm;
