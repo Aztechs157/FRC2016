@@ -59,8 +59,9 @@ public class TeleopDrive extends Command {
     	right += Robot.oi.driverRight.getY();    // forward/backward right stick
     	
     	// Logitech  (Arcade mode on left stick)
-    	double logX = Robot.oi.logitechDriver.getLeftX();  // forward/backward left stick
-    	double logY = Robot.oi.logitechDriver.getLeftY();  // left/right left stick
+    	//TEMP: Disable Logitech
+    	double logX = 0; //Robot.oi.logitechDriver.getLeftX();  // forward/backward left stick
+    	double logY = 0; //Robot.oi.logitechDriver.getLeftY();  // left/right left stick
     	
     	double tempLeft = logX + logY;
     	double tempRight = logX - logY;

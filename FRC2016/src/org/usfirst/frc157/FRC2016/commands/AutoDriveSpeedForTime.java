@@ -2,47 +2,43 @@ package org.usfirst.frc157.FRC2016.commands;
 
 import org.usfirst.frc157.FRC2016.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AutoDriveMoveDistance extends Command {
+public class AutoDriveSpeedForTime extends Command {
 
 	private double leftSpeed;
 	private double rightSpeed;
-	private double distance;
 	
-	private boolean reachedDestination;
-	
-	// Note: be smart about setting the speeds and distance, it is possible to set
-	//   the arguments to this funciton such that it will never reach the disatance
-	//   e.g. spin in place will never get to the distance
-    public AutoDriveMoveDistance(double leftSpeed, double rightSpeed, double distance) {
+	double driveTimeSec;
+    double endTime;
+    
+    public AutoDriveSpeedForTime(double leftSpeed, double rightSpeed, double driveTimeSec) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drive);
-    	this.leftSpeed = leftSpeed;
-    	this.rightSpeed = rightSpeed;
-    	this.distance = Math.abs(distance);
-    	System.out.println("AutoDriveMoveDistance(" + leftSpeed + ", " + rightSpeed + ", " + distance +")");
+    
+        this.leftSpeed = -leftSpeed;
+    	this.rightSpeed = -rightSpeed;
+    	this.driveTimeSec = driveTimeSec;
+    	System.out.println("AutoDriveSpeedForTime(" + leftSpeed + ", " + rightSpeed  + ", " + driveTimeSec +")");
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.zeroDistance();
+    	System.out.println("AutoDriveSpeedForTime.initialize()");
     	Robot.drive.setLeftDrive(leftSpeed);
-    	Robot.drive.setLeftDrive(rightSpeed); 
-    	reachedDestination = false;    	
-    	Robot.drive.stopAuto(false);
-    	System.out.println("AutoDriveMoveDistance.initialize()");
-   }
+    	Robot.drive.setRightDrive(rightSpeed);
+        Robot.drive.stopAuto(false);
+
+    	endTime = Timer.getFPGATimestamp() + driveTimeSec;
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(Robot.drive.getDistance().combined) > distance)
-    	{
-    		reachedDestination = true;
-    	}
+        //Wait for time to lapse
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,22 +46,25 @@ public class AutoDriveMoveDistance extends Command {
     	// if auto drive has been overridden, this command completes
     	if(Robot.drive.stopAuto())
     	{
+    		System.out.println("AutoDriveSpeedForTime.isFinished() - terminated on AutoStop()");
     		return true;
     	}
-    	
-        return (reachedDestination);
+    
+    	return Timer.getFPGATimestamp() > endTime;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drive.setLeftDrive(0.0);
-    	Robot.drive.setLeftDrive(0.0);    	
+    	Robot.drive.setRightDrive(0.0);    
+    	System.out.println("AutoDriveSpeedForTime.end()");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.drive.setLeftDrive(0.0);
-    	Robot.drive.setLeftDrive(0.0);    	
+    	Robot.drive.setRightDrive(0.0);    	
+    	System.out.println("AutoDriveSpeedForTime.interrupted()");
     }
 }

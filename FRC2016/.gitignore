@@ -1,1 +1,8 @@
 /bin/
+/build/
+/dist/
+sysProps.xml
+*.class
+*.jar
+
+

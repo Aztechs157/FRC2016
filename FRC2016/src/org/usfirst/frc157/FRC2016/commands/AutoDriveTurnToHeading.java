@@ -2,6 +2,7 @@ package org.usfirst.frc157.FRC2016.commands;
 
 import org.usfirst.frc157.FRC2016.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -11,24 +12,30 @@ public class AutoDriveTurnToHeading extends Command {
 
 	private final static double HEADING_TOLERANCE = 2.0;      // degrees
 	private final static double INTEGRATION_TOLERANCE = 5.0; // degrees
-
-	private final static double DELTA_CONSTANT = 0.5 * (1.0/360.0);  // P type constant for PID like control below
+	private final static double DELTA_CONSTANT = 0.3 * (1.0/360.0);  // P type constant for PID like control below
 	private final static double INTEGRATION_CONSTANT = 0.001;        // I type constant for PID like control below
 	
 	private double targetHeading;
 	private double sumDeltaHeading;
+
+	private double startTime;
 	
+	private static double COMMAND_TIMEOUT = 3.0; // seconds
+
     public AutoDriveTurnToHeading(double heading) {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.drive);
     	targetHeading = heading;
     	sumDeltaHeading = 0;
     	Robot.drive.stopAuto(false);
+    	System.out.println("AutoDriveTurnToHeading(" + heading + ")");
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drive.setBrakeModeOn(true);
+    	System.out.println("AutoDriveTurnToHeading.initialize()");
+    	startTime = Timer.getFPGATimestamp();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -74,6 +81,13 @@ public class AutoDriveTurnToHeading extends Command {
     	{
     		return true;
     	}
+    	
+    	if((Timer.getFPGATimestamp() - startTime) > COMMAND_TIMEOUT)
+    	{
+    		System.out.println("ArmShoulderMoveToAngle.isFinished(); - COMMAND_TIMEOUT");
+    		return true;
+    	}
+
     	
     	if(Math.abs((Robot.navigation.getHeading() - targetHeading)%360) < HEADING_TOLERANCE)
     	{
