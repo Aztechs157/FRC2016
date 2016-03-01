@@ -337,7 +337,11 @@ public class Arm extends Subsystem {
     {
 //    	int sense = shoulderMotor.getAnalogInRaw();
 //    	System.out.println("Raw: " + sense);
-    	return cal.readingToDegrees(shoulderMotor.getAnalogInRaw());    	
+    	// TODO consider a best of three readings to read the analog port
+    	
+    	int reading = shoulderMotor.getAnalogInRaw();
+    	
+    	return cal.readingToDegrees(reading);    	
     }
     
     public double getShoulderGravityCompensation()
