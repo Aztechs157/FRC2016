@@ -76,7 +76,7 @@ public class Ultrasonics {
 		{
 			synchronized(reading)
 			{
-				reading[idx] = new Reading(-1.0, 0.0);
+				reading[idx] = new Reading(-1.1, 0.0);
 			}
 		}
 		
@@ -89,10 +89,12 @@ public class Ultrasonics {
 		if(ultrasonicKickstartLine == null)
 		{
 			ultrasonicKickstartLine = new DigitalOutput(kickstartLineDigtalOutput);
+    		System.out.println("Ultrasonics Kickstarted");
 		}
 		if(muxSPI == null)
 		{
 			muxSPI = new SPI(spiPort);
+    		System.out.println("SPI Port Created");
 		}
 		
 
@@ -102,11 +104,15 @@ public class Ultrasonics {
 //		muxSPI.setMSBFirst();
 //		muxSPI.setSampleDataOnRising();
 		
-		muxSPI.setClockRate(1000000);
-		muxSPI.setChipSelectActiveHigh();
-		muxSPI.setClockActiveHigh();
-		muxSPI.setLSBFirst();
-		muxSPI.setSampleDataOnRising();
+		if(muxSPI != null)
+		{
+			muxSPI.setClockRate(1000000);
+			muxSPI.setChipSelectActiveHigh();
+			muxSPI.setClockActiveHigh();
+			muxSPI.setLSBFirst();
+			muxSPI.setSampleDataOnRising();
+			System.out.println("SPI Port Configured");
+		}
 		
 		// start the thread that will just keep reading the ultrasonics
 		ultrasonicTask = new Thread(new UltrasonicTask(this));
@@ -121,14 +127,16 @@ public class Ultrasonics {
 		synchronized(reading)
 		{
 			sensorVoltage = reading[sensor.index].value;
+//			sensorVoltage = reading[sensor.index].time;
 		}
 
+		return sensorVoltage;
 		// Convert voltage to inches (and limit it to sensor range capability)
-		double distanceInInches = sensorVoltage / sensor.voltsPerInch;
-		distanceInInches = (distanceInInches > sensor.maxRangeInches) ? sensor.maxRangeInches : distanceInInches;
-		distanceInInches = (distanceInInches < sensor.minRangeInches) ? sensor.minRangeInches : distanceInInches;  
-
-		return distanceInInches;
+//		double distanceInInches = sensorVoltage / sensor.voltsPerInch;
+//		distanceInInches = (distanceInInches > sensor.maxRangeInches) ? sensor.maxRangeInches : distanceInInches;
+//		distanceInInches = (distanceInInches < sensor.minRangeInches) ? sensor.minRangeInches : distanceInInches;  
+//
+//		return distanceInInches;
 	}
 	
 	public Reading getSensorReadingInInches(UltrasonicSensor sensor)
@@ -163,10 +171,12 @@ public class Ultrasonics {
 		public UltrasonicTask(Ultrasonics parent) {
 			stop = false;
 			ultrasonics = parent;
+			System.out.println("Ultrasonic Task Created");
 		}
 
 		@Override
 		public void run() {
+			System.out.println("Ultrasonic Task Running");
 
 			double sensorVoltage, sensorVoltageOldRead; // sensor reads - must approximately match when read to be considered valid
 			byte spiCommand[] = {(byte)0x00};
@@ -174,23 +184,19 @@ public class Ultrasonics {
 			// pulse the DIO to kickstart the ultrasonics into automatically reading ranges
 			ultrasonics.ultrasonicKickstartLine.set(false);
 
-
 			ultrasonics.ultrasonicKickstartLine.pulse(RobotMap.NavUltrasonicKickstartLineDigitalOut, UltrasonicKickoffPulseLenght);
 
 			// wait for all the the ultrasonics to range at least once before reading them
 			double startTime = Timer.getFPGATimestamp();  // seconds
 			long waitTime = ULTRASONIC_LOOP_TIME;         // milliseconds
-			do
-			{
+			System.out.println("Before First Wait");
 				try {
 					Thread.sleep(waitTime);     // milliseconds
 				} catch (InterruptedException e) {
 					// if interrupted the next waitTime is the loop time less the time we already waited
 					waitTime = ULTRASONIC_LOOP_TIME - (long)((Timer.getFPGATimestamp() - startTime) * 1000.0);
 				}
-			}
-			while ((Timer.getFPGATimestamp() - startTime) <= (ULTRASONIC_LOOP_TIME + 1)); // 1ms extra to make sure this normally only waits once
-
+			System.out.println("After First Wait");
 			////////////////////////////////////////////////////////////////////////////////////////
 			/// TASK LOOP //////////////////////////////////////////////////////////////////////////
 			////////////////////////////////////////////////////////////////////////////////////////
@@ -201,7 +207,6 @@ public class Ultrasonics {
 					// Write the LT1390 addressing nibble (4 bits) via the SPI bus
 					spiCommand[0] = sensor.spiByte;	
 					ultrasonics.muxSPI.write(spiCommand, 1); 
-
 					// wait for the reading to stabilize after the mux switches
 					// mux gets there in 400ns or less, it's less clear how long the roborio takes to get a stable reading
 					try {
@@ -227,12 +232,14 @@ public class Ultrasonics {
 						// uncomment following for lightly averaged sensor readings
 //						ultrasonics.reading[sensor.index].value = (ultrasonics.reading[sensor.index].value + sensorVoltage)/2;
 					}
+					System.out.print(sensor.index);
  				}
+				System.out.println(".");
 			}
 			////////////////////////////////////////////////////////////////////////////////////////
 			/// END TASK LOOP //////////////////////////////////////////////////////////////////////
 			////////////////////////////////////////////////////////////////////////////////////////
-
+			System.out.println("======= ERROR ULTRASONIC TASK ENDED =================");
 		}
 
 		public void stop()

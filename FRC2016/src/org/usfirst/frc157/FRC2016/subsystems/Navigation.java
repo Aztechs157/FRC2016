@@ -35,11 +35,13 @@ public class Navigation extends Subsystem {
     		imu = new ADIS16448_IMU();
     		imu.calibrate();   		
     		resetZeroHeading();
+    		System.out.println("IMU Initialized");
     	}
     	
     	if(ultrasonics == null)
     	{
     		ultrasonics = new Ultrasonics(RobotMap.NavUltrasonicRangefinderAnalogIn, RobotMap.NavUltrasonicKickstartLineDigitalOut, RobotMap.NavUltrasonicMuxSPIPort);
+    		System.out.println("Ultrasonics Initialized");
     	}
    	
     	System.out.println("Navigation Subsystem Initialized");
