@@ -273,7 +273,7 @@ public class OI {
         operatorButton8.whenPressed(new PrintButton("O Button 10"));
 //        operatorButton9.whenPressed(new TurnToHeading(0));
         operatorButton10.whileHeld(new PrintIRRange());
-//        operatorButton11.whenPressed(new TurnToHeading(90));
+        operatorButton11.whileHeld(new ArmManualMove());
 //        operatorButton12.whenPressed(new TurnToHeading(-90));
         
         operatorHatFore.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
