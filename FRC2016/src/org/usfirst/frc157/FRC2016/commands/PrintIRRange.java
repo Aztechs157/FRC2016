@@ -42,7 +42,7 @@ public class PrintIRRange extends Command {
     	System.out.println("REAR_RIGHT:  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.REAR_RIGHT));
     	System.out.println("RIGHT_FRONT: " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.RIGHT_FRONT));
     	System.out.println("RIGHT_REAR:  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.RIGHT_REAR));
-    	System.out.println(" <");
+    	System.out.println(">Loops - " + Robot.navigation.getUltrasonicLoopCount() + " <");
     }
 
     // Make this return true when this Command no longer needs to run execute()

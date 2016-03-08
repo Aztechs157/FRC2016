@@ -77,9 +77,13 @@ public class Navigation extends Subsystem {
     
     public double getUltrasonicRange(Ultrasonics.UltrasonicSensor sensor)
     {
-    	return ultrasonics.getRangeInInches(sensor);
+    	return ultrasonics.getSensorReadingInInches(sensor).getValue();
     }
-    
+    public double getUltrasonicVoltage(Ultrasonics.UltrasonicSensor sensor)
+    {
+    	return ultrasonics.getSensorReadingInVolts(sensor).getValue();
+    }
+   
     public enum Side
     {
     	FRONT,
@@ -87,6 +91,7 @@ public class Navigation extends Subsystem {
     	REAR,
     	LEFT;
     }
+    
     public double ultrasonicHeading(Side side, double range1, double range2)
     {
     	double heading = 0;
@@ -116,5 +121,9 @@ public class Navigation extends Subsystem {
     	NavData navData = new NavData();
     	return navData;
     }
+
+	public long getUltrasonicLoopCount() {
+		return ultrasonics.getUltrasonicLoopCount();
+	}
 }
 
