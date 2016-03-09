@@ -17,6 +17,7 @@ public class Ultrasonics {
 	public enum UltrasonicSensor
 	{
 		// Name       Index, SPI Byte,   V/in,   min, max    Min, Max ensor range are in inches
+
 		FRONT_LEFT    (0,    (byte)0x08, 0.0098, 6.0, 254.0),
 		FRONT_RIGHT   (1,    (byte)0x09, 0.0098, 6.0, 254.0),
 		RIGHT_FRONT   (2,    (byte)0x0A, 0.0098, 6.0, 254.0),
@@ -26,7 +27,7 @@ public class Ultrasonics {
 		LEFT_REAR     (6,    (byte)0x0E, 0.0098, 6.0, 254.0),
 		LEFT_FRONT    (7,    (byte)0x0F, 0.0098, 6.0, 254.0);
 
-		private final int    index;            // Ordinal index (for storing value in array)
+		public final int    index;            // Ordinal index (for storing value in array)
 		private final byte   spiByte;          // Byte to write to SPI to setup mux to read this sensor (mux uses low nibble)
 		private final double voltsPerInch;     // volts/inch sensor calibration data
 		private final double minRangeInches;   // minimum range for sensor

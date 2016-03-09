@@ -34,14 +34,14 @@ public class PrintIRRange extends Command {
     	System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
     	System.out.println("   -- Arm Angle: " + Robot.arm.getShoulderAngle());    	
     	System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-    	System.out.println("FRONT_LEFT:  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.FRONT_LEFT));
-    	System.out.println("FRONT_RIGHT: " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.FRONT_RIGHT));
-    	System.out.println("LEFT_FRONT:  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.LEFT_FRONT));
-    	System.out.println("LEFT_REAR:   " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.LEFT_REAR));
-    	System.out.println("REAR_LEFT:   " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.REAR_LEFT));
-    	System.out.println("REAR_RIGHT:  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.REAR_RIGHT));
-    	System.out.println("RIGHT_FRONT: " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.RIGHT_FRONT));
-    	System.out.println("RIGHT_REAR:  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.RIGHT_REAR));
+    	System.out.println("FRONT_LEFT   " + UltrasonicSensor.FRONT_LEFT.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.FRONT_LEFT));
+    	System.out.println("FRONT_RIGHT: " + UltrasonicSensor.FRONT_RIGHT.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.FRONT_RIGHT));
+    	System.out.println("RIGHT_FRONT: " + UltrasonicSensor.RIGHT_FRONT.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.RIGHT_FRONT));
+    	System.out.println("RIGHT_REAR:  " + UltrasonicSensor.RIGHT_REAR.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.RIGHT_REAR));
+    	System.out.println("REAR_RIGHT:  " + UltrasonicSensor.REAR_RIGHT.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.REAR_RIGHT));
+    	System.out.println("REAR_LEFT:   " + UltrasonicSensor.REAR_LEFT.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.REAR_LEFT));
+    	System.out.println("LEFT_REAR:   " + UltrasonicSensor.LEFT_REAR.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.LEFT_REAR));
+    	System.out.println("LEFT_FRONT:  " + UltrasonicSensor.LEFT_FRONT.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.LEFT_FRONT));
     	System.out.println(">Loops - " + Robot.navigation.getUltrasonicLoopCount() + " <");
     }
 
