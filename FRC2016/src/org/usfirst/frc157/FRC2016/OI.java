@@ -270,8 +270,10 @@ public class OI {
         operatorButton5.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 5
         operatorButton6.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 6
         operatorButton7.whileHeld(new PrintIMUOutput("IMU"));
-        operatorButton8.whenPressed(new PrintButton("O Button 10"));
-//        operatorButton9.whenPressed(new TurnToHeading(0));
+        operatorButton8.whenPressed(new PrintButton("O Button 8"));
+//        operatorButton9.whenPressed(new AutoDriveSpeedForTime(0.5, 0.5, 1.0));
+        operatorButton9.whenPressed(new AutoDriveMoveDistance(0.5, 0.5, 60));
+        operatorButton9.whileHeld(new PrintIMUOutput("IMU"));
         operatorButton10.whileHeld(new PrintIRRange());
         operatorButton11.whileHeld(new ArmManualMove());
 //        operatorButton12.whenPressed(new TurnToHeading(-90));

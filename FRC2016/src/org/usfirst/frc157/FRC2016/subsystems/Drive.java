@@ -88,6 +88,7 @@ public class Drive extends Subsystem {
     public void setBrakeModeOn(boolean setBrakeOn)
     {
     		rightDriveA.enableBrakeMode(setBrakeOn);
+    		leftDriveA.enableBrakeMode(setBrakeOn);
     }
     
     private void configureControllers()
@@ -116,14 +117,16 @@ public class Drive extends Subsystem {
     {
     	leftStartCount = leftDriveA.getEncPosition();
     	rightStartCount = rightDriveA.getEncPosition();
-    }
+    	System.out.println("Start Left: " + leftStartCount + "       Right: " + rightStartCount);
+   }
     
     public Distance getDistance()
     {
     	Distance dist = new Distance();
-    	dist.left  = WHEEL_CIRCUMFRENCE * (((double)(leftDriveA.getEncPosition() - leftStartCount))/((double)ENCODER_COUNTS_PER_REV));
-    	dist.right = WHEEL_CIRCUMFRENCE * (((double)(rightDriveA.getEncPosition() - rightStartCount))/((double)ENCODER_COUNTS_PER_REV));
+    	dist.left  = (double)WHEEL_CIRCUMFRENCE * ((double)(((double)(leftDriveA.getEncPosition() - leftStartCount))/((double)ENCODER_COUNTS_PER_REV)));
+    	dist.right = (double)WHEEL_CIRCUMFRENCE * ((double)(((double)(rightDriveA.getEncPosition() - rightStartCount))/((double)ENCODER_COUNTS_PER_REV)));
     	dist.combined = (dist.left + dist.right)/2;
+    	System.out.println("Left: " + dist.left + "       Right: " + dist.right);
     	return dist;
     }
 

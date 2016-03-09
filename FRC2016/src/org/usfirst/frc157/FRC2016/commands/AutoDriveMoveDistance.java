@@ -21,8 +21,8 @@ public class AutoDriveMoveDistance extends Command {
     public AutoDriveMoveDistance(double leftSpeed, double rightSpeed, double distance) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drive);
-    	this.leftSpeed = leftSpeed;
-    	this.rightSpeed = rightSpeed;
+    	this.leftSpeed = -leftSpeed;
+    	this.rightSpeed = -rightSpeed;
     	this.distance = Math.abs(distance);
     	System.out.println("AutoDriveMoveDistance(" + leftSpeed + ", " + rightSpeed + ", " + distance +")");
     }
@@ -30,8 +30,9 @@ public class AutoDriveMoveDistance extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drive.zeroDistance();
+    	Robot.drive.setBrakeModeOn(true);
     	Robot.drive.setLeftDrive(leftSpeed);
-    	Robot.drive.setLeftDrive(rightSpeed); 
+    	Robot.drive.setRightDrive(rightSpeed); 
     	reachedDestination = false;    	
     	Robot.drive.stopAuto(false);
     	System.out.println("AutoDriveMoveDistance.initialize()");

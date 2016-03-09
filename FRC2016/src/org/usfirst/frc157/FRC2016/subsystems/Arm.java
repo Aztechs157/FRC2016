@@ -333,13 +333,28 @@ public class Arm extends Subsystem {
     	}
     }
     
-    public double getShoulderAngle()
+	static double lastAngleReading = 0;
+	public double getShoulderAngle()
     {
     	int reading = -1;
     	synchronized(shoulderAngleSemaphore)
     	{
     		reading = shoulderMotor.getAnalogInRaw();
     	}
+    	
+    	double angle = cal.readingToDegrees(reading);
+    	
+    	// if reading is good, save it as the last reading
+    	if((Position.FULL_DOWN.angle() <= angle) && (angle <= Position.FULL_UP.angle()))
+    	{
+    		lastAngleReading = angle;
+    	}
+    	// otherwise use the last reading as the reading and hope next time is better
+    	else
+    	{
+    		angle = lastAngleReading;
+    	}
+    	
     	return cal.readingToDegrees(reading);    	
     }
     

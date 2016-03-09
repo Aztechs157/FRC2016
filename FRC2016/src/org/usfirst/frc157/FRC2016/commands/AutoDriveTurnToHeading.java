@@ -12,7 +12,7 @@ public class AutoDriveTurnToHeading extends Command {
 
 	private final static double HEADING_TOLERANCE = 2.0;      // degrees
 	private final static double INTEGRATION_TOLERANCE = 5.0; // degrees
-	private final static double DELTA_CONSTANT = 0.3 * (1.0/360.0);  // P type constant for PID like control below
+	private final static double DELTA_CONSTANT = 2 * (1.0/360.0);  // P type constant for PID like control below
 	private final static double INTEGRATION_CONSTANT = 0.001;        // I type constant for PID like control below
 	
 	private double targetHeading;
@@ -34,6 +34,7 @@ public class AutoDriveTurnToHeading extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drive.setBrakeModeOn(true);
+    	Robot.drive.stopAuto(false);
     	System.out.println("AutoDriveTurnToHeading.initialize()");
     	startTime = Timer.getFPGATimestamp();
     }
@@ -66,7 +67,7 @@ public class AutoDriveTurnToHeading extends Command {
     	double left = -driveValue;
     	double right = driveValue;
 
-    	System.out.print("D:" + deltaHeading);
+    	System.out.print("I: " + driveValue + "D:" + deltaHeading);
     	System.out.println(" L:" + left + " R:" + right);
 
     	Robot.drive.setLeftDrive(left);
@@ -79,6 +80,7 @@ public class AutoDriveTurnToHeading extends Command {
     	// if auto drive has been overridden, this command completes
     	if(Robot.drive.stopAuto())
     	{
+    		System.out.println("Auto Turn STOPPED");
     		return true;
     	}
     	
