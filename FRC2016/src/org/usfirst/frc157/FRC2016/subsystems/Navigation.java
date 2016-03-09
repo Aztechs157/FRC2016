@@ -27,6 +27,22 @@ public class Navigation extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    public class Position
+    {
+    	//       (0,0)          (maxX, 0)
+    	//             +======+
+    	//             #      |
+    	//             #      |
+    	//             #      |
+    	//             +------+
+    	//    (0, maxY)         (maxX, maxY)
+    	//
+    	public double y;  // distance in inches from far end of field '=' in above diagram  (+ down)
+    	public double x;  // distance from wall'#' in above diagram (+ to the right)
+    }
+    
+    Position robotLocation;
+    
     public Navigation()
     {
      	
@@ -124,6 +140,19 @@ public class Navigation extends Subsystem {
 
 	public long getUltrasonicLoopCount() {
 		return ultrasonics.getUltrasonicLoopCount();
+	}
+	
+	
+	public Position getPosition()
+	{
+		Position here;
+		here = robotLocation;
+		return here;
+	}
+	
+	public void setPosition(Position here)
+	{
+		robotLocation = here;
 	}
 }
 
