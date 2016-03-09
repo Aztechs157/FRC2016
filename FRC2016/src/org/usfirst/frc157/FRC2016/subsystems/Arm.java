@@ -132,7 +132,8 @@ public class Arm extends Subsystem {
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// Updated Mon 2/22/2016 after Week Zero axle repair
 //	private SensorCal cal = new SensorCal(757, 239, 90.0);
-	private SensorCal cal = new SensorCal(820, 317, 90.0);
+	private SensorCal cal = new SensorCal(888, 387, 90.0);
+	// Sensor cal is (888-837)/90 ticks per degree (5.567)
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -402,10 +403,7 @@ public class Arm extends Subsystem {
 			////////////////////////////////////////////////////////////////////////////////////////
 			while(!stop)
 			{
-				synchronized(arm)
-				{
-					error = targetAngle - getShoulderAngle();
-				}
+				error = targetAngle - getShoulderAngle();
 				// This is not a real PI loop, but it is similar
 				//
 				//  We are proportional to our angular error but our error integration term
