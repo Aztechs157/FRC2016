@@ -232,10 +232,10 @@ public class OI {
         
         // Put print commands on all buttons
         driverLeftButtonTrigger.whileHeld(new GrabBoulderManual());
-        driverLeftButton2.whenPressed(new AutoDriveTurnToHeading(180));
-        driverLeftButton3.whenPressed(new AutoDriveTurnToHeading(0));
-        driverLeftButton4.whenPressed(new AutoDriveTurnToHeading(-90));
-        driverLeftButton5.whenPressed(new AutoDriveTurnToHeading(90));
+//        driverLeftButton2.whenPressed(new AutoDriveTurnToHeading(180));
+//        driverLeftButton3.whenPressed(new AutoDriveTurnToHeading(0));
+//        driverLeftButton4.whenPressed(new AutoDriveTurnToHeading(-90));
+//        driverLeftButton5.whenPressed(new AutoDriveTurnToHeading(90));
         driverLeftButton6.whenPressed(new PrintButton("L Button 6"));
         driverLeftButton7.whenPressed(new PrintButton("L Button 7"));
         driverLeftButton8.whenPressed(new PrintButton("L Button 8"));
@@ -269,12 +269,12 @@ public class OI {
         operatorButton4.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));      // Button 4
         operatorButton5.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 5
         operatorButton6.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 6
-        operatorButton7.whileHeld(new PrintIMUOutput("IMU"));
+//        operatorButton7.whileHeld(new PrintIMUOutput("IMU"));
         operatorButton8.whenPressed(new PrintButton("O Button 8"));
 //        operatorButton9.whenPressed(new AutoDriveSpeedForTime(0.5, 0.5, 1.0));
-        operatorButton9.whenPressed(new AutoDriveMoveDistance(0.5, 0.5, 60));
-        operatorButton9.whileHeld(new PrintIMUOutput("IMU"));
-        operatorButton10.whileHeld(new PrintIRRange());
+//        operatorButton9.whenPressed(new AutoDriveMoveDistance(0.5, 0.5, 60));
+//        operatorButton9.whileHeld(new PrintIMUOutput("IMU"));
+//        operatorButton10.whileHeld(new PrintIRRange());
         operatorButton11.whileHeld(new ArmManualMove());
 //        operatorButton12.whenPressed(new TurnToHeading(-90));
         
