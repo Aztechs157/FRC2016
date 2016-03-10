@@ -35,6 +35,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  *
  */
 public class Arm extends Subsystem {
+       
+    /////////////////////////////////////////////////////////////////////////
+    ///
+    ///      * * C A U T I O N  * * 
+    /// The Words Extend and Retract have reversed meaning in this Class
+    ///
+    /////////////////////////////////////////////////////////////////////////   
 
 	public static final double EXTEND_SPEED = 0.3;
 	public static final double RETRACT_SPEED = -0.3;
@@ -158,6 +165,7 @@ public class Arm extends Subsystem {
 
     // Initialize your subsystem here
     public Arm() {
+        
     	setShoulderMode(ArmMode.AUTOMATIC);
     	setupExtenderMotors(ArmMode.AUTOMATIC);
 
@@ -307,7 +315,15 @@ public class Arm extends Subsystem {
     
      public boolean armExtend()
     {
-    	// run arm out until it reaches the end
+        /////////////////////////////////////////////////////////////////////////
+        ///
+        ///      * * C A U T I O N  * * 
+        /// The Words Extend and Retract have reversed meaning in this Module
+        ///
+        /////////////////////////////////////////////////////////////////////////
+
+       
+        // run arm out until it reaches the end
     	// return true if the end is reached
     	if(getArmExtendedSwitch() == true)
     	{
@@ -323,6 +339,14 @@ public class Arm extends Subsystem {
     
     public boolean armRetract()
     {
+        /////////////////////////////////////////////////////////////////////////
+        ///
+        ///      * * C A U T I O N  * * 
+        /// The Words Extend and Retract have reversed meaning in this Module
+        ///
+        /////////////////////////////////////////////////////////////////////////
+
+       
     	// run arm in until it reaches the end
     	// return true if the end is reached
     	if(getArmRetractedSwitch() == true)

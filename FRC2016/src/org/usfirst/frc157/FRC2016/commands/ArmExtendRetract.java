@@ -8,6 +8,13 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ArmExtendRetract extends Command {
+    
+    /////////////////////////////////////////////////////////////////////////
+    ///
+    ///      * * C A U T I O N  * * 
+    /// The Words Extend and Retract have reversed meaning in this Class
+    ///
+    /////////////////////////////////////////////////////////////////////////
 
 	private boolean extend;
 	private boolean finished;
@@ -27,6 +34,13 @@ public class ArmExtendRetract extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        
+        /////////////////////////////////////////////////////////////////////////
+        ///
+        ///      * * C A U T I O N  * * 
+        /// The Words Extend and Retract have reversed meaning in this Class
+        ///
+        /////////////////////////////////////////////////////////////////////////
     	
     	if(extend && Robot.arm.extendAllowedByTime())
     	{
