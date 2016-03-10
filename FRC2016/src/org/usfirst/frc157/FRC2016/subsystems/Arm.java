@@ -36,8 +36,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Arm extends Subsystem {
 
-	public static final double EXTEND_SPEED = 0.5;
-	public static final double RETRACT_SPEED = -0.5;
+	public static final double EXTEND_SPEED = 0.3;
+	public static final double RETRACT_SPEED = -0.3;
 	public static final double STOP = 0;
 		
 	public enum Position
