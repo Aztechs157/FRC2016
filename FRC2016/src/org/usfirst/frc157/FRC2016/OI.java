@@ -254,8 +254,8 @@ public class OI {
         driverRightButton5.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
         driverRightButton6.whenPressed(new PrintButton("R Button 6"));
         driverRightButton7.whenPressed(new PrintButton("R Button 7"));
-        driverRightButton8.whenPressed(new PrintButton("R Button 8"));
-        driverRightButton9.whenPressed(new PrintButton("R Button 9"));
+        driverRightButton8.whenPressed(new ArmExtendRetract(true));
+        driverRightButton9.whenPressed(new ArmExtendRetract(false));
         driverRightButton10.whenPressed(new PrintButton("R Button 10"));
         driverRightButton11.whenPressed(new PrintButton("R Button 11"));
 //        driverRightButton12.whenPressed(new PrintButton("R Button 12"));

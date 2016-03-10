@@ -239,13 +239,17 @@ public class Arm extends Subsystem {
     }
     
     public boolean extendAllowedByTime(){
-     if (time.getMatchTime()>=130){
-         return true;
-     }
-     else{
-         return false;
-     }
-    }
+    	
+    	// TODO REMOVE THE NEXT LINE
+    	return true;
+    	
+//     if (time.getMatchTime()>=130){
+//         return true;
+//     }
+//     else{
+//         return false;
+//     }
+   }
     
     public boolean setupExtenderMotors(ArmMode mode)
     {
@@ -305,14 +309,14 @@ public class Arm extends Subsystem {
     {
     	// run arm out until it reaches the end
     	// return true if the end is reached
-    	if(getArmExtendedSwitch() == false)
+    	if(getArmExtendedSwitch() == true)
     	{
-    		extenderMotorB.set(EXTEND_SPEED);
+    		extenderMotorA.set(EXTEND_SPEED);
     		return true;
     	}
     	else
     	{
-    		extenderMotorB.set(STOP); 
+    		extenderMotorA.set(STOP); 
     		return false;
     	}
     }
@@ -321,14 +325,14 @@ public class Arm extends Subsystem {
     {
     	// run arm in until it reaches the end
     	// return true if the end is reached
-    	if(getArmRetractedSwitch() == false)
+    	if(getArmRetractedSwitch() == true)
     	{
-    		extenderMotorB.set(RETRACT_SPEED);
+    		extenderMotorA.set(RETRACT_SPEED);
     		return false;
     	}
     	else
     	{
-    		extenderMotorB.set(STOP); 
+    		extenderMotorA.set(STOP); 
     		return true;
     	}
     }

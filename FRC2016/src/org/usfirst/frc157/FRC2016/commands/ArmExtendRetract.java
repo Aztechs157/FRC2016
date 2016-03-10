@@ -16,28 +16,40 @@ public class ArmExtendRetract extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.arm);
     	extend = extendRequest;
+    	System.out.println("Creating arm Extend/Retract " + extend);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("Starting arm Extend/Retract " + extend);
     	finished = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     	if(extend && Robot.arm.extendAllowedByTime())
     	{
-    		finished = Robot.arm.armExtend();
+    		Robot.arm.armExtend();
     	}
     	else  // can always retract
     	{
-    		finished = Robot.arm.armRetract();
+    		Robot.arm.armRetract();
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished;
+    	boolean result = false;
+    	if(extend)
+    	{
+    		result =  !Robot.arm.getArmExtendedSwitch();
+    	}
+    	else
+    	{
+    		result = !Robot.arm.getArmRetractedSwitch();
+    	}
+    	return result;
     }
 
     // Called once after isFinished returns true
