@@ -47,40 +47,40 @@ public class AutonomousCommand extends CommandGroup
     		case POSITION_1:
     		{
     			System.out.println("\n*********************************\n");
-    			System.out.println("Autonomous Position 2");
+    			System.out.println("Autonomous Position 1");
     
-    			addSequential(new PrintButton(">>> Autonomous Position 2"));
+    			addSequential(new PrintButton(">>> Autonomous Position 1"));
     			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-    			addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 7.0));
+    			addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 5.5));
     			break;
     		}
     		case POSITION_2:
     		{
     			System.out.println("\n*********************************\n");
-    			System.out.println("Autonomous Position 3");
-    			addSequential(new PrintButton(">>> Autonomous Position 3"));
+    			System.out.println("Autonomous Position 2");
+    			addSequential(new PrintButton(">>> Autonomous Position 2"));
     			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-    			addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 6.0));
+    			addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 4.5));
     			break;
     		}	
     		
     		case POSITION_3:
     		{
     			System.out.println("\n*********************************\n");
-    			System.out.println("Autonomous Position 4");
+    			System.out.println("Autonomous Position 3");
     			
-    			addSequential(new PrintButton(">>> Autonomous Position 4"));
+    			addSequential(new PrintButton(">>> Autonomous Position 3"));
     			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-                addSequential(new AutoDriveSpeedForTime(1, 1, 5.0));
+                addSequential(new AutoDriveSpeedForTime(1, 1, 3.5));
     			//unimplemented
     			break;
     		}
     		case POSITION_4:
             {
                 System.out.println("\n*********************************\n");
-                System.out.println("Autonomous Position 1");
+                System.out.println("Autonomous Position 4");
     
-                addSequential(new PrintButton(">>> Autonomous Position 1"));
+                addSequential(new PrintButton(">>> Autonomous Position 4"));
                 //addSequential(new AutoDriveTurnToHeading(90));
                 break;
             }
