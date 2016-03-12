@@ -43,8 +43,8 @@ public class Arm extends Subsystem {
     ///
     /////////////////////////////////////////////////////////////////////////   
 
-	public static final double EXTEND_SPEED = 0.3;
-	public static final double RETRACT_SPEED = -0.3;
+	public static final double EXTEND_SPEED = 0.5;    //Really Retract
+	public static final double RETRACT_SPEED = -0.1;  //Really Extend
 	public static final double STOP = 0;
 		
 	public enum Position

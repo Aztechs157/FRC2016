@@ -3,14 +3,15 @@ package org.usfirst.frc157.FRC2016;
 import edu.wpi.first.wpilibj.AnalogInput;
 
 public class AnalogSelectSwitch {
-
-	public enum SwitchPosition
+    
+    public enum SwitchPosition
 	{
-		POSITION_1 (0,1, "Position 1"),  // will return this position if there is a problem
-		POSITION_2 (1,2, "Position 2"),
-		POSITION_3 (2,3, "Position 3"),
-		POSITION_4 (3,4, "Position 4"),
-		POSITION_5 (4,5, "Position 5");
+		POSITION_0 (0.000,0.489, "Position 0"),  // will return this position if there is a problem
+		POSITION_1 (0.489,1.466, "Position 1"),
+		POSITION_2 (1.466,2.445, "Position 2"),
+		POSITION_3 (2.445,3.425, "Position 3"),
+		POSITION_4 (3.425,4.405, "Position 4"),
+        POSITION_5 (4.405,5.000, "Position 5");
 		
 		private double rangeLowVoltage;
 		private double rangeHighVoltage;
@@ -59,7 +60,7 @@ public class AnalogSelectSwitch {
 		}
 		else
 		{
-			return SwitchPosition.POSITION_1;
+			return SwitchPosition.POSITION_0;
 		}
 			
 	}
