@@ -336,29 +336,9 @@ public class Arm extends Subsystem {
     		return false;
     	}
     }
-     public boolean armExtendManual()
-     {
-         /////////////////////////////////////////////////////////////////////////
-         ///
-         ///      * * C A U T I O N  * * 
-         /// The Words Extend and Retract have reversed meaning in this Module
-         ///
-         /////////////////////////////////////////////////////////////////////////
-
-        
-         // run arm out until it reaches the end
-         // return true if the end is reached
-         if(getArmExtendedSwitch() == true)
-         {
-             extenderMotorA.set(EXTEND_SPEED);
-             return true;
-         }
-         else
-         {
-             extenderMotorA.set(STOP); 
-             return false;
-         }
-     }
+    public void armExtendStop(){
+        extenderMotorA.set(0);
+    }
     
     public boolean armRetract()
     {

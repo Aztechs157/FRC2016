@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LaunchBoulder extends Command {
 
 	private double startTime;
-	private final static double DELAY_BEFORE_SHOT = 1.5; // seconds
+	private final static double DELAY_BEFORE_SHOT = 0.75; // seconds
 	private final static double SHOT_DURATION = 0.5; // seconds
 	private boolean shooterStarted;
 	
