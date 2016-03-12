@@ -36,8 +36,8 @@ public class AnalogSelectSwitch {
 	}
 	
 	public SwitchPosition getPosition()
-	{
-		double value = switchInput.getAverageVoltage();
+	{ 
+	    double value = switchInput.getVoltage();   //Removed Average (JV)
 		if((SwitchPosition.POSITION_1.rangeLowVoltage <= value) && (value < SwitchPosition.POSITION_1.rangeHighVoltage))
 		{
 			return SwitchPosition.POSITION_1;

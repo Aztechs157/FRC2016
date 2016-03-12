@@ -43,8 +43,8 @@ public class Arm extends Subsystem {
     ///
     /////////////////////////////////////////////////////////////////////////   
 
-	public static final double EXTEND_SPEED = 0.5;    //Really Retract
-	public static final double RETRACT_SPEED = -0.1;  //Really Extend
+	public static final double EXTEND_SPEED = 0.25;    //Really Retract
+	public static final double RETRACT_SPEED = -0.25;  //Really Extend
 	public static final double STOP = 0;
 		
 	public enum Position
@@ -336,6 +336,29 @@ public class Arm extends Subsystem {
     		return false;
     	}
     }
+     public boolean armExtendManual()
+     {
+         /////////////////////////////////////////////////////////////////////////
+         ///
+         ///      * * C A U T I O N  * * 
+         /// The Words Extend and Retract have reversed meaning in this Module
+         ///
+         /////////////////////////////////////////////////////////////////////////
+
+        
+         // run arm out until it reaches the end
+         // return true if the end is reached
+         if(getArmExtendedSwitch() == true)
+         {
+             extenderMotorA.set(EXTEND_SPEED);
+             return true;
+         }
+         else
+         {
+             extenderMotorA.set(STOP); 
+             return false;
+         }
+     }
     
     public boolean armRetract()
     {

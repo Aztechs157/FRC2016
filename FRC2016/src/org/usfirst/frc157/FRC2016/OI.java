@@ -53,7 +53,7 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
     public static final int LEFT_JOYSTICK_ID = 1;
     public static final int RIGHT_JOYSTICK_ID = 2;
-    public static final int OPERATOR_JOYSTICK_ID = 0;
+    public static final int OPERATOR_JOYSTICK_ID = 3;
     public static final int LOGITECH_CONTROLLER_ID = 0;
         
     public static final boolean USE_OPERATOR_JOYSTICK = true;  //true = Joystick operator; false = Logitech operator  
@@ -272,7 +272,7 @@ public class OI {
         driverLeftX.whenPressed(new AutoDriveStop());
         driverLeftY.whenPressed(new AutoDriveStop());
 
-        driverRightButtonTrigger.whileHeld(new GrabBoulderManual());
+        driverRightButtonTrigger.whileHeld(new LaunchBoulder());
         driverRightButton2.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
         driverRightButton3.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));
         driverRightButton4.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
@@ -334,8 +334,8 @@ public class OI {
             logitechDriverButtonBack.whenPressed(new PrintButton("P Button Back"));
             logitechDriverButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
             logitechDriverButtonRightTrigger.whenPressed(new LaunchBoulder()); 
-            logitechDriverButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
-            logitechDriverButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
+//            logitechDriverButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
+//            logitechDriverButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
             logitechDriverButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
             logitechDriverButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
         }

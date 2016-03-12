@@ -35,40 +35,66 @@ public class AutonomousCommand extends CommandGroup
 
 		switch(switchPosition)
 		{
-		case POSITION_1:
-			System.out.println("\n*********************************\n");
-			System.out.println("Autonomous Position 1");
-			//drive straight forward low power
-			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-			addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 3.0));
-			addSequential(new AutoDriveTurnToHeading(90));
-			break;
+    		case POSITION_0:
+    		{
+                System.out.println("\n*********************************\n");
+                System.out.println("Autonomous Position 0");
+                addSequential(new PrintButton(">>> Autonomous Position 0"));
+    		    //Do nothing case
+    	        break;
+    		}
+    
+    		case POSITION_1:
+    		{
+    			System.out.println("\n*********************************\n");
+    			System.out.println("Autonomous Position 1");
+    
+    			addSequential(new PrintButton(">>> Autonomous Position 1"));
+    			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+    			addSequential(new AutoDriveSpeedForTime(0.25, 0.25, 4.0));
+    			//addSequential(new AutoDriveTurnToHeading(90));
+    			break;
+    		}
+    
+    		case POSITION_2:
+    		{
+    			System.out.println("\n*********************************\n");
+    			System.out.println("Autonomous Position 2");
+    
+    			addSequential(new PrintButton(">>> Autonomous Position 2"));
+    			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+    			addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 4.0));
+    			break;
+    		}
+    		case POSITION_3:
+    		{
+    			System.out.println("\n*********************************\n");
+    			System.out.println("Autonomous Position 3");
+    			addSequential(new PrintButton(">>> Autonomous Position 3"));
+    			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
+    			addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 4.0));
+    			break;
+    		}	
+    		
+    		case POSITION_4:
+    		{
+    			System.out.println("\n*********************************\n");
+    			System.out.println("Autonomous Position 4");
+    			
+    			addSequential(new PrintButton(">>> Autonomous Position 4"));
+    			//unimplemented
+    			break;
+    		}
+    		
+    		case POSITION_5:
+    		{
+    			System.out.println("\n*********************************\n");
+    			System.out.println("Autonomous Position 5");
 
-		case POSITION_2:
-			System.out.println("\n*********************************\n");
-			System.out.println("Autonomous Position 2");
-			//drive straight forward high power 
-			//addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-			addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 3.0));
-			break;
-
-		case POSITION_3:
-			System.out.println("\n*********************************\n");
-			System.out.println("Autonomous Position 3");
-			//unimplemented
-			break;
-
-		case POSITION_4:
-			System.out.println("\n*********************************\n");
-			System.out.println("Autonomous Position 4");
-			//unimplemented
-			break;
-
-		case POSITION_5:
-			System.out.println("\n*********************************\n");
-			System.out.println("Autonomous Position 5");
-			//Do Nothing Autonomous mode
-			break;
+    			addSequential(new PrintButton(">>> Autonomous Position 5"));
+    			//unimplemented
+    			break;
+    		}
 		}
 
  
