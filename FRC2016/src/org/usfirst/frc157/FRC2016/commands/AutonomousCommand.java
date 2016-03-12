@@ -51,7 +51,7 @@ public class AutonomousCommand extends CommandGroup
     
     			addSequential(new PrintButton(">>> Autonomous Position 1"));
     			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-    			addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 5.5));
+    			addSequential(new AutoDriveSpeedForTime(0.5, 0.5, 3.5));
     			break;
     		}
     		case POSITION_2:
@@ -60,7 +60,7 @@ public class AutonomousCommand extends CommandGroup
     			System.out.println("Autonomous Position 2");
     			addSequential(new PrintButton(">>> Autonomous Position 2"));
     			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-    			addSequential(new AutoDriveSpeedForTime(0.75, 0.75, 4.5));
+    			addSequential(new AutoDriveSpeedForTime(0.75, 0.75,2.5));
     			break;
     		}	
     		
@@ -71,7 +71,7 @@ public class AutonomousCommand extends CommandGroup
     			
     			addSequential(new PrintButton(">>> Autonomous Position 3"));
     			addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-                addSequential(new AutoDriveSpeedForTime(1, 1, 3.5));
+                addSequential(new AutoDriveSpeedForTime(1, 1, 2.0));
     			//unimplemented
     			break;
     		}

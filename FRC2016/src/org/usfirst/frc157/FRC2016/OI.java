@@ -263,7 +263,7 @@ public class OI {
 //        driverLeftButton5.whenPressed(new AutoDriveTurnToHeading(90));
         driverLeftButton6.whenPressed(new PrintButton("L Button 6"));
         driverLeftButton7.whenPressed(new PrintButton("L Button 7"));
-        driverLeftButton8.whenPressed(new PrintButton("L Button 8"));
+        driverLeftButton8.whenPressed(new PrintIRRange());
         driverLeftButton9.whenPressed(new PrintButton("L Button 9"));
         driverLeftButton10.whenPressed(new PrintButton("L Button 10"));
         driverLeftButton11.whenPressed(new PrintButton("L Button 11"));
