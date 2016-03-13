@@ -26,8 +26,8 @@ public class ArmChainWatcher extends Command {
     // ZONE 2 is between zoneAngles[1] and zoneAngles[2]
 	// etc . . .
 	// CAUTION: length of a zoneAngles[] must be (ZONE_COUNT + 1) 
-	private final double[] zoneAngles = {-9999.0, 15.0, 30.0, 60.0, 9999.0};
-	private final int ZONE_COUNT = 4;
+	private final double[] zoneAngles = {-9999.0, 30.0, 60.0, 9999.0};
+	private final int ZONE_COUNT = 3;
     private final double zoneAngleThreshold = 2.5;  //hysteresis between zones
 	
     public ArmChainWatcher( ) {
@@ -42,6 +42,7 @@ public class ArmChainWatcher extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         currentBurpZone = getCurrentArmZone();
+        System.out.println("Init Arm Chain Watcher; Zone = " + currentBurpZone);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -102,7 +103,7 @@ public class ArmChainWatcher extends Command {
     
     private int getCurrentArmZone()
     {
-        int zone = 0;
+        int zone = -1;
         double currentAngle = Robot.arm.getShoulderAngle();
         for(double angle : zoneAngles)
         {
@@ -111,6 +112,10 @@ public class ArmChainWatcher extends Command {
                 zone++;
             }
         }
+        
+        if (zone < 0) zone = 0;
+        if (zone > ZONE_COUNT) zone =ZONE_COUNT;
+
         return zone;
     }
     
