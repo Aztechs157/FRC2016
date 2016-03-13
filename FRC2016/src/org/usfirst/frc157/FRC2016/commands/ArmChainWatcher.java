@@ -24,10 +24,10 @@ public class ArmChainWatcher extends Command {
 	
 	// ZONE 1 is between zoneAngles[0] and zoneAngles[1]
     // ZONE 2 is between zoneAngles[1] and zoneAngles[2]
-	// etc
-	// length of a zoneAngles[] must be ZONE_COUNT+1 
-	private final double[] zoneAngles = {-10.00,30.0,60.0,360.0};
-	private final int ZONE_COUNT = 3;
+	// etc . . .
+	// CAUTION: length of a zoneAngles[] must be (ZONE_COUNT + 1) 
+	private final double[] zoneAngles = {-9999.0, 15.0, 30.0, 60.0, 9999.0};
+	private final int ZONE_COUNT = 4;
     private final double zoneAngleThreshold = 2.5;  //hysteresis between zones
 	
     public ArmChainWatcher( ) {
