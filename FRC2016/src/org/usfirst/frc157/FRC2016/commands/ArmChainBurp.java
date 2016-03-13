@@ -20,14 +20,15 @@ public class ArmChainBurp extends Command {
 
 	private boolean retract;
 	
-    public ArmChainBurp( ) {
+    public ArmChainBurp(boolean retractRequest) {
       
         ///
         /// Does NOT require Robot.arm to prevent other commands from stopping
         ///
-        //requires(Robot.arm);
-    	
-        System.out.println("Creating Arm Chain Watcher "}
+        requires(Robot.arm);
+    	retract = retractRequest;
+    	System.out.println("Creating arm Burp " + retract);
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -35,7 +36,6 @@ public class ArmChainBurp extends Command {
         setTimeout(Arm.CHAIN_BURP_TIME); //seconds
     	
         System.out.println("Starting chain burp " + retract);
-    	finished = false;
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -33,6 +33,7 @@ import org.usfirst.frc157.FRC2016.subsystems.*;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
+    Command armChainWatcher; 
     
     // Camera on robot to display on the driver station
     public CameraServer camera;
@@ -107,10 +108,14 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
+        armChainWatcher = new ArmChainWatcher();
+        if (armChainWatcher != null) armChainWatcher.start();
+           
+        Robot.navigation.resetZeroHeading();
+            
+        // schedule the autonomous command 
         autonomousCommand = new AutonomousCommand();
         
-    	Robot.navigation.resetZeroHeading();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
