@@ -98,7 +98,7 @@ public class BallHandler extends Subsystem {
     public boolean isBallInHolder()
     {
     	boolean inHolder = ballInHolderSwitch.get();
-    	return inHolder;
+    	return !inHolder; //Normally Open switch
     	
 //  This is the old IR based sensor
 //    	double range = getBoulderRange();    	
