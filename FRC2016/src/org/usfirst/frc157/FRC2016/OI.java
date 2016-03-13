@@ -283,8 +283,8 @@ public class OI {
 //        driverRightButton9.whenPressed(new ArmExtendRetract(false)); // Actually Extends
         driverRightButton8.whileHeld(new ArmExtendRetract(true)); // Actually Retracts
         driverRightButton9.whileHeld(new ArmExtendRetract(false)); // Actually Extends
-        driverRightButton10.whenPressed(new PrintButton("R Button 10"));
-        driverRightButton11.whenPressed(new PrintButton("R Button 11"));
+        driverRightButton10.whenPressed(new ArmChainBurp(false));  //burp out
+        driverRightButton11.whenPressed(new ArmChainBurp(true));  //burp in
 //        driverRightButton12.whenPressed(new PrintButton("R Button 12"));
         
         driverRightX.whenPressed(new AutoDriveStop());
