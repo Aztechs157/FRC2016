@@ -11,57 +11,51 @@ public class ArmExtendRetract extends Command {
     
     /////////////////////////////////////////////////////////////////////////
     ///
-    ///      * * C A U T I O N  * * 
-    /// The Words Extend and Retract have reversed meaning in this Class
+    ///      * * U P D A T E * *
     ///
-    /////////////////////////////////////////////////////////////////////////
+    /// Polarity of Retract and Extend has been fixed.
+    /// 
+    ///////////////////////////////////////////////////////////////////////// 
 
-	private boolean extend;
+	private boolean retract;
 	private boolean finished;
 	
-    public ArmExtendRetract(boolean extendRequest) {
+    public ArmExtendRetract(boolean retractRequest) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.arm);
-    	extend = extendRequest;
-    	System.out.println("Creating arm Extend/Retract " + extend);
+    	retract = retractRequest;
+    	System.out.println("Creating arm Extend/Retract " + retract);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("Starting arm Extend/Retract " + extend);
+    	System.out.println("Starting arm Extend/Retract " + retract);
     	finished = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
-        /////////////////////////////////////////////////////////////////////////
-        ///
-        ///      * * C A U T I O N  * * 
-        /// The Words Extend and Retract have reversed meaning in this Class
-        ///
-        /////////////////////////////////////////////////////////////////////////
-    	
-    	if(extend && Robot.arm.extendAllowedByTime())
+           	
+    	if(retract && Robot.arm.extendAllowedByTime())
     	{
-    		Robot.arm.armExtend();
+    		Robot.arm.armRetract();
     	}
     	else  // can always retract
     	{
-    		Robot.arm.armRetract();
+    		Robot.arm.armExtend();
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	boolean result = false;
-    	if(extend)
+    	if(retract)
     	{
-    		result =  !Robot.arm.getArmExtendedSwitch();
+    		result =  !Robot.arm.getArmRetractedSwitch();
     	}
     	else
     	{
-    		result = !Robot.arm.getArmRetractedSwitch();
+    		result = !Robot.arm.getArmExtendedSwitch();
     	}
     	return result;
     }
