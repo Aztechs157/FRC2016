@@ -314,13 +314,16 @@ public class Arm extends Subsystem {
     	return shoulderGotoAngle(position.angle());
     }
     
-    public boolean armRetract()
-    {      
+    public boolean armRetract(double speed)
+    {   
+        //check speed polarity
+        if (speed < 0) speed = -speed;
+        
         // run arm out until it reaches the end
     	// return true if the end is reached
     	if(getArmRetractedSwitch() == true)
     	{
-    		extenderMotorA.set(RETRACT_SPEED);
+    		extenderMotorA.set(speed);
     		return true;
     	}
     	else
@@ -329,17 +332,17 @@ public class Arm extends Subsystem {
     		return false;
     	}
     }
-    public void armExtendStop(){
-        extenderMotorA.set(0);
-    }
-    
-    public boolean armExtend()
-    {      
+       
+    public boolean armExtend(double speed)
+    {
+        //check speed polarity
+        if (speed > 0) speed = -speed;
+
     	// run arm in until it reaches the end
     	// return true if the end is reached
     	if(getArmExtendedSwitch() == true)
     	{
-    		extenderMotorA.set(EXTEND_SPEED);
+    		extenderMotorA.set(speed);
     		return false;
     	}
     	else
@@ -349,6 +352,10 @@ public class Arm extends Subsystem {
     	}
     }
     
+    public void armExtendStop(){
+        extenderMotorA.set(0);
+    }
+
 	static double lastAngleReading = 0;
 	public double getShoulderAngle()
     {

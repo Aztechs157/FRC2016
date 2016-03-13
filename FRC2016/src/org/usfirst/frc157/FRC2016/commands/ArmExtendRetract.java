@@ -1,6 +1,7 @@
 package org.usfirst.frc157.FRC2016.commands;
 
 import org.usfirst.frc157.FRC2016.Robot;
+import org.usfirst.frc157.FRC2016.subsystems.Arm;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -38,11 +39,11 @@ public class ArmExtendRetract extends Command {
            	
     	if(retract && Robot.arm.extendAllowedByTime())
     	{
-    		Robot.arm.armRetract();
+    		Robot.arm.armRetract(Arm.RETRACT_SPEED);
     	}
     	else  // can always retract
     	{
-    		Robot.arm.armExtend();
+    		Robot.arm.armExtend(Arm.EXTEND_SPEED);
     	}
     }
 
