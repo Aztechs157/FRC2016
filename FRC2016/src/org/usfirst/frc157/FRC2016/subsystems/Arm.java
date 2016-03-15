@@ -38,13 +38,16 @@ public class Arm extends Subsystem {
        
     /////////////////////////////////////////////////////////////////////////
     ///
-    ///      * * C A U T I O N  * * 
-    /// The Words Extend and Retract have reversed meaning in this Class
+    ///      * * U P D A T E * *
     ///
+    /// Polarity of Retract and Extend has been fixed.
+    /// 
     /////////////////////////////////////////////////////////////////////////   
 
-	public static final double EXTEND_SPEED = 0.25;    //Really Retract
-	public static final double RETRACT_SPEED = -0.25;  //Really Extend
+	public static final double EXTEND_SPEED = -0.5;  //Really Extend
+	public static final double RETRACT_SPEED = 0.5;  //Really Retract
+	public static final double CHAIN_BURP_SPEED = 0.25;
+	public static final double CHAIN_BURP_TIME = 0.100; //seconds
 	public static final double STOP = 0;
 		
 	public enum Position
@@ -313,48 +316,35 @@ public class Arm extends Subsystem {
     	return shoulderGotoAngle(position.angle());
     }
     
-     public boolean armExtend()
-    {
-        /////////////////////////////////////////////////////////////////////////
-        ///
-        ///      * * C A U T I O N  * * 
-        /// The Words Extend and Retract have reversed meaning in this Module
-        ///
-        /////////////////////////////////////////////////////////////////////////
-
-       
+    public boolean armRetract(double speed)
+    {   
+        //check speed polarity
+        if (speed < 0) speed = -speed;
+        
         // run arm out until it reaches the end
-    	// return true if the end is reached
-    	if(getArmExtendedSwitch() == true)
-    	{
-    		extenderMotorA.set(EXTEND_SPEED);
-    		return true;
-    	}
-    	else
-    	{
-    		extenderMotorA.set(STOP); 
-    		return false;
-    	}
-    }
-    public void armExtendStop(){
-        extenderMotorA.set(0);
-    }
-    
-    public boolean armRetract()
-    {
-        /////////////////////////////////////////////////////////////////////////
-        ///
-        ///      * * C A U T I O N  * * 
-        /// The Words Extend and Retract have reversed meaning in this Module
-        ///
-        /////////////////////////////////////////////////////////////////////////
-
-       
-    	// run arm in until it reaches the end
     	// return true if the end is reached
     	if(getArmRetractedSwitch() == true)
     	{
-    		extenderMotorA.set(RETRACT_SPEED);
+    		extenderMotorA.set(speed);
+    		return true;
+    	}
+    	else
+    	{
+    		extenderMotorA.set(STOP); 
+    		return false;
+    	}
+    }
+       
+    public boolean armExtend(double speed)
+    {
+        //check speed polarity
+        if (speed > 0) speed = -speed;
+
+    	// run arm in until it reaches the end
+    	// return true if the end is reached
+    	if(getArmExtendedSwitch() == true)
+    	{
+    		extenderMotorA.set(speed);
     		return false;
     	}
     	else
@@ -364,6 +354,10 @@ public class Arm extends Subsystem {
     	}
     }
     
+    public void armExtendStop(){
+        extenderMotorA.set(0);
+    }
+
 	static double lastAngleReading = 0;
 	public double getShoulderAngle()
     {

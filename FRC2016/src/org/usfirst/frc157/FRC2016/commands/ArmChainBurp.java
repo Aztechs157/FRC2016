@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ArmExtendRetract extends Command {
+public class ArmChainBurp extends Command {
     
     /////////////////////////////////////////////////////////////////////////
     ///
@@ -19,46 +19,41 @@ public class ArmExtendRetract extends Command {
     ///////////////////////////////////////////////////////////////////////// 
 
 	private boolean retract;
-	private boolean finished;
 	
-    public ArmExtendRetract(boolean retractRequest) {
-        // Use requires() here to declare subsystem dependencies
+    public ArmChainBurp(boolean retractRequest) {
+      
+        ///
+        /// Does NOT require Robot.arm to prevent other commands from stopping
+        ///
         requires(Robot.arm);
     	retract = retractRequest;
-    	System.out.println("Creating arm Extend/Retract " + retract);
+    	System.out.println("Creating arm Burp " + retract);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("Starting arm Extend/Retract " + retract);
-    	finished = false;
+        
+        setTimeout(Arm.CHAIN_BURP_TIME); //seconds
+    	
+        System.out.println("Starting chain burp " + retract);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
            	
-    	if(retract && Robot.arm.extendAllowedByTime())
+    	if(retract)
     	{
-    		Robot.arm.armRetract(Arm.RETRACT_SPEED);
+    		Robot.arm.armRetract(Arm.CHAIN_BURP_SPEED);
     	}
     	else  // can always retract
     	{
-    		Robot.arm.armExtend(Arm.EXTEND_SPEED);
+    		Robot.arm.armExtend(Arm.CHAIN_BURP_SPEED);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	boolean result = false;
-    	if(retract)
-    	{
-    		result =  !Robot.arm.getArmRetractedSwitch();
-    	}
-    	else
-    	{
-    		result = !Robot.arm.getArmExtendedSwitch();
-    	}
-    	return result;
+    	return isTimedOut();
     }
 
     // Called once after isFinished returns true
