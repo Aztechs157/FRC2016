@@ -40,7 +40,7 @@ public class GrabBoulderManual extends Command {
     	{
         	Robot.ballHandler.stopAll();    		
     	}
-    	if(Robot.oi.operator.getPOV(0) == 180)
+    	if(Robot.oi.getOperatorPOV() == 180)
     	{
     		Robot.arm.shoulderGotoAngle(Position.GRAB_BOULDER.angle()-3.0);
     	}

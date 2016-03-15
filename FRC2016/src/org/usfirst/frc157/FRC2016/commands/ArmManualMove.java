@@ -22,7 +22,7 @@ public class ArmManualMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double powerLevel = -Robot.oi.operator.getThrottle();
+    	double powerLevel = -Robot.oi.getOperatorThrottle();
     	Robot.arm.shoulderSetVoltage(powerLevel);
 //    	System.out.println("PL: " + powerLevel);
     }
