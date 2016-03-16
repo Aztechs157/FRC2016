@@ -25,8 +25,8 @@ public class LogitechController extends GenericHID
 		public static final AxisType kAxisLeftY = new AxisType(m_kAxisLeftY);
 		public static final AxisType kAxisRightX = new AxisType(m_kAxisRightX);
 		public static final AxisType kAxisRightY = new AxisType(m_kAxisRightY);
-		public static final AxisType kAxisGameX = new AxisType(m_kAxisGameX);
-		public static final AxisType kAxisGameY = new AxisType(m_kAxisGameY);
+//		public static final AxisType kAxisGameX = new AxisType(m_kAxisGameX);
+//		public static final AxisType kAxisGameY = new AxisType(m_kAxisGameY);
 		public static final AxisType kAxisTriggers = new AxisType(m_kAxisTriggers);
 		
 		private AxisType(int axisNumber)
@@ -42,8 +42,8 @@ public class LogitechController extends GenericHID
 		public final int value;
 		public static final ButtonType kButtonLeftB = new ButtonType(m_kButtonLeftB);
 		public static final ButtonType kButtonRightB = new ButtonType(m_kButtonRightB);
-		public static final ButtonType kButtonLeftTop = new ButtonType(m_kButtonLeftTop);
-		public static final ButtonType kButtonRightTop = new ButtonType(m_kButtonRightTop);
+		public static final ButtonType kButtonLeftTop = new ButtonType(m_kButtonLeftTop);   // left stick press
+		public static final ButtonType kButtonRightTop = new ButtonType(m_kButtonRightTop); // right stick press
 		public static final ButtonType kButtonA = new ButtonType(m_kButtonA);
 		public static final ButtonType kButtonB = new ButtonType(m_kButtonB);
 		public static final ButtonType kButtonX = new ButtonType(m_kButtonX);
@@ -52,10 +52,10 @@ public class LogitechController extends GenericHID
 		public static final ButtonType kButtonBack = new ButtonType(m_kButtonBack);
 		public static final ButtonType kButtonLeftTrigger = new ButtonType(m_kPseudoButtonLeftTrigger);
 		public static final ButtonType kButtonRightTrigger = new ButtonType(m_kPseudoButtonRightTrigger);
-		public static final ButtonType kButtonGameUp = new ButtonType(m_kPseudoButtonGameUp);
-		public static final ButtonType kButtonGameDown = new ButtonType(m_kPseudoButtonGameDown);
-		public static final ButtonType kButtonGameLeft = new ButtonType(m_kPseudoButtonGameLeft);
-		public static final ButtonType kButtonGameRight = new ButtonType(m_kPseudoButtonGameRight);
+//		public static final ButtonType kButtonGameUp = new ButtonType(m_kPseudoButtonGameUp);
+//		public static final ButtonType kButtonGameDown = new ButtonType(m_kPseudoButtonGameDown);
+//		public static final ButtonType kButtonGameLeft = new ButtonType(m_kPseudoButtonGameLeft);
+//		public static final ButtonType kButtonGameRight = new ButtonType(m_kPseudoButtonGameRight);
 		
 		private ButtonType(int buttonNumber)
 		{
@@ -74,9 +74,9 @@ public class LogitechController extends GenericHID
 	private static final int m_kButtonLeftTop = 9;    
 	private static final int m_kButtonRightTop = 10;
 	// Gamepad Axes
-	private static final int m_kAxisGameX = 6; // Left -
-	private static final int m_kAxisGameY = 2; // Up -
-	// Trigger Buttons (Note actual triggers LT, RT are acutally an Axis)
+//	private static final int m_kAxisGameX = 6; // Left -
+//	private static final int m_kAxisGameY = 2; // Up -
+	// Trigger Buttons (Note actual triggers LT, RT are actually an Axis)
 	private static final int m_kButtonLeftB = 5;
 	private static final int m_kButtonRightB = 6;
 	private static final int m_kAxisTriggers = 3; // Left Trigger +, Right Trigger -
@@ -92,12 +92,10 @@ public class LogitechController extends GenericHID
 	private static final int m_kPseudoButtonBase = 1000;
 	private static final int m_kPseudoButtonLeftTrigger = 2 * m_kPseudoButtonBase + m_kAxisTriggers;
 	private static final int m_kPseudoButtonRightTrigger = m_kPseudoButtonBase + m_kAxisTriggers;
-	private static final int m_kPseudoButtonGameUp = 2 * m_kPseudoButtonBase + m_kAxisGameY;
-	private static final int m_kPseudoButtonGameDown = m_kPseudoButtonBase + m_kAxisGameY;
-	
-	private static final int m_kPseudoButtonGameLeft = 2 * m_kPseudoButtonBase + m_kAxisGameX;
-	
-	private static final int m_kPseudoButtonGameRight = m_kPseudoButtonBase + m_kAxisGameX;
+//	private static final int m_kPseudoButtonGameUp = 2 * m_kPseudoButtonBase + m_kAxisGameY;
+//	private static final int m_kPseudoButtonGameDown = m_kPseudoButtonBase + m_kAxisGameY;	
+//	private static final int m_kPseudoButtonGameLeft = 2 * m_kPseudoButtonBase + m_kAxisGameX;	
+//	private static final int m_kPseudoButtonGameRight = m_kPseudoButtonBase + m_kAxisGameX;
 	
 	private DriverStation m_ds;
 	private final int m_port;
@@ -150,23 +148,27 @@ public class LogitechController extends GenericHID
 	
 	public boolean getButtonGameDown()
 	{
-		return getRawButton(ButtonType.kButtonGameDown.value);
+		return (getPOV() == 180);
+//		return getRawButton(ButtonType.kButtonGameDown.value);
 	}
 	
 	public boolean getButtonGameLeft()
 	{
-		return getRawButton(ButtonType.kButtonGameLeft.value);
+		return (getPOV() == 270);
+//		return getRawButton(ButtonType.kButtonGameLeft.value);
 	}
 	
 	public boolean getButtonGameRight()
 	{
-		return getRawButton(ButtonType.kButtonGameRight.value);
+		return (getPOV() == 90);
+//		return getRawButton(ButtonType.kButtonGameRight.value);
 	}
 	
 	// Axis buttons
 	public boolean getButtonGameUp()
 	{
-		return getRawButton(ButtonType.kButtonGameUp.value);
+		return (getPOV() == 0);
+//		return getRawButton(ButtonType.kButtonGameUp.value);
 	}
 	
 	public boolean getButtonLB()
@@ -214,15 +216,15 @@ public class LogitechController extends GenericHID
 		return getRawButton(ButtonType.kButtonY.value);
 	}
 	
-	public double getGameX()
-	{
-		return getRawAxis(AxisType.kAxisGameX.value);
-	}
-	
-	public double getGameY()
-	{
-		return getRawAxis(AxisType.kAxisGameY.value);
-	}
+//	public double getGameX()
+//	{
+//		return getRawAxis(AxisType.kAxisGameX.value);
+//	}
+//	
+//	public double getGameY()
+//	{
+//		return getRawAxis(AxisType.kAxisGameY.value);
+//	}
 	
 	// Logitech Controller Specific Functions
 	// Axes
@@ -239,8 +241,7 @@ public class LogitechController extends GenericHID
 	@Override
 	public int getPOV(int pov)
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return super.getPOV();
 	}
 	
 	// GenericHID Interface Functions
@@ -284,7 +285,8 @@ public class LogitechController extends GenericHID
 	@Override
 	public double getThrottle()
 	{
-		return getRawAxis(AxisType.kAxisGameX.value);
+		return 0;
+//		return getRawAxis(AxisType.kAxisGameX.value);
 	}
 	
 	@Override
