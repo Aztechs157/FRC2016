@@ -11,7 +11,6 @@
 
 package org.usfirst.frc157.FRC2016;
 
-import org.usfirst.frc157.FRC2016.LogitechController.AxisType;
 import org.usfirst.frc157.FRC2016.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -64,86 +63,98 @@ public class OI {
 	//    DECLARATIONS
 	// -----------------------------------------//
 
+	//============================================================================//
+    // Left Driver Stick
+	//============================================================================//
 	public Joystick driverLeft;
 	private JoystickButton driverRightButtonTrigger; // Button 1 - Trigger
-	private JoystickButton driverRightButton2; // Button 2 - Stick down
-	private JoystickButton driverRightButton3; // Button 3 - Stick center
-	private JoystickButton driverRightButton4; // Button 4 - Stick left
-	private JoystickButton driverRightButton5; // Button 5 - Stick right
-	private JoystickButton driverRightButton6; // Button 6 - Base Left Away
-	private JoystickButton driverRightButton7; // Button 7 - Base Left Close
-	private JoystickButton driverRightButton8; // Button 8 - Base Near Left
-	private JoystickButton driverRightButton9; // Button 9 - Base Near Right
-	private JoystickButton driverRightButton10; // Button 10 - Base Right Close
-	private JoystickButton driverRightButton11; // Button 11 - Base RIght Away
-	// private JoystickButton driverRightButton12; // Button 12
+	private JoystickButton driverRightButton2;       // Button 2 - Stick down
+	private JoystickButton driverRightButton3;       // Button 3 - Stick center
+	private JoystickButton driverRightButton4;       // Button 4 - Stick left
+	private JoystickButton driverRightButton5;       // Button 5 - Stick right
+	private JoystickButton driverRightButton6;       // Button 6 - Base Left Away
+	private JoystickButton driverRightButton7;       // Button 7 - Base Left Close
+	private JoystickButton driverRightButton8;       // Button 8 - Base Near Left
+	private JoystickButton driverRightButton9;       // Button 9 - Base Near Right
+	private JoystickButton driverRightButton10;      // Button 10 - Base Right Close
+	private JoystickButton driverRightButton11;      // Button 11 - Base RIght Away
+	// private JoystickButton driverRightButton12;    // Button 12
 
 	private JoystickAxisButton driverRightX;  // X Axis operation button
 	private JoystickAxisButton driverRightY;  // Y Axis operation button
 
+	//============================================================================//
+    // Right Driver Stick
+	//============================================================================//
 	public Joystick driverRight;
 	private JoystickButton driverLeftButtonTrigger; // Button 1 - Trigger
-	private JoystickButton driverLeftButton2; // Button 2 - Stick down
-	private JoystickButton driverLeftButton3; // Button 3 - Stick center
-	private JoystickButton driverLeftButton4; // Button 4 - Stick left
-	private JoystickButton driverLeftButton5; // Button 5 - Stick right
-	private JoystickButton driverLeftButton6; // Button 6 - Base Left Away
-	private JoystickButton driverLeftButton7; // Button 7 - Base Left Close
-	private JoystickButton driverLeftButton8; // Button 8 - Base Near Left
-	private JoystickButton driverLeftButton9; // Button 9 - Base Near Right
-	private JoystickButton driverLeftButton10; // Button 10 - Base Right Close
-	private JoystickButton driverLeftButton11; // Button 11 - Base RIght Away
-	// private JoystickButton driverLeftButton12; // Button 12
+	private JoystickButton driverLeftButton2;       // Button 2 - Stick down
+	private JoystickButton driverLeftButton3;       // Button 3 - Stick center
+	private JoystickButton driverLeftButton4;       // Button 4 - Stick left
+	private JoystickButton driverLeftButton5;       // Button 5 - Stick right
+	private JoystickButton driverLeftButton6;       // Button 6 - Base Left Away
+	private JoystickButton driverLeftButton7;       // Button 7 - Base Left Close
+	private JoystickButton driverLeftButton8;       // Button 8 - Base Near Left
+	private JoystickButton driverLeftButton9;       // Button 9 - Base Near Right
+	private JoystickButton driverLeftButton10;      // Button 10 - Base Right Close
+	private JoystickButton driverLeftButton11;      // Button 11 - Base RIght Away
+	// private JoystickButton driverLeftButton12;    // Button 12
 
 	private JoystickAxisButton driverLeftX;  // X Axis operation button
 	private JoystickAxisButton driverLeftY;  // Y Axis operation button
 
-	public Joystick operator;
-	private JoystickButton operatorButtonTrigger; // Button 1 - Trigger
-	private JoystickButton operatorButton2; // Button 2 - Stick down
-	private JoystickButton operatorButton3; // Button 3 - Stick center
-	private JoystickButton operatorButton4; // Button 4 - Stick left
-	private JoystickButton operatorButton5; // Button 5 - Stick right
-	private JoystickButton operatorButton6; // Button 6 - Base Left Away
-	private JoystickButton operatorButton7; // Button 7 - Base Left Close
-	private JoystickButton operatorButton8; // Button 8 - Base Near Left
-	private JoystickButton operatorButton9; // Button 9 - Base Near Right
-	private JoystickButton operatorButton10; // Button 10 - Base Right Close
-	private JoystickButton operatorButton11; // Button 11 - Base RIght Away
-	//  private JoystickButton operatorButton12; // Button 12
+	//============================================================================//
+    // Operator Stick
+	//============================================================================//
+	public Joystick operatorStick;
+	private JoystickButton operatorStickButtonTrigger; // Button 1 - Trigger
+	private JoystickButton operatorStickButton2;       // Button 2 - Stick down
+	private JoystickButton operatorStickButton3;       // Button 3 - Stick center
+	private JoystickButton operatorStickButton4;       // Button 4 - Stick left
+	private JoystickButton operatorStickButton5;       // Button 5 - Stick right
+	private JoystickButton operatorStickButton6;       // Button 6 - Base Left Away
+	private JoystickButton operatorStickButton7;       // Button 7 - Base Left Close
+	private JoystickButton operatorStickButton8;       // Button 8 - Base Near Left
+	private JoystickButton operatorStickButton9;       // Button 9 - Base Near Right
+	private JoystickButton operatorStickButton10;      // Button 10 - Base Right Close
+	private JoystickButton operatorStickButton11;      // Button 11 - Base RIght Away
+	private JoystickButton operatorStickButton12;      // Button 12
 
-	private JoystickPOVButton operatorHatFore;      // Hat Button Forward
-	private JoystickPOVButton operatorHatForeRight; // Hat Button Forward Right
-	private JoystickPOVButton operatorHatRight;     // Hat Button Right
-	private JoystickPOVButton operatorHatAftRight;  // Hat Button Aft Right
-	private JoystickPOVButton operatorHatAft;       // Hat Button Aft
-	private JoystickPOVButton operatorHatAftLeft;   // Hat Button Aft Left
-	private JoystickPOVButton operatorHatLeft;      // Hat Button Left
-	private JoystickPOVButton operatorHatForeLeft;  // Hat Button Forward Left
+	private JoystickPOVButton operatorStickHatFore;      // Hat Button Forward
+	private JoystickPOVButton operatorStickHatForeRight; // Hat Button Forward Right
+	private JoystickPOVButton operatorStickHatRight;     // Hat Button Right
+	private JoystickPOVButton operatorStickHatAftRight;  // Hat Button Aft Right
+	private JoystickPOVButton operatorStickHatAft;       // Hat Button Aft
+	private JoystickPOVButton operatorStickHatAftLeft;   // Hat Button Aft Left
+	private JoystickPOVButton operatorStickHatLeft;      // Hat Button Left
+	private JoystickPOVButton operatorStickHatForeLeft;  // Hat Button Forward Left
 
-	private JoystickAxisButton operatorX;  // X Axis operation button
-	private JoystickAxisButton operatorY;  // Y Axis operation button
-	private JoystickAxisButton operatorZ;  // X Axis operation button
+	private JoystickAxisButton operatorStickX;  // X Axis operation button
+	private JoystickAxisButton operatorStickY;  // Y Axis operation button
+	private JoystickAxisButton operatorStickZ;  // X Axis operation button
 
-	public LogitechController logitechDriver;
-	private LogitechControllerButton logitechDriverButtonLeftB; // Left Button (Above Trigger)
-	private LogitechControllerButton logitechDriverButtonRightB; // Right Button (Above Trigger)
-	private LogitechControllerButton logitechDriverButtonLeftTop; // Left Stick Pressing
-	private LogitechControllerButton logitechDriverButtonRightTop; // Right Stick Pressing
-	private AxisType logitechDriverButtonLeftStick ; // Left Stick 
-	private AxisType logitechDriverButtonRightStick;// right stick 
-	private LogitechControllerButton logitechDriverButtonA; // A Button (Green)
-	private LogitechControllerButton logitechDriverButtonB; // B Button (Red)
-	private LogitechControllerButton logitechDriverButtonX; // X Button (Blue)
-	private LogitechControllerButton logitechDriverButtonY; // Y Button (Yellow)
-	private LogitechControllerButton logitechDriverButtonStart; // Start Button
-	private LogitechControllerButton logitechDriverButtonBack; // Back Button
-	private LogitechControllerButton logitechDriverButtonLeftTrigger; // Left Trigger (Used as button)
-	private LogitechControllerButton logitechDriverButtonRightTrigger; // Right Trigger (Used as button)
-	private LogitechGamepadPOVButton logitechDriverButtonGameUp; // Game Pad Up
-	private LogitechGamepadPOVButton logitechDriverButtonGameDown; // Game Pad Down
-	private LogitechGamepadPOVButton logitechDriverButtonGameLeft; // Game Pad Left
-	private LogitechGamepadPOVButton logitechDriverButtonGameRight; // Game Pad Right
+	//============================================================================//
+    // Operator Logitech Controller
+	//============================================================================//
+	public LogitechController operatorLogitech;
+	private JoystickButton operatorLogitechButtonLeft;      // Left Button (Above Trigger)
+	private JoystickButton operatorLogitechButtonRight;     // Right Button (Above Trigger)
+	private JoystickButton operatorLogitechButtonLeftStick; // Left Stick 
+	private JoystickButton operatorLogitechButtonRightStick;// right stick 
+	private JoystickButton operatorLogitechButtonA;         // A Button (Green)
+	private JoystickButton operatorLogitechButtonB;         // B Button (Red)
+	private JoystickButton operatorLogitechButtonX;         // X Button (Blue)
+	private JoystickButton operatorLogitechButtonY;         // Y Button (Yellow)
+	private JoystickButton operatorLogitechButtonStart;     // Start Button
+	private JoystickButton operatorLogitechButtonBack;      // Back Button
+	
+	private JoystickAxisButton operatorLogitechButtonLeftTrigger;  // Left Trigger (Used as button)
+	private JoystickAxisButton operatorLogitechButtonRightTrigger; // Right Trigger (Used as button)
+	
+	private JoystickPOVButton operatorLogitechButtonGameUp;    // Game Pad Up
+	private JoystickPOVButton operatorLogitechButtonGameDown;  // Game Pad Down
+	private JoystickPOVButton operatorLogitechButtonGameLeft;  // Game Pad Left
+	private JoystickPOVButton operatorLogitechButtonGameRight; // Game Pad Right
 
 	// END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=DECLARATIONS
 
@@ -156,10 +167,8 @@ public class OI {
 
 		driverLeft = new Joystick(LEFT_JOYSTICK_ID);
 		driverRight = new Joystick(RIGHT_JOYSTICK_ID);
-
-
-		operator = new Joystick(OPERATOR_JOYSTICK_ID);
-		logitechDriver = new LogitechController(LOGITECH_CONTROLLER_ID);
+		operatorStick = new Joystick(OPERATOR_JOYSTICK_ID);
+		operatorLogitech = new LogitechController(LOGITECH_CONTROLLER_ID);
 
 		// Instantiate all of the buttons on the 2 joysticks and the logitech controller
 		driverLeftButtonTrigger = new JoystickButton(driverLeft, 1);
@@ -194,56 +203,52 @@ public class OI {
 		driverRightX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
 		driverRightY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
 
-		operatorButtonTrigger = new JoystickButton(operator, 1);
-		operatorButton2 = new JoystickButton(operator, 2);
-		operatorButton3 = new JoystickButton(operator, 3);
-		operatorButton4 = new JoystickButton(operator, 4);
-		operatorButton5 = new JoystickButton(operator, 5);
-		operatorButton6 = new JoystickButton(operator, 6);
-		operatorButton7 = new JoystickButton(operator, 7);
-		operatorButton8 = new JoystickButton(operator, 8);
-		operatorButton9 = new JoystickButton(operator, 9);
-		operatorButton10 = new JoystickButton(operator, 10);
-		operatorButton11 = new JoystickButton(operator, 11);
-		//        operatorButton12 = new JoystickButton(operator, 12);
+		operatorStickButtonTrigger = new JoystickButton(operatorStick, 1);
+		operatorStickButton2 = new JoystickButton(operatorStick, 2);
+		operatorStickButton3 = new JoystickButton(operatorStick, 3);
+		operatorStickButton4 = new JoystickButton(operatorStick, 4);
+		operatorStickButton5 = new JoystickButton(operatorStick, 5);
+		operatorStickButton6 = new JoystickButton(operatorStick, 6);
+		operatorStickButton7 = new JoystickButton(operatorStick, 7);
+		operatorStickButton8 = new JoystickButton(operatorStick, 8);
+		operatorStickButton9 = new JoystickButton(operatorStick, 9);
+		operatorStickButton10 = new JoystickButton(operatorStick, 10);
+		operatorStickButton11 = new JoystickButton(operatorStick, 11);
+		//        operatorStickButton12 = new JoystickButton(operator, 12);
 
-		operatorHatFore = new JoystickPOVButton(operator, 0);
-		operatorHatForeRight = new JoystickPOVButton(operator, 45);
-		operatorHatRight = new JoystickPOVButton(operator, 90);
-		operatorHatAftRight = new JoystickPOVButton(operator, 135);
-		operatorHatAft = new JoystickPOVButton(operator, 180);
-		operatorHatAftLeft = new JoystickPOVButton(operator, 225);
-		operatorHatLeft = new JoystickPOVButton(operator, 270);
-		operatorHatForeLeft = new JoystickPOVButton(operator, 315);
+		operatorStickHatFore = new JoystickPOVButton(operatorStick, 0);
+		operatorStickHatForeRight = new JoystickPOVButton(operatorStick, 45);
+		operatorStickHatRight = new JoystickPOVButton(operatorStick, 90);
+		operatorStickHatAftRight = new JoystickPOVButton(operatorStick, 135);
+		operatorStickHatAft = new JoystickPOVButton(operatorStick, 180);
+		operatorStickHatAftLeft = new JoystickPOVButton(operatorStick, 225);
+		operatorStickHatLeft = new JoystickPOVButton(operatorStick, 270);
+		operatorStickHatForeLeft = new JoystickPOVButton(operatorStick, 315);
 
-		operatorX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
-		operatorY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
-		operatorZ = new JoystickAxisButton(driverLeft, 2, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
+		operatorStickX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
+		operatorStickY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
+		operatorStickZ = new JoystickAxisButton(driverLeft, 2, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
 
-		logitechDriverButtonLeftB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonLeftB.value);
-		logitechDriverButtonRightB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonRightB.value);
-		logitechDriverButtonLeftTop = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonLeftTop.value);
-		logitechDriverButtonRightTop = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonRightTop.value);
-		logitechDriverButtonA = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonA.value);
-		logitechDriverButtonB = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonB.value);
-		logitechDriverButtonX = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonX.value);
-		logitechDriverButtonY = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonY.value);
-		logitechDriverButtonStart = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonStart.value);
-		logitechDriverButtonBack = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonBack.value);
-		logitechDriverButtonLeftTrigger = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonLeftTrigger.value);
-		logitechDriverButtonRightTrigger = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonRightTrigger.value);
-//		logitechDriverButtonGameUp = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonGameUp.value);
-//		logitechDriverButtonGameDown = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonGameDown.value);
-//		logitechDriverButtonGameLeft = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonGameLeft.value);
-//		logitechDriverButtonGameRight = new LogitechControllerButton(logitechDriver, LogitechController.ButtonType.kButtonGameRight.value);
+		operatorLogitechButtonLeft = new JoystickButton(operatorLogitech, LogitechController.ButtonID.LEFT.ID());
+		operatorLogitechButtonRight = new JoystickButton(operatorLogitech, LogitechController.ButtonID.RIGHT.ID());
+		operatorLogitechButtonLeftStick = new JoystickButton(operatorLogitech, LogitechController.ButtonID.LEFT_STICK.ID());  
+		operatorLogitechButtonRightStick =new JoystickButton(operatorLogitech, LogitechController.ButtonID.RIGHT_STICK.ID());  
+		operatorLogitechButtonA = new JoystickButton(operatorLogitech, LogitechController.ButtonID.A.ID());
+		operatorLogitechButtonB = new JoystickButton(operatorLogitech, LogitechController.ButtonID.B.ID());
+		operatorLogitechButtonX = new JoystickButton(operatorLogitech, LogitechController.ButtonID.X.ID());
+		operatorLogitechButtonY = new JoystickButton(operatorLogitech, LogitechController.ButtonID.Y.ID());
+		operatorLogitechButtonStart = new JoystickButton(operatorLogitech, LogitechController.ButtonID.START.ID());
+		operatorLogitechButtonBack = new JoystickButton(operatorLogitech, LogitechController.ButtonID.BACK.ID());
 
 		
-		logitechDriverButtonGameUp = new LogitechGamepadPOVButton(logitechDriver, 0);
-		logitechDriverButtonGameDown = new LogitechGamepadPOVButton(logitechDriver, 180);
-		logitechDriverButtonGameLeft = new LogitechGamepadPOVButton(logitechDriver, 270);
-		logitechDriverButtonGameRight = new LogitechGamepadPOVButton(logitechDriver, 90);
-		//logitechDriverButtonLeftStick = new AxisType(LogitechController.AxisType.kAxisRightX.value);  
-		//logitechDriverButtonRightStick =new AxisType(LogitechController.AxisType.kAxisRightX.value);  
+		operatorLogitechButtonGameUp = new JoystickPOVButton(operatorLogitech, 0);
+		operatorLogitechButtonGameDown = new JoystickPOVButton(operatorLogitech, 180);
+		operatorLogitechButtonGameLeft = new JoystickPOVButton(operatorLogitech, 270);
+		operatorLogitechButtonGameRight = new JoystickPOVButton(operatorLogitech, 90);
+		
+		operatorLogitechButtonLeftTrigger = new JoystickAxisButton(operatorLogitech, LogitechController.AxisID.LEFT_TRIGGER.ID(), JoystickAxisButton.Direction.POSITIVE, 0.9);
+		operatorLogitechButtonRightTrigger = new JoystickAxisButton(operatorLogitech, LogitechController.AxisID.RIGHT_TRIGGER.ID(), JoystickAxisButton.Direction.POSITIVE, 0.9);
+
 
 		// -----------------------------------------//
 		//    COMMAND ASSIGNMENTS
@@ -284,52 +289,52 @@ public class OI {
 		driverRightX.whenPressed(new AutoDriveStop());
 		driverRightY.whenPressed(new AutoDriveStop());
 
-		operatorButtonTrigger.whileHeld(new GrabBoulderManual());     // Trigger
-		operatorButton2.whenPressed(new LaunchBoulder());             // Thumb Button
-		operatorButton3.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle())); // Button 3
-		operatorButton4.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));      // Button 4
-		operatorButton5.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 5
-		operatorButton6.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 6
-		//        operatorButton7.whileHeld(new PrintIMUOutput("IMU"));
-		operatorButton8.whenPressed(new PrintButton("O Button 8"));
-		//        operatorButton9.whenPressed(new AutoDriveSpeedForTime(0.5, 0.5, 1.0));
-		//        operatorButton9.whenPressed(new AutoDriveMoveDistance(0.5, 0.5, 60));
-		//        operatorButton9.whileHeld(new PrintIMUOutput("IMU"));
-		//        operatorButton10.whileHeld(new PrintIRRange());
-		operatorButton11.whileHeld(new ArmManualMove());
-		//        operatorButton12.whenPressed(new TurnToHeading(-90));
+		operatorStickButtonTrigger.whileHeld(new GrabBoulderManual());     // Trigger
+		operatorStickButton2.whenPressed(new LaunchBoulder());             // Thumb Button
+		operatorStickButton3.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle())); // Button 3
+		operatorStickButton4.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));      // Button 4
+		operatorStickButton5.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 5
+		operatorStickButton6.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 6
+		//        operatorStickButton7.whileHeld(new PrintIMUOutput("IMU"));
+		operatorStickButton8.whenPressed(new PrintButton("O Button 8"));
+		//        operatorStickButton9.whenPressed(new AutoDriveSpeedForTime(0.5, 0.5, 1.0));
+		//        operatorStickButton9.whenPressed(new AutoDriveMoveDistance(0.5, 0.5, 60));
+		//        operatorStickButton9.whileHeld(new PrintIMUOutput("IMU"));
+		//        operatorStickButton10.whileHeld(new PrintIRRange());
+		operatorStickButton11.whileHeld(new ArmManualMove());
+		//        operatorStickButton12.whenPressed(new TurnToHeading(-90));
 
-		operatorHatFore.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
-		operatorHatForeRight.whenPressed(new PrintButton("O  Hat Fore Right"));
-		operatorHatRight.whenPressed(new PrintButton("O  Hat Right"));
-		operatorHatAftRight.whenPressed(new PrintButton("O  Hat Aft Right"));
-		operatorHatAft.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
-		operatorHatAftLeft.whenPressed(new PrintButton("O  Hat Aft Left"));
-		operatorHatLeft.whenPressed(new PrintButton("O  Hat Left"));
-		operatorHatForeLeft.whenPressed(new PrintButton("O  Hat Fore Left"));
+		operatorStickHatFore.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
+		operatorStickHatForeRight.whenPressed(new PrintButton("O  Hat Fore Right"));
+		operatorStickHatRight.whenPressed(new PrintButton("O  Hat Right"));
+		operatorStickHatAftRight.whenPressed(new PrintButton("O  Hat Aft Right"));
+		operatorStickHatAft.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
+		operatorStickHatAftLeft.whenPressed(new PrintButton("O  Hat Aft Left"));
+		operatorStickHatLeft.whenPressed(new PrintButton("O  Hat Left"));
+		operatorStickHatForeLeft.whenPressed(new PrintButton("O  Hat Fore Left"));
 
-//		operatorX.whenPressed(new AutoDriveStop());
-//		operatorY.whenPressed(new AutoDriveStop());
-//		operatorZ.whenPressed(new AutoDriveStop());
+//		operatorStickX.whenPressed(new AutoDriveStop());
+//		operatorStickY.whenPressed(new AutoDriveStop());
+//		operatorStickZ.whenPressed(new AutoDriveStop());
 
-		logitechDriverButtonLeftB.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
-		logitechDriverButtonRightB.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
-		logitechDriverButtonLeftTop.whileHeld(new ArmManualMove());
-		logitechDriverButtonRightTop.whenPressed(new PrintButton("P Button RightTop"));
-		//  logitechDriverButtonLeftStick.whenHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
+		operatorLogitechButtonLeft.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
+		operatorLogitechButtonRight.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
+		operatorLogitechButtonLeftStick.whileHeld(new ArmManualMove());
+		operatorLogitechButtonRightStick.whenPressed(new PrintButton("P Button RightStick"));
+		//  operatorLogitechButtonLeftStick.whenHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
 
-		logitechDriverButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
-		logitechDriverButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
-		logitechDriverButtonX.whenPressed(new PrintButton("P Button X"));
-		logitechDriverButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
-		logitechDriverButtonStart.whenPressed(new PrintButton("P Button Start"));
-		logitechDriverButtonBack.whenPressed(new PrintButton("P Button Back"));
-		logitechDriverButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
-		logitechDriverButtonRightTrigger.whenPressed(new LaunchBoulder()); 
-		//            logitechDriverButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
-		//            logitechDriverButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
-		logitechDriverButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
-		logitechDriverButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
+		operatorLogitechButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
+		operatorLogitechButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
+		operatorLogitechButtonX.whenPressed(new PrintButton("P Button X"));
+		operatorLogitechButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
+		operatorLogitechButtonStart.whenPressed(new PrintButton("P Button Start"));
+		operatorLogitechButtonBack.whenPressed(new PrintButton("P Button Back"));
+		operatorLogitechButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
+		operatorLogitechButtonRightTrigger.whenPressed(new LaunchBoulder()); 
+		//            operatorLogitechButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
+		//            operatorLogitechButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
+		operatorLogitechButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
+		operatorLogitechButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
 
 		SmartDashboard.putData("PrintButton", new PrintButton("SmartDashboard - PrintButton"));
 		SmartDashboard.putData("TeleopDrive", new TeleopDrive());
@@ -337,12 +342,11 @@ public class OI {
 
 	// BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS
 	public Joystick getArcadeStick() {
-		return operator;
+		return operatorStick;
 	}
 
-
 	public LogitechController getGamepadControls() {
-		return logitechDriver;
+		return operatorLogitech;
 	}
 
 	public Joystick getLeftTankStick() {
@@ -356,13 +360,13 @@ public class OI {
 	public int getOperatorPOV()
 	{
 		int povSetting = 0;
-		if(logitechDriver != null)
+		if(operatorLogitech != null)
 		{
-			povSetting += logitechDriver.getPOV();
+			povSetting += operatorLogitech.getPOV();
 		}
-		if(operator != null)
+		if(operatorStick != null)
 		{
-			povSetting += operator.getPOV(0);
+			povSetting += operatorStick.getPOV(0);
 		}
 
 		return povSetting;
@@ -372,13 +376,13 @@ public class OI {
 	{
 		double throttle = 0;
 
-		if(logitechDriver != null)
+		if(operatorLogitech != null)
 		{
-			throttle += logitechDriver.getLeftY();
+			throttle += operatorLogitech.getLeftY();
 		}
-		if(operator != null)
+		if(operatorStick != null)
 		{
-			throttle += operator.getThrottle();
+			throttle += operatorStick.getThrottle();
 		}
 		return throttle;
 	}
