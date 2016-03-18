@@ -56,9 +56,6 @@ public class OI {
 	public static final int OPERATOR_JOYSTICK_ID = 3;
 	public static final int LOGITECH_CONTROLLER_ID = 0;
 
-	public static final boolean USE_OPERATOR_JOYSTICK = true;  //true = Joystick operator; false = Logitech operator  
-
-
 	// -----------------------------------------//
 	//    DECLARATIONS
 	// -----------------------------------------//
@@ -203,6 +200,9 @@ public class OI {
 		driverRightX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
 		driverRightY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
 
+		//============================================================================//
+	    // Operator Stick
+		//============================================================================//
 		operatorStickButtonTrigger = new JoystickButton(operatorStick, 1);
 		operatorStickButton2 = new JoystickButton(operatorStick, 2);
 		operatorStickButton3 = new JoystickButton(operatorStick, 3);
@@ -229,6 +229,9 @@ public class OI {
 		operatorStickY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
 		operatorStickZ = new JoystickAxisButton(driverLeft, 2, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
 
+		//============================================================================//
+	    // Operator Logitech Controller
+		//============================================================================//
 		operatorLogitechButtonLeft = new JoystickButton(operatorLogitech, LogitechController.ButtonID.LEFT.ID());
 		operatorLogitechButtonRight = new JoystickButton(operatorLogitech, LogitechController.ButtonID.RIGHT.ID());
 		operatorLogitechButtonLeftStick = new JoystickButton(operatorLogitech, LogitechController.ButtonID.LEFT_STICK.ID());  
@@ -254,7 +257,10 @@ public class OI {
 		//    COMMAND ASSIGNMENTS
 		// -----------------------------------------//
 
-		// Put print commands on all buttons
+		//============================================================================//
+	    // Left Driver Stick
+		//============================================================================//
+		// Put print commands on all unused buttons
 		driverLeftButtonTrigger.whileHeld(new GrabBoulderManual());
 		//        driverLeftButton2.whenPressed(new AutoDriveTurnToHeading(180));
 		//        driverLeftButton3.whenPressed(new AutoDriveTurnToHeading(0));
@@ -271,6 +277,9 @@ public class OI {
 		driverLeftX.whenPressed(new AutoDriveStop());
 		driverLeftY.whenPressed(new AutoDriveStop());
 
+		//============================================================================//
+	    // Right Driver Stick
+		//============================================================================//
 		driverRightButtonTrigger.whileHeld(new LaunchBoulder());
 		driverRightButton2.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
 		driverRightButton3.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));
@@ -289,6 +298,9 @@ public class OI {
 		driverRightX.whenPressed(new AutoDriveStop());
 		driverRightY.whenPressed(new AutoDriveStop());
 
+		//============================================================================//
+	    // Operator Stick
+		//============================================================================//
 		operatorStickButtonTrigger.whileHeld(new GrabBoulderManual());     // Trigger
 		operatorStickButton2.whenPressed(new LaunchBoulder());             // Thumb Button
 		operatorStickButton3.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle())); // Button 3
@@ -317,27 +329,48 @@ public class OI {
 //		operatorStickY.whenPressed(new AutoDriveStop());
 //		operatorStickZ.whenPressed(new AutoDriveStop());
 
-		operatorLogitechButtonLeft.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
-		operatorLogitechButtonRight.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
-		operatorLogitechButtonLeftStick.whileHeld(new ArmManualMove());
-		operatorLogitechButtonRightStick.whenPressed(new PrintButton("P Button RightStick"));
-		//  operatorLogitechButtonLeftStick.whenHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
-
-		operatorLogitechButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
-		operatorLogitechButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
-		operatorLogitechButtonX.whenPressed(new PrintButton("P Button X"));
-		operatorLogitechButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
-		operatorLogitechButtonStart.whenPressed(new PrintButton("P Button Start"));
-		operatorLogitechButtonBack.whenPressed(new PrintButton("P Button Back"));
-		operatorLogitechButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
-		operatorLogitechButtonRightTrigger.whenPressed(new LaunchBoulder()); 
-		//            operatorLogitechButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
-		//            operatorLogitechButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
-		operatorLogitechButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
-		operatorLogitechButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
-
-		SmartDashboard.putData("PrintButton", new PrintButton("SmartDashboard - PrintButton"));
-		SmartDashboard.putData("TeleopDrive", new TeleopDrive());
+		//============================================================================//
+	    // Operator Logitech Controller
+		//============================================================================//
+		// FIXME uncomment this block and remove the following test code block once this it is tested
+//		operatorLogitechButtonLeft.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
+//		operatorLogitechButtonRight.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
+//		operatorLogitechButtonLeftStick.whileHeld(new ArmManualMove());
+//		operatorLogitechButtonRightStick.whenPressed(new PrintButton("P Button RightStick"));
+//		//  operatorLogitechButtonLeftStick.whenHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
+//
+//		operatorLogitechButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
+//		operatorLogitechButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
+//		operatorLogitechButtonX.whenPressed(new PrintButton("P Button X"));
+//		operatorLogitechButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
+//		operatorLogitechButtonStart.whenPressed(new PrintButton("P Button Start"));
+//		operatorLogitechButtonBack.whenPressed(new PrintButton("P Button Back"));
+//		operatorLogitechButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
+//		operatorLogitechButtonRightTrigger.whenPressed(new LaunchBoulder()); 
+//		//            operatorLogitechButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
+//		//            operatorLogitechButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
+//		operatorLogitechButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
+//		operatorLogitechButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
+		
+		// Test Code (print all logitech buttons to see if they are mapped correctly
+		operatorLogitechButtonLeft.whenPressed(new PrintButton("OP L Button Left"));
+		operatorLogitechButtonRight.whenPressed(new PrintButton("OP L Button Right"));
+		operatorLogitechButtonLeftStick.whenPressed(new PrintButton("OP L Button Left Stick Click"));
+		operatorLogitechButtonRightStick.whenPressed(new PrintButton("OP L Button Right Stick Click)"));
+		operatorLogitechButtonLeftStick.whenPressed(new PrintButton("OP L Button "));
+		operatorLogitechButtonA.whenPressed(new PrintButton("OP L Button A"));
+		operatorLogitechButtonB.whenPressed(new PrintButton("OP L Button B"));
+		operatorLogitechButtonX.whenPressed(new PrintButton("OP L Button X"));
+		operatorLogitechButtonY.whenPressed(new PrintButton("OP L Button Y"));
+		operatorLogitechButtonStart.whenPressed(new PrintButton("OP L Button Start"));
+		operatorLogitechButtonBack.whenPressed(new PrintButton("OP L Button Back"));
+		operatorLogitechButtonLeftTrigger.whenPressed(new PrintButton("OP L Axis Button Left Trigger"));
+		operatorLogitechButtonRightTrigger.whenPressed(new PrintButton("OP L Axis Button Right Trigger")); 
+		operatorLogitechButtonGameUp.whenPressed(new PrintButton("OP L POV Button Game Up"));
+		operatorLogitechButtonGameDown.whenPressed(new PrintButton("OP L POV Button Game Down"));
+		operatorLogitechButtonGameLeft.whenPressed(new PrintButton("OP L POV Button Game Left"));
+		operatorLogitechButtonGameRight.whenPressed(new PrintButton("OP L POV Button Game Right"));
+		// END test code block
 	}
 
 	// BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS
@@ -387,5 +420,6 @@ public class OI {
 		return throttle;
 	}
 	// END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS
+	
 }
 
