@@ -48,7 +48,7 @@ public class AutoDriveTurnToHeading extends Command {
     	{
     		deltaHeading = deltaHeading - 360;
     	}
-    	while (deltaHeading < -180)
+    	while (deltaHeading <= -180)
     	{
     		deltaHeading = deltaHeading + 360;
     	}    	

@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoDriveTurnByAngle extends Command {
 
-	// TODO measure wheel distance
 	private static final double WheelsDistanceSideToSide = 24.5;  // distance between center wheel on left v right side of robot
 	private static final double TurnCircumfrence = Math.PI * WheelsDistanceSideToSide;
 	
@@ -48,8 +47,8 @@ public class AutoDriveTurnByAngle extends Command {
     	// use right to determine when we are done (note for CW turn right will be negative)
     	turnSpeed = TURN_PROPORTIONALITY_CONSTANT * (turnDistance + Robot.drive.getDistance().right)/TurnCircumfrence;
     	
-    	Robot.drive.setLeftDrive(turnSpeed);
-    	Robot.drive.setRightDrive(-turnSpeed);    	
+    	Robot.drive.setLeftDrive(-turnSpeed);
+    	Robot.drive.setRightDrive(turnSpeed);    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

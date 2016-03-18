@@ -249,7 +249,6 @@ public class Ultrasonics {
 			////////////////////////////////////////////////////////////////////////////////////////
 			while(!stop)
 			{
-				// TODO: change to explicitly loop over values
 				for(int idx = 0; idx < 8; idx++)
 				{
 //					System.out.print(ultrasonicTaskSensorData[idx].index);
