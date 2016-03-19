@@ -84,7 +84,7 @@ public class LogitechController extends Joystick
 	
 	public boolean isCorrect()
 	{
-		if(getName() == "Gamepad F310 (Controller)")
+		if(getName().equals("Gamepad F310 (Controller)"))
 		{
 			return true;
 		}

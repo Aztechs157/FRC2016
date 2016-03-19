@@ -63,7 +63,7 @@ public class OI {
 	//============================================================================//
     // Left Driver Stick
 	//============================================================================//
-	public Joystick driverLeft;
+	public Attack3Stick driverLeft;
 	private JoystickButton driverRightButtonTrigger; // Button 1 - Trigger
 	private JoystickButton driverRightButton2;       // Button 2 - Stick down
 	private JoystickButton driverRightButton3;       // Button 3 - Stick center
@@ -75,7 +75,6 @@ public class OI {
 	private JoystickButton driverRightButton9;       // Button 9 - Base Near Right
 	private JoystickButton driverRightButton10;      // Button 10 - Base Right Close
 	private JoystickButton driverRightButton11;      // Button 11 - Base RIght Away
-	// private JoystickButton driverRightButton12;    // Button 12
 
 	private JoystickAxisButton driverRightX;  // X Axis operation button
 	private JoystickAxisButton driverRightY;  // Y Axis operation button
@@ -83,7 +82,7 @@ public class OI {
 	//============================================================================//
     // Right Driver Stick
 	//============================================================================//
-	public Joystick driverRight;
+	public Attack3Stick driverRight;
 	private JoystickButton driverLeftButtonTrigger; // Button 1 - Trigger
 	private JoystickButton driverLeftButton2;       // Button 2 - Stick down
 	private JoystickButton driverLeftButton3;       // Button 3 - Stick center
@@ -95,7 +94,6 @@ public class OI {
 	private JoystickButton driverLeftButton9;       // Button 9 - Base Near Right
 	private JoystickButton driverLeftButton10;      // Button 10 - Base Right Close
 	private JoystickButton driverLeftButton11;      // Button 11 - Base RIght Away
-	// private JoystickButton driverLeftButton12;    // Button 12
 
 	private JoystickAxisButton driverLeftX;  // X Axis operation button
 	private JoystickAxisButton driverLeftY;  // Y Axis operation button
@@ -103,7 +101,7 @@ public class OI {
 	//============================================================================//
     // Operator Stick
 	//============================================================================//
-	public Joystick operatorStick;
+	public Extreme3dProStick operatorStick;
 	private JoystickButton operatorStickButtonTrigger; // Button 1 - Trigger
 	private JoystickButton operatorStickButton2;       // Button 2 - Stick down
 	private JoystickButton operatorStickButton3;       // Button 3 - Stick center
@@ -115,7 +113,7 @@ public class OI {
 	private JoystickButton operatorStickButton9;       // Button 9 - Base Near Right
 	private JoystickButton operatorStickButton10;      // Button 10 - Base Right Close
 	private JoystickButton operatorStickButton11;      // Button 11 - Base RIght Away
-	private JoystickButton operatorStickButton12;      // Button 12
+//	private JoystickButton operatorStickButton12;      // Button 12
 
 	private JoystickPOVButton operatorStickHatFore;      // Hat Button Forward
 	private JoystickPOVButton operatorStickHatForeRight; // Hat Button Forward Right
@@ -162,40 +160,38 @@ public class OI {
 		//    INSTANTIATIONS
 		// -----------------------------------------//
 
-		driverLeft = new Joystick(LEFT_JOYSTICK_ID);
-		driverRight = new Joystick(RIGHT_JOYSTICK_ID);
-		operatorStick = new Joystick(OPERATOR_JOYSTICK_ID);
+		driverLeft = new Attack3Stick(LEFT_JOYSTICK_ID);
+		driverRight = new Attack3Stick(RIGHT_JOYSTICK_ID);
+		operatorStick = new Extreme3dProStick(OPERATOR_JOYSTICK_ID);
 		operatorLogitech = new LogitechController(LOGITECH_CONTROLLER_ID);
 
 		// Instantiate all of the buttons on the 2 joysticks and the logitech controller
-		driverLeftButtonTrigger = new JoystickButton(driverLeft, 1);
-		driverLeftButton2 = new JoystickButton(driverLeft, 2);
-		driverLeftButton3 = new JoystickButton(driverLeft, 3);
-		driverLeftButton4 = new JoystickButton(driverLeft, 4);
-		driverLeftButton5 = new JoystickButton(driverLeft, 5);
-		driverLeftButton6 = new JoystickButton(driverLeft, 6);
-		driverLeftButton7 = new JoystickButton(driverLeft, 7);
-		driverLeftButton8 = new JoystickButton(driverLeft, 8);
-		driverLeftButton9 = new JoystickButton(driverLeft, 9);
-		driverLeftButton10 = new JoystickButton(driverLeft, 10);
-		driverLeftButton11 = new JoystickButton(driverLeft, 11);
-		//        driverLeftButton12 = new JoystickButton(driverLeft, 12);
+		driverLeftButtonTrigger = new JoystickButton(driverLeft, Attack3Stick.ButtonID.TRIGGER.ID());
+		driverLeftButton2 = new JoystickButton(driverLeft,  Attack3Stick.ButtonID.TOP_2.ID());
+		driverLeftButton3 = new JoystickButton(driverLeft,  Attack3Stick.ButtonID.TOP_3.ID());
+		driverLeftButton4 = new JoystickButton(driverLeft,  Attack3Stick.ButtonID.TOP_4.ID());
+		driverLeftButton5 = new JoystickButton(driverLeft,  Attack3Stick.ButtonID.TOP_5.ID());
+		driverLeftButton6 = new JoystickButton(driverLeft,  Attack3Stick.ButtonID.TOP_6.ID());
+		driverLeftButton7 = new JoystickButton(driverLeft,  Attack3Stick.ButtonID.BASE_7.ID());
+		driverLeftButton8 = new JoystickButton(driverLeft,  Attack3Stick.ButtonID.BASE_8.ID());
+		driverLeftButton9 = new JoystickButton(driverLeft,  Attack3Stick.ButtonID.BASE_9.ID());
+		driverLeftButton10 = new JoystickButton(driverLeft, Attack3Stick.ButtonID.BASE_10.ID());
+		driverLeftButton11 = new JoystickButton(driverLeft, Attack3Stick.ButtonID.BASE_11.ID());
 
 		driverLeftX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
 		driverLeftY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
 
-		driverRightButtonTrigger = new JoystickButton(driverRight, 1);
-		driverRightButton2 = new JoystickButton(driverRight, 2);
-		driverRightButton3 = new JoystickButton(driverRight, 3);
-		driverRightButton4 = new JoystickButton(driverRight, 4);
-		driverRightButton5 = new JoystickButton(driverRight, 5);
-		driverRightButton6 = new JoystickButton(driverRight, 6);
-		driverRightButton7 = new JoystickButton(driverRight, 7);
-		driverRightButton8 = new JoystickButton(driverRight, 8);
-		driverRightButton9 = new JoystickButton(driverRight, 9);
-		driverRightButton10 = new JoystickButton(driverRight, 10);
-		driverRightButton11 = new JoystickButton(driverRight, 11);
-		//        driverRightButton12 = new JoystickButton(driverRight, 12);
+		driverRightButtonTrigger = new JoystickButton(driverRight, Attack3Stick.ButtonID.TRIGGER.ID());
+		driverRightButton2 = new JoystickButton(driverRight, Attack3Stick.ButtonID.TOP_2.ID());
+		driverRightButton3 = new JoystickButton(driverRight, Attack3Stick.ButtonID.TOP_3.ID());
+		driverRightButton4 = new JoystickButton(driverRight, Attack3Stick.ButtonID.TOP_4.ID());
+		driverRightButton5 = new JoystickButton(driverRight, Attack3Stick.ButtonID.TOP_5.ID());
+		driverRightButton6 = new JoystickButton(driverRight, Attack3Stick.ButtonID.TOP_6.ID());
+		driverRightButton7 = new JoystickButton(driverRight, Attack3Stick.ButtonID.BASE_7.ID());
+		driverRightButton8 = new JoystickButton(driverRight, Attack3Stick.ButtonID.BASE_8.ID());
+		driverRightButton9 = new JoystickButton(driverRight, Attack3Stick.ButtonID.BASE_9.ID());
+		driverRightButton10 = new JoystickButton(driverRight, Attack3Stick.ButtonID.BASE_10.ID());
+		driverRightButton11 = new JoystickButton(driverRight, Attack3Stick.ButtonID.BASE_11.ID());
 
 		driverRightX = new JoystickAxisButton(driverLeft, 0, JoystickAxisButton.Direction.BOTH, 0.1);  // X Axis operation button
 		driverRightY = new JoystickAxisButton(driverLeft, 1, JoystickAxisButton.Direction.BOTH, 0.1);  // Y Axis operation button
@@ -203,18 +199,18 @@ public class OI {
 		//============================================================================//
 	    // Operator Stick
 		//============================================================================//
-		operatorStickButtonTrigger = new JoystickButton(operatorStick, 1);
-		operatorStickButton2 = new JoystickButton(operatorStick, 2);
-		operatorStickButton3 = new JoystickButton(operatorStick, 3);
-		operatorStickButton4 = new JoystickButton(operatorStick, 4);
-		operatorStickButton5 = new JoystickButton(operatorStick, 5);
-		operatorStickButton6 = new JoystickButton(operatorStick, 6);
-		operatorStickButton7 = new JoystickButton(operatorStick, 7);
-		operatorStickButton8 = new JoystickButton(operatorStick, 8);
-		operatorStickButton9 = new JoystickButton(operatorStick, 9);
-		operatorStickButton10 = new JoystickButton(operatorStick, 10);
-		operatorStickButton11 = new JoystickButton(operatorStick, 11);
-		//        operatorStickButton12 = new JoystickButton(operator, 12);
+		operatorStickButtonTrigger = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.TRIGGER.ID());
+		operatorStickButton2 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.THUMB.ID());
+		operatorStickButton3 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.TOP_3.ID());
+		operatorStickButton4 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.TOP_4.ID());
+		operatorStickButton5 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.TOP_5.ID());
+		operatorStickButton6 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.TOP_6.ID());
+		operatorStickButton7 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_7.ID());
+		operatorStickButton8 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_8.ID());
+		operatorStickButton9 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_9.ID());
+		operatorStickButton10 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_10.ID());
+		operatorStickButton11 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_11.ID());
+//		operatorStickButton11 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_12.ID());
 
 		operatorStickHatFore = new JoystickPOVButton(operatorStick, 0);
 		operatorStickHatForeRight = new JoystickPOVButton(operatorStick, 45);
@@ -272,7 +268,6 @@ public class OI {
 		driverLeftButton9.whenPressed(new PrintButton("L Button 9"));
 		driverLeftButton10.whenPressed(new PrintButton("L Button 10"));
 		driverLeftButton11.whenPressed(new PrintButton("L Button 11"));
-		//        driverLeftButton12.whenPressed(new PrintButton("L Button 12"));
 
 		driverLeftX.whenPressed(new AutoDriveStop());
 		driverLeftY.whenPressed(new AutoDriveStop());
@@ -286,14 +281,11 @@ public class OI {
 		driverRightButton4.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
 		driverRightButton5.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
 		driverRightButton6.whenPressed(new PrintButton("R Button 6"));
-		driverRightButton7.whenPressed(new PrintIRRange());
-		//        driverRightButton8.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
-		//        driverRightButton9.whenPressed(new ArmExtendRetract(false)); // Actually Extends
+		driverRightButton7.whenPressed(new PrintButton("R Button 7"));
 		driverRightButton8.whileHeld(new ArmExtendRetract(true)); // Actually Retracts
 		driverRightButton9.whileHeld(new ArmExtendRetract(false)); // Actually Extends
         driverRightButton10.whenPressed(new ArmChainBurp(false));  //burp out
         driverRightButton11.whenPressed(new ArmChainBurp(true));  //burp in
-		//        driverRightButton12.whenPressed(new PrintButton("R Button 12"));
 
 		driverRightX.whenPressed(new AutoDriveStop());
 		driverRightY.whenPressed(new AutoDriveStop());
@@ -308,13 +300,12 @@ public class OI {
 		operatorStickButton5.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 5
 		operatorStickButton6.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));   // Button 6
 		//        operatorStickButton7.whileHeld(new PrintIMUOutput("IMU"));
-		operatorStickButton8.whenPressed(new PrintButton("O Button 8"));
+		operatorStickButton8.whenPressed(new PrintIRRange());
 		//        operatorStickButton9.whenPressed(new AutoDriveSpeedForTime(0.5, 0.5, 1.0));
 		//        operatorStickButton9.whenPressed(new AutoDriveMoveDistance(0.5, 0.5, 60));
-		//        operatorStickButton9.whileHeld(new PrintIMUOutput("IMU"));
-		        operatorStickButton10.whileHeld(new PrintIRRange());  // FIXME MAK - COmment Out
+		operatorStickButton10.whileHeld(new PrintIRRange());  // FIXME MAK - COmment Out
 		operatorStickButton11.whileHeld(new ArmManualMove());
-		//        operatorStickButton12.whenPressed(new TurnToHeading(-90));
+//		operatorStickButton12.whenPressed(new PrintIRRange());
 
 		operatorStickHatFore.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
 		operatorStickHatForeRight.whenPressed(new PrintButton("O  Hat Fore Right"));
@@ -382,9 +373,14 @@ public class OI {
 		}
 		if(operatorStick != null)
 		{
-			povSetting += operatorStick.getPOV(0);
+			if(operatorStick.isPresent())
+			{
+				povSetting += operatorStick.getPOV(0);
+			}
 		}
 
+		System.out.println("POV Value " + povSetting);
+		
 		return povSetting;
 	}
 
@@ -401,8 +397,12 @@ public class OI {
 		}
 		if(operatorStick != null)
 		{
-			throttle += operatorStick.getThrottle();
+			if(operatorStick.isPresent())
+			{
+				throttle += operatorStick.getThrottle();
+			}
 		}
+		System.out.println("Throttle Value " + throttle);
 		return throttle;
 	}
 	// END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS

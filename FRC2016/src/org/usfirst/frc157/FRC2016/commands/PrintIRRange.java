@@ -44,6 +44,11 @@ public class PrintIRRange extends Command {
 
     	System.out.print("Type - " + Robot.oi.driverRight.getType());
     	System.out.println("   Name - " + Robot.oi.driverRight.getName());
+    	
+       	System.out.println("Driver Left Joystick is correct : " + Robot.oi.driverLeft.isCorrect());
+       	System.out.println("Driver Right Joystick is correct: " + Robot.oi.driverRight.isCorrect());
+       	System.out.println("Operator Controller is correct  : " + Robot.oi.operatorLogitech.isCorrect());
+    	System.out.println("Operator Joystick is correct    : " + Robot.oi.operatorStick.isCorrect());
 
     	
 //    	System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
