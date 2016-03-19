@@ -27,6 +27,19 @@ public class JoystickPOVButton  extends Button{
 		this.povAngle = povAngle; 				
 	}
 
+	public boolean isPresent()
+	{
+		if(stick.getName().length() > 3)
+		{
+			return true;
+		}
+		else
+		{			
+			return false;
+		}
+	}
+	
+	
 	/**
 	 * Gets the value of the joystick button
 	 *
@@ -34,7 +47,15 @@ public class JoystickPOVButton  extends Button{
 	 */
 	@Override
 	public boolean get() {
-		return (stick.getPOV() == povAngle);
+		if(isPresent())
+		{
+			return (stick.getPOV() == povAngle);
+		}
+		else
+		{
+			return false;
+		}
 	}
-
 }
+
+
