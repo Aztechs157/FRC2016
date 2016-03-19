@@ -20,6 +20,8 @@ public class LogitechController extends Joystick
 	  }
 
 
+	  // Mode should be off
+	  // Controller swithc should be set to X
 	public enum AxisID
 	{
 		LEFT_STICK_X    (0),  // -1..1 + is right

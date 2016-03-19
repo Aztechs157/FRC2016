@@ -268,7 +268,7 @@ public class OI {
 		//        driverLeftButton5.whenPressed(new AutoDriveTurnToHeading(90));
 		driverLeftButton6.whenPressed(new PrintButton("L Button 6"));
 		driverLeftButton7.whenPressed(new PrintButton("L Button 7"));
-		driverLeftButton8.whenPressed(new PrintIRRange());
+		driverLeftButton8.whenPressed(new SetParkingBrake());
 		driverLeftButton9.whenPressed(new PrintButton("L Button 9"));
 		driverLeftButton10.whenPressed(new PrintButton("L Button 10"));
 		driverLeftButton11.whenPressed(new PrintButton("L Button 11"));
@@ -312,7 +312,7 @@ public class OI {
 		//        operatorStickButton9.whenPressed(new AutoDriveSpeedForTime(0.5, 0.5, 1.0));
 		//        operatorStickButton9.whenPressed(new AutoDriveMoveDistance(0.5, 0.5, 60));
 		//        operatorStickButton9.whileHeld(new PrintIMUOutput("IMU"));
-		//        operatorStickButton10.whileHeld(new PrintIRRange());
+		        operatorStickButton10.whileHeld(new PrintIRRange());  // FIXME MAK - COmment Out
 		operatorStickButton11.whileHeld(new ArmManualMove());
 		//        operatorStickButton12.whenPressed(new TurnToHeading(-90));
 
@@ -332,45 +332,24 @@ public class OI {
 		//============================================================================//
 	    // Operator Logitech Controller
 		//============================================================================//
-		// FIXME uncomment this block and remove the following test code block once this it is tested
-//		operatorLogitechButtonLeft.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
-//		operatorLogitechButtonRight.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
-//		operatorLogitechButtonLeftStick.whileHeld(new ArmManualMove());
-//		operatorLogitechButtonRightStick.whenPressed(new PrintButton("P Button RightStick"));
-//		//  operatorLogitechButtonLeftStick.whenHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
-//
-//		operatorLogitechButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
-//		operatorLogitechButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
-//		operatorLogitechButtonX.whenPressed(new PrintButton("P Button X"));
-//		operatorLogitechButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
-//		operatorLogitechButtonStart.whenPressed(new PrintButton("P Button Start"));
-//		operatorLogitechButtonBack.whenPressed(new PrintButton("P Button Back"));
-//		operatorLogitechButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
-//		operatorLogitechButtonRightTrigger.whenPressed(new LaunchBoulder()); 
-//		//            operatorLogitechButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
-//		//            operatorLogitechButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
-//		operatorLogitechButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
-//		operatorLogitechButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
-		
-		// Test Code (print all logitech buttons to see if they are mapped correctly
-		operatorLogitechButtonLeft.whenPressed(new PrintButton("OP L Button Left"));
-		operatorLogitechButtonRight.whenPressed(new PrintButton("OP L Button Right"));
-		operatorLogitechButtonLeftStick.whenPressed(new PrintButton("OP L Button Left Stick Click"));
-		operatorLogitechButtonRightStick.whenPressed(new PrintButton("OP L Button Right Stick Click)"));
-		operatorLogitechButtonLeftStick.whenPressed(new PrintButton("OP L Button "));
-		operatorLogitechButtonA.whenPressed(new PrintButton("OP L Button A"));
-		operatorLogitechButtonB.whenPressed(new PrintButton("OP L Button B"));
-		operatorLogitechButtonX.whenPressed(new PrintButton("OP L Button X"));
-		operatorLogitechButtonY.whenPressed(new PrintButton("OP L Button Y"));
-		operatorLogitechButtonStart.whenPressed(new PrintButton("OP L Button Start"));
-		operatorLogitechButtonBack.whenPressed(new PrintButton("OP L Button Back"));
-		operatorLogitechButtonLeftTrigger.whenPressed(new PrintButton("OP L Axis Button Left Trigger"));
-		operatorLogitechButtonRightTrigger.whenPressed(new PrintButton("OP L Axis Button Right Trigger")); 
-		operatorLogitechButtonGameUp.whenPressed(new PrintButton("OP L POV Button Game Up"));
-		operatorLogitechButtonGameDown.whenPressed(new PrintButton("OP L POV Button Game Down"));
-		operatorLogitechButtonGameLeft.whenPressed(new PrintButton("OP L POV Button Game Left"));
-		operatorLogitechButtonGameRight.whenPressed(new PrintButton("OP L POV Button Game Right"));
-		// END test code block
+		operatorLogitechButtonLeft.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
+		operatorLogitechButtonRight.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
+		operatorLogitechButtonLeftStick.whileHeld(new ArmManualMove());
+		operatorLogitechButtonRightStick.whenPressed(new PrintButton("P Button RightStick"));
+		//  operatorLogitechButtonLeftStick.whenHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
+
+		operatorLogitechButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
+		operatorLogitechButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
+		operatorLogitechButtonX.whenPressed(new PrintButton("P Button X"));
+		operatorLogitechButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
+		operatorLogitechButtonStart.whenPressed(new PrintButton("P Button Start"));
+		operatorLogitechButtonBack.whenPressed(new PrintButton("P Button Back"));
+		operatorLogitechButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
+		operatorLogitechButtonRightTrigger.whenPressed(new LaunchBoulder()); 
+		//            operatorLogitechButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
+		//            operatorLogitechButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
+		operatorLogitechButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
+		operatorLogitechButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));		
 	}
 
 	// BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS

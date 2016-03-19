@@ -44,8 +44,14 @@ public class PrintIRRange extends Command {
 //    	System.out.println("LEFT_FRONT:  " + UltrasonicSensor.LEFT_FRONT.index + ":  " + Robot.navigation.getUltrasonicRange(UltrasonicSensor.LEFT_FRONT));
 //    	System.out.println(">Loops - " + Robot.navigation.getUltrasonicLoopCount() + " <");
 //  
-        Robot.drive.setBrakeModeOn(true);
-        
+     
+//    	// print logitech axis values
+//    	for(int idx = 0; idx < 8; idx++)
+//    	{
+//    		System.out.printf("%02d:%6.4f   ", idx, Robot.oi.operatorLogitech.getRawAxis(idx));
+//    	}
+//    	System.out.println("<");
+//    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
