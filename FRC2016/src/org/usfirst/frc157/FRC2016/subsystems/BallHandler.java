@@ -26,9 +26,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BallHandler extends Subsystem {
 
 	private final static double ALL_STOP = 0; // %max
-	private final static double SHOOTER_INTAKE_SPEED = 0.50;  // %max
+	private final static double SHOOTER_INTAKE_SPEED = 1.0;  // %max
 	private final static double SHOOTER_SHOOT_SPEED = -1.0;  // %max
-	private final static double INTAKE_RETRIEVAL_SPEED = -0.5; // %max
+	private final static double INTAKE_RETRIEVAL_SPEED = -1.0; // %max
 	
 	// Note close range sensor minimum is 6 inches, max is 31 inches
 	private final static double RANGE_MIN_IN_HOLDER = 8.0; // approximately inches
