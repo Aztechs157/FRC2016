@@ -85,4 +85,13 @@ public class LogitechController extends Joystick
 	{
 		return super.getRawAxis(AxisID.RIGHT_STICK_Y.ID());
 	}
+	public double getLeftTrigger()
+	{
+		return super.getRawAxis(AxisID.LEFT_TRIGGER.ID());
+	}
+	public double getRightTrigger()
+	{
+		return super.getRawAxis(AxisID.RIGHT_TRIGGER.ID());
+	}
+	
 }
