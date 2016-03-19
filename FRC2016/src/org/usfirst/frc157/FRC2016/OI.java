@@ -286,7 +286,7 @@ public class OI {
 		driverRightButton4.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
 		driverRightButton5.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
 		driverRightButton6.whenPressed(new PrintButton("R Button 6"));
-		driverRightButton7.whenPressed(new PrintButton("R Button 7"));
+		driverRightButton7.whenPressed(new PrintIRRange());
 		//        driverRightButton8.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
 		//        driverRightButton9.whenPressed(new ArmExtendRetract(false)); // Actually Extends
 		driverRightButton8.whileHeld(new ArmExtendRetract(true)); // Actually Retracts
@@ -341,6 +341,7 @@ public class OI {
 		operatorLogitechButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
 		operatorLogitechButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
 		operatorLogitechButtonX.whenPressed(new PrintButton("P Button X"));
+//		operatorLogitechButtonX.whenPressed(new PrintIRRange());
 		operatorLogitechButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
 		operatorLogitechButtonStart.whenPressed(new PrintButton("P Button Start"));
 		operatorLogitechButtonBack.whenPressed(new PrintButton("P Button Back"));
@@ -374,7 +375,10 @@ public class OI {
 		int povSetting = 0;
 		if(operatorLogitech != null)
 		{
-			povSetting += operatorLogitech.getPOV();
+			if(operatorLogitech.isPresent())
+			{
+				povSetting += operatorLogitech.getPOV();
+			}
 		}
 		if(operatorStick != null)
 		{
@@ -390,7 +394,10 @@ public class OI {
 
 		if(operatorLogitech != null)
 		{
-			throttle += operatorLogitech.getLeftY();
+			if(operatorLogitech.isPresent())
+			{
+				throttle += operatorLogitech.getLeftY();
+			}
 		}
 		if(operatorStick != null)
 		{

@@ -5,6 +5,7 @@ import org.usfirst.frc157.FRC2016.RobotMap;
 import org.usfirst.frc157.FRC2016.Ultrasonics.UltrasonicSensor;
 
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -29,6 +30,20 @@ public class PrintIRRange extends Command {
 //    	System.out.print(" E-" + Robot.arm.getArmExtendedSwitch());
 //    	System.out.print(" R-" + Robot.arm.getArmRetractedSwitch());
 //    	System.out.print(" S-" + Robot.arm.getShoulderHomeSwitch());
+
+    	System.out.println("Check LTech Presence");
+
+    	System.out.print("Type - " + Robot.oi.operatorLogitech.getType());
+    	System.out.println("   Name - " + Robot.oi.operatorLogitech.getName());
+    	
+    	System.out.print("Type - " + Robot.oi.operatorStick.getType());
+    	System.out.println("   Name - " + Robot.oi.operatorStick.getName());
+
+    	System.out.print("Type - " + Robot.oi.driverLeft.getType());
+    	System.out.println("   Name - " + Robot.oi.driverLeft.getName());
+
+    	System.out.print("Type - " + Robot.oi.driverRight.getType());
+    	System.out.println("   Name - " + Robot.oi.driverRight.getName());
 
     	
 //    	System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
@@ -56,7 +71,7 @@ public class PrintIRRange extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

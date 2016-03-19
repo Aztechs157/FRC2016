@@ -69,6 +69,32 @@ public class LogitechController extends Joystick
 		}
 	}	
 	
+	public boolean isPresent()
+	{
+		if(getName().length() > 3)
+		{
+			return true;
+		}
+		else
+		{
+			
+			return false;
+		}
+	}
+	
+	public boolean isCorrect()
+	{
+		if(getName() == "Gamepad F310 (Controller)")
+		{
+			return true;
+		}
+		else
+		{
+			
+			return false;
+		}
+	}
+	
 	public double getLeftX() 
 	{
 		return super.getRawAxis(AxisID.LEFT_STICK_X.ID());
