@@ -54,8 +54,8 @@ public class Extreme3dProStick extends Joystick
 		BASE_8  (8),   // Base Button #8
 		BASE_9  (9),   // Base Button #9
 		BASE_10 (10),  // Base Button #10
-		BASE_11 (11);  // Base Button #11
-//		BASE_12 (12);  // Base Button #12  -- Not supported in FRC
+		BASE_11 (11),  // Base Button #11
+		BASE_12 (12);  // Base Button #12  -- Not supported in FRC
 		private final int buttonNum;
 		
 		ButtonID(int buttonNum) {

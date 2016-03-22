@@ -113,7 +113,7 @@ public class OI {
 	private JoystickButton operatorStickButton9;       // Button 9 - Base Near Right
 	private JoystickButton operatorStickButton10;      // Button 10 - Base Right Close
 	private JoystickButton operatorStickButton11;      // Button 11 - Base RIght Away
-//	private JoystickButton operatorStickButton12;      // Button 12
+	private JoystickButton operatorStickButton12;      // Button 12
 
 	private JoystickPOVButton operatorStickHatFore;      // Hat Button Forward
 	private JoystickPOVButton operatorStickHatForeRight; // Hat Button Forward Right
@@ -210,7 +210,7 @@ public class OI {
 		operatorStickButton9 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_9.ID());
 		operatorStickButton10 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_10.ID());
 		operatorStickButton11 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_11.ID());
-//		operatorStickButton11 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_12.ID());
+		operatorStickButton12 = new JoystickButton(operatorStick, Extreme3dProStick.ButtonID.BASE_12.ID());
 
 		operatorStickHatFore = new JoystickPOVButton(operatorStick, 0);
 		operatorStickHatForeRight = new JoystickPOVButton(operatorStick, 45);
@@ -305,7 +305,7 @@ public class OI {
 		//        operatorStickButton9.whenPressed(new AutoDriveMoveDistance(0.5, 0.5, 60));
 		operatorStickButton10.whileHeld(new PrintIRRange());  // FIXME MAK - COmment Out
 		operatorStickButton11.whileHeld(new ArmManualMove());
-//		operatorStickButton12.whenPressed(new PrintIRRange());
+		operatorStickButton12.whenPressed(new PrintIRRange());
 
 		operatorStickHatFore.whileHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
 		operatorStickHatForeRight.whenPressed(new PrintButton("O  Hat Fore Right"));
