@@ -11,7 +11,8 @@ public class Extreme3dProStick extends Joystick
 {
 	
 	protected Extreme3dProStick(int port, int numAxisTypes, int numButtonTypes) {
-		super(port, numAxisTypes, numButtonTypes);
+//		super(port, numAxisTypes, numButtonTypes);
+		super(port, AxisID.values().length, ButtonID.values().length);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -70,14 +71,14 @@ public class Extreme3dProStick extends Joystick
 	
 	public boolean isPresent()
 	{
-		if(getName().length() > 3)
+		if((1 > super.getButtonCount()) && (1 > super.getAxisCount()))
 		{
-			return true;
+			return false;
 		}
 		else
 		{
 			
-			return false;
+			return true;
 		}
 	}
 	

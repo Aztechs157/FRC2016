@@ -15,37 +15,37 @@ import edu.wpi.first.wpilibj.buttons.Button;
 //  
 public class JoystickAxisButton extends Button
 {
-	
+
 	public enum Direction 
 	{
 		POSITIVE,
 		NEGATIVE,
 		BOTH;
 	}
-	
+
 	private Joystick joystick;
 	private int axisNumber;
 	private Direction direction;
 	private double triggerLevel;
-	
-	
-	  /**
-	   * Allow a joystick axis to trigger a button event
-	   *
-	   * @param joystick - the stick with the axis to use as a button
-	   * @param axisNumber - the axis on the stick to use as a button
-	   * @param direction - allows for POSITIVE, NEGATIVE or BOTH directions to trigger the button press
-	   * @param triggerLevel - axis value beyond which will trigger a button press (NEGATIVE direction should use negative numbers)
-	   */
-	
-public JoystickAxisButton(Joystick joystick, int axisNumber, Direction direction, double triggerLevel)
+
+
+	/**
+	 * Allow a joystick axis to trigger a button event
+	 *
+	 * @param joystick - the stick with the axis to use as a button
+	 * @param axisNumber - the axis on the stick to use as a button
+	 * @param direction - allows for POSITIVE, NEGATIVE or BOTH directions to trigger the button press
+	 * @param triggerLevel - axis value beyond which will trigger a button press (NEGATIVE direction should use negative numbers)
+	 */
+
+	public JoystickAxisButton(Joystick joystick, int axisNumber, Direction direction, double triggerLevel)
 	{
 		this.joystick = joystick;
 		this.axisNumber = axisNumber;
 		this.direction = direction;
 		this.triggerLevel = triggerLevel;
 	}
-	
+
 	/**
 	 * Gets the value of the joystick button
 	 *
@@ -54,39 +54,60 @@ public JoystickAxisButton(Joystick joystick, int axisNumber, Direction direction
 	@Override
 	public boolean get()
 	{
-		double axisPosition = joystick.getRawAxis(axisNumber);
 		boolean result = false;
 
-		switch(direction)
+		if(!isPresent())
 		{
-		case POSITIVE:  // stick must be more positive than triggerLevel
-		{	
-			if(axisPosition >= triggerLevel)
+			return false;
+		}
+		else
+		{
+			double axisPosition = joystick.getRawAxis(axisNumber);
+			switch(direction)
 			{
-				result = true;
+			case POSITIVE:  // stick must be more positive than triggerLevel
+			{	
+				if(axisPosition >= triggerLevel)
+				{
+					result = true;
+				}
 			}
-		}
-		break;
-		case NEGATIVE:  // stick must be more negative than triggerLevel
-		{
-			if(axisPosition <= triggerLevel)
+			break;
+			case NEGATIVE:  // stick must be more negative than triggerLevel
 			{
-				result = true;
+				if(axisPosition <= triggerLevel)
+				{
+					result = true;
+				}
 			}
-		}
-		case BOTH:     // stick must be at least triggerLevel away from the center (positive or negative)
-		{
-			if(Math.abs(axisPosition) > Math.abs(triggerLevel))
+			case BOTH:     // stick must be at least triggerLevel away from the center (positive or negative)
 			{
-				result = true;
+				if(Math.abs(axisPosition) > Math.abs(triggerLevel))
+				{
+					result = true;
+				}
 			}
+			break;
+			default:
+			{
+				result = false;
+			}
+			}
+			return result;
 		}
-		break;
-		default:
-		{
-			result = false;
-		}
-		}
-		return result;
 	}
+
+	public boolean isPresent()
+	{
+		if((1 > joystick.getButtonCount()) && (1 > joystick.getAxisCount()))
+		{
+			return false;
+		}
+		else
+		{			
+			return true;
+		}
+	}
+
+
 }

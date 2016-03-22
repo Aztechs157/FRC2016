@@ -29,13 +29,13 @@ public class JoystickPOVButton  extends Button{
 
 	public boolean isPresent()
 	{
-		if(stick.getName().length() > 3)
+		if((1 > stick.getButtonCount()) && (1 > stick.getAxisCount()))
 		{
-			return true;
+			return false;
 		}
 		else
 		{			
-			return false;
+			return true;
 		}
 	}
 	

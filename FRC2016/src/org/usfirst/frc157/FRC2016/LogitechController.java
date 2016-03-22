@@ -71,14 +71,14 @@ public class LogitechController extends Joystick
 	
 	public boolean isPresent()
 	{
-		if(getName().length() > 3)
+		if((1 > super.getButtonCount()) && (1 > super.getAxisCount()))
 		{
-			return true;
+			return false;
 		}
 		else
 		{
 			
-			return false;
+			return true;
 		}
 	}
 	
