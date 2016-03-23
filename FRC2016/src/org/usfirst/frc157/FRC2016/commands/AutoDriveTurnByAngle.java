@@ -62,7 +62,7 @@ public class AutoDriveTurnByAngle extends Command {
     	
     	if((Timer.getFPGATimestamp() - startTime) > COMMAND_TIMEOUT)
     	{
-    		System.out.println("ArmShoulderMoveToAngle.isFinished(); - COMMAND_TIMEOUT");
+    		System.out.println("AutoDriveTurnByAngle.isFinished(); - COMMAND_TIMEOUT");
     		return true;
     	}
 
