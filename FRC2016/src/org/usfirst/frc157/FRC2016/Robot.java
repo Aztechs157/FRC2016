@@ -106,7 +106,9 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         //Robot.navigation.resetZeroHeading();
-            
+    	
+        //Note: autonomousCommand is created in autonomousInit() because it reads the AnalogSwitch when it is created.
+        autonomousCommand =new AutonomousCommand();
         if (autonomousCommand != null) autonomousCommand.start();
         
         if (armChainWatcherCommand != null) armChainWatcherCommand.start();

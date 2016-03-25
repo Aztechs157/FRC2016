@@ -25,7 +25,7 @@ public class ArmChainBurp extends Command {
         ///
         /// Does NOT require Robot.arm to prevent other commands from stopping
         ///
-        requires(Robot.arm);
+        //requires(Robot.arm);
     	retract = retractRequest;
     	System.out.println("Creating arm Burp " + retract);
     }

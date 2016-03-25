@@ -40,6 +40,7 @@ public class AutoDriveTurnByAngle extends Command {
     	turnDistance = (turnAngle/360.0) * TurnCircumfrence;
     	turnSpeed = turnDistance / TurnCircumfrence;
     	Robot.drive.zeroDistance();
+    	setTimeout(8);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -60,7 +61,7 @@ public class AutoDriveTurnByAngle extends Command {
     		return true;
     	}
     	
-    	if((Timer.getFPGATimestamp() - startTime) > COMMAND_TIMEOUT)
+    	if(isTimedOut())
     	{
     		System.out.println("AutoDriveTurnByAngle.isFinished(); - COMMAND_TIMEOUT");
     		return true;
