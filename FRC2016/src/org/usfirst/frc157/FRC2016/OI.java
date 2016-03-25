@@ -141,7 +141,7 @@ public class OI {
 	private JoystickButton operatorLogitechButtonX;         // X Button (Blue)
 	private JoystickButton operatorLogitechButtonY;         // Y Button (Yellow)
 	private JoystickButton operatorLogitechButtonStart;     // Start Button
-	private JoystickButton operatorLogitechButtonBack;      // Back Button
+	//private JoystickButton operatorLogitechButtonBack;      // Back Button
 	
 	private JoystickAxisButton operatorLogitechButtonLeftTrigger;  // Left Trigger (Used as button)
 	private JoystickAxisButton operatorLogitechButtonRightTrigger; // Right Trigger (Used as button)
@@ -237,7 +237,7 @@ public class OI {
 		operatorLogitechButtonX = new JoystickButton(operatorLogitech, LogitechController.ButtonID.X.ID());
 		operatorLogitechButtonY = new JoystickButton(operatorLogitech, LogitechController.ButtonID.Y.ID());
 		operatorLogitechButtonStart = new JoystickButton(operatorLogitech, LogitechController.ButtonID.START.ID());
-		operatorLogitechButtonBack = new JoystickButton(operatorLogitech, LogitechController.ButtonID.BACK.ID());
+		//operatorLogitechButtonBack = new JoystickButton(operatorLogitech, LogitechController.ButtonID.BACK.ID());
 
 		
 		operatorLogitechButtonGameUp = new JoystickPOVButton(operatorLogitech, 0);
@@ -293,8 +293,8 @@ public class OI {
 		//============================================================================//
 	    // Operator Stick
 		//============================================================================//
-		operatorStickButtonTrigger.whileHeld(new GrabBoulderManual());     // Trigger
-		operatorStickButton2.whenPressed(new LaunchBoulder());             // Thumb Button
+		operatorStickButtonTrigger.whileHeld(new ArmExtendRetract(true));     // Trigger
+		operatorStickButton2.whileHeld(new ArmExtendRetract(false));             // Thumb Button
 		operatorStickButton3.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle())); // Button 3
 		operatorStickButton4.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));      // Button 4
 		operatorStickButton5.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));         // Button 5
@@ -323,25 +323,25 @@ public class OI {
 		//============================================================================//
 	    // Operator Logitech Controller
 		//============================================================================//
-		operatorLogitechButtonLeft.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
-		operatorLogitechButtonRight.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
-		operatorLogitechButtonLeftStick.whileHeld(new ArmManualMove());
-		operatorLogitechButtonRightStick.whenPressed(new PrintButton("P Button RightStick"));
-		//  operatorLogitechButtonLeftStick.whenHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
-
-		operatorLogitechButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
-		operatorLogitechButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
-		operatorLogitechButtonX.whenPressed(new PrintButton("P Button X"));
-//		operatorLogitechButtonX.whenPressed(new PrintIRRange());
-		operatorLogitechButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
-		operatorLogitechButtonStart.whenPressed(new PrintButton("P Button Start"));
-		operatorLogitechButtonBack.whenPressed(new PrintButton("P Button Back"));
-		operatorLogitechButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
-		operatorLogitechButtonRightTrigger.whenPressed(new LaunchBoulder()); 
-		//            operatorLogitechButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
-		//            operatorLogitechButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
-		operatorLogitechButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
-		operatorLogitechButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));		
+//		operatorLogitechButtonLeft.whenPressed(new ArmShoulderSetAngle(Position.PREPARE_FOR_BOULDER.angle()));
+//		operatorLogitechButtonRight.whenPressed(new ArmShoulderSetAngle(Position.GAME_START.angle())); 
+//		operatorLogitechButtonLeftStick.whileHeld(new ArmManualMove());
+//		operatorLogitechButtonRightStick.whenPressed(new PrintButton("P Button RightStick"));
+//		//  operatorLogitechButtonLeftStick.whenHeld(new ArmShoulderManual(ArmShoulderManual.Direction.UP));
+//
+//		operatorLogitechButtonA.whenPressed(new ArmShoulderSetAngle(Position.FRENCH_FRIES_DOWN.angle()));
+//		operatorLogitechButtonB.whenPressed(new ArmShoulderSetAngle(Position.LOW_BAR_TRAVEL.angle()));  
+//		operatorLogitechButtonX.whenPressed(new PrintButton("P Button X"));
+////		operatorLogitechButtonX.whenPressed(new PrintIRRange());
+//		operatorLogitechButtonY.whenPressed(new ArmShoulderSetAngle(Position.TOWER_SCALE.angle()));
+//		operatorLogitechButtonStart.whenPressed(new PrintButton("P Button Start"));
+//		operatorLogitechButtonBack.whenPressed(new PrintButton("P Button Back"));
+//		operatorLogitechButtonLeftTrigger.whenPressed(new ArmShoulderSetAngle(Position.GRAB_BOULDER.angle()));
+//		operatorLogitechButtonRightTrigger.whenPressed(new LaunchBoulder()); 
+//		//            operatorLogitechButtonGameUp.whenPressed(new ArmExtendRetract(false)); // Actually Extends
+//		//            operatorLogitechButtonGameDown.whenPressed(new ArmExtendRetract(true)); // Actually Retracts
+//		operatorLogitechButtonGameLeft.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.DOWN));
+//		operatorLogitechButtonGameRight.whenPressed(new ArmShoulderManual(ArmShoulderManual.Direction.UP));		
 	}
 
 	

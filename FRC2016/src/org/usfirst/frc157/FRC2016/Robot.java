@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot {
         drive = new Drive();
         arm = new Arm();
         ballHandler = new BallHandler();
-        navigation = new Navigation();
+        //navigation = new Navigation();
         
         System.out.println("Robot.robotInit() Subsystems Initialized");
 
@@ -105,7 +105,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        Robot.navigation.resetZeroHeading();
+        //Robot.navigation.resetZeroHeading();
             
         if (autonomousCommand != null) autonomousCommand.start();
         
