@@ -396,12 +396,14 @@ public class Arm extends Subsystem {
     	public static final double CONTROL_P = 0.75;
     	public static final double CONTROL_I = 0.0;//0.0125;
     	public static final double INTEGRAL_LIMIT = 5.0; // degrees
+    	public static final double DISABLE_PID_ANGLE = 75.0;
     	
     	public static final double MIN_OUTPUT = -12.0; // Volts
     	public static final double MAX_OUTPUT =  11.0; // Volts
 
     	Arm arm;
     	double output;
+    	boolean directionIsUp = false;
     	boolean stop = false;
     	volatile boolean enableOutput;
     	volatile double targetAngle;
@@ -416,6 +418,7 @@ public class Arm extends Subsystem {
     	    	
     	public void setTargetAngle(double angle)
     	{
+    		double currentAngle = 0;
     		if(angle < Position.FULL_DOWN.angle())
     		{
     			angle = Position.FULL_DOWN.angle();
@@ -424,9 +427,17 @@ public class Arm extends Subsystem {
     		{
     			angle = Position.FULL_UP.angle();
     		}
+    		currentAngle = getShoulderAngle();
+    		
     		synchronized(arm)
     		{
     			targetAngle = angle;
+    			if(angle>currentAngle){
+        			directionIsUp = true;
+        		}
+        		else{
+        			directionIsUp = false;
+        		}
     		}
         	System.out.println("\n\n+++++++++++++++++++++ TARGET   to: " + angle);
 
@@ -443,7 +454,8 @@ public class Arm extends Subsystem {
 			////////////////////////////////////////////////////////////////////////////////////////
 			while(!stop)
 			{
-				error = targetAngle - getShoulderAngle();
+				double currentAngle = getShoulderAngle();
+				error = targetAngle - currentAngle;
 				// This is not a real PI loop, but it is similar
 				//
 				//  We are proportional to our angular error but our error integration term
@@ -469,7 +481,18 @@ public class Arm extends Subsystem {
 				// output is proportional to the error and the integrated (summed) error
 				output = CONTROL_P * (error + sumError);				
 				
-
+				// Disable the PID controller above this angle
+				// Only command positive if going up or negative if going down
+				if(currentAngle>DISABLE_PID_ANGLE){
+					if(directionIsUp && (output<0)){
+						output = 0;
+					}
+					if(!directionIsUp && (output>0)){
+						output = 0;
+					}
+					
+				}
+				
 //				output += getShoulderGravityCompensation();
 
 //				System.out.print("t" + targetAngle + " a" + getShoulderAngle() + "  e" + error + "  s"+ sumError + "  o" + output);
