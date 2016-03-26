@@ -80,11 +80,11 @@ public class AutonomousCommand extends CommandGroup
                 System.out.println("\n*********************************\n");
                 System.out.println("Autonomous Position 4");
                 addSequential(new ArmShoulderMoveToAngle(Arm.Position.HOME.angle()));
-                addSequential(new AutoDriveSpeedForTime(0.75, 0.75,2.5));
-                addSequential(new AutoDriveTurnByAngle(5));
-                addSequential(new AutoDriveSpeedForTime(0, 0,3));
-    			addSequential(new AutoDriveSpeedForTime(0, 0,3));
-    			addSequential(new AutoDriveSpeedForTime(0.75, 0.75,2));
+                addSequential(new AutoDriveSpeedForTime(0.75, 0.75,2.6));
+                addSequential(new AutoDriveSpeedForTime(-0.1, -0.1,0.25));//brake
+                addSequential(new AutoDriveTurnByAngle(50));
+                addSequential(new AutoDriveSpeedForTime(0.75, 0.75,1));
+                addSequential(new AutoDriveSpeedForTime(-0.1, -0.1,0.25));//brake
     			addSequential(new LaunchBoulder());
     
 //                addSequential(new PrintButton(">>> Autonomous Position 4"));
