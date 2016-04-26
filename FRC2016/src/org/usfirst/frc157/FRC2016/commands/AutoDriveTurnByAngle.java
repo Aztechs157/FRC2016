@@ -14,7 +14,7 @@ public class AutoDriveTurnByAngle extends Command {
 	private static final double TurnCircumfrence = Math.PI * WheelsDistanceSideToSide;
 	
 	// TODO calibrate turn speed to stop at
-	private static final double MINIMUM_TURN_SPEED = 0.05;
+	private static final double MINIMUM_TURN_SPEED = 0.2;
 	
 	
 	private double turnAngle;
@@ -25,7 +25,7 @@ public class AutoDriveTurnByAngle extends Command {
 	private double startTime;
 	private static double COMMAND_TIMEOUT = 8.0; // seconds
 	
-	private static final double TURN_PROPORTIONALITY_CONSTANT = 0.5;
+	private static final double TURN_PROPORTIONALITY_CONSTANT = 4;
 	/**
      * @param turnAngle degrees to turn (+ is clockwise)
      */
@@ -40,14 +40,14 @@ public class AutoDriveTurnByAngle extends Command {
     	turnDistance = (turnAngle/360.0) * TurnCircumfrence;
     	turnSpeed = turnDistance / TurnCircumfrence;
     	Robot.drive.zeroDistance();
-    	setTimeout(8);
+    	//setTimeout(8);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	// use right to determine when we are done (note for CW turn right will be negative)
     	turnSpeed = TURN_PROPORTIONALITY_CONSTANT * (turnDistance + Robot.drive.getDistance().right)/TurnCircumfrence;
-    	
+    	System.out.println("Turn Speeed" +turnSpeed);
     	Robot.drive.setLeftDrive(-turnSpeed);
     	Robot.drive.setRightDrive(turnSpeed);    	
     }
@@ -61,11 +61,11 @@ public class AutoDriveTurnByAngle extends Command {
     		return true;
     	}
     	
-    	if(isTimedOut())
-    	{
-    		System.out.println("AutoDriveTurnByAngle.isFinished(); - COMMAND_TIMEOUT");
-    		return true;
-    	}
+//    	if(isTimedOut())
+//    	{
+//    		System.out.println("AutoDriveTurnByAngle.isFinished(); - COMMAND_TIMEOUT");
+//    		return true;
+//    	}
 
     	if(turnSpeed < MINIMUM_TURN_SPEED)
     	{
