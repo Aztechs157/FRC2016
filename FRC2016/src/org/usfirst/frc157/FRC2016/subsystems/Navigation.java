@@ -108,12 +108,37 @@ public class Navigation extends Subsystem {
     	LEFT;
     }
     
-    public double ultrasonicHeading(Side side, double range1, double range2)
+    public double ultrasonicHeading(Side side)
     {
+    	double rangeA = 0;
+    	double rangeB = 0;
+    	// get the two ultrasonics for the side
+    	switch(side)
+    	{
+    		case FRONT:
+    			rangeA = getUltrasonicRange(Ultrasonics.UltrasonicSensor.FRONT_LEFT);
+    			rangeB = getUltrasonicRange(Ultrasonics.UltrasonicSensor.FRONT_RIGHT);
+    			break;
+    		case RIGHT:
+    			rangeA = getUltrasonicRange(Ultrasonics.UltrasonicSensor.RIGHT_FRONT);
+    			rangeB = getUltrasonicRange(Ultrasonics.UltrasonicSensor.RIGHT_REAR);
+    			break;
+    		case REAR:
+    			rangeA = getUltrasonicRange(Ultrasonics.UltrasonicSensor.REAR_LEFT);
+    			rangeB = getUltrasonicRange(Ultrasonics.UltrasonicSensor.REAR_RIGHT);
+    			break;
+    		case LEFT:
+    			rangeA = getUltrasonicRange(Ultrasonics.UltrasonicSensor.LEFT_FRONT);
+    			rangeB = getUltrasonicRange(Ultrasonics.UltrasonicSensor.LEFT_REAR);
+    			break;
+    	};
+    	
     	double heading = 0;
+    	
     	return heading;
     }
     
+      
     public class Location
     {
     	double x;
@@ -135,13 +160,14 @@ public class Navigation extends Subsystem {
     public NavData navigationToPoint(Location start, Location end)
     {
     	NavData navData = new NavData();
+    	navData.distance = Math.sqrt(Math.abs((start.x-end.x)*(start.x-end.x) + (start.y - end.y)*(start.y - end.y)));
+    	navData.heading = Math.atan2(start.y-end.y, start.x-end.x);
     	return navData;
     }
 
 	public long getUltrasonicLoopCount() {
 		return ultrasonics.getUltrasonicLoopCount();
 	}
-	
 	
 	public Position getPosition()
 	{
