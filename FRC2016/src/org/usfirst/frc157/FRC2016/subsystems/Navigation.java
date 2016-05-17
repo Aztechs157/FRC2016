@@ -134,6 +134,11 @@ public class Navigation extends Subsystem {
     	};
     	
     	double heading = 0;
+    	double RobotWidth=0;// constants tbd
+    	double CConstant=0;
+    	double Opposite=0;// estimated position of robot IE we move a certain distance forward 
+    	double Hypotoneuse=RangeA+RobotWidth+CConstant; 
+    	heading=math.arcSin(Opposite/Hypotneuse); 
     	
     	return heading;
     }
