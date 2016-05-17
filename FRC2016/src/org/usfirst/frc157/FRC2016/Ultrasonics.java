@@ -132,6 +132,18 @@ public class Ultrasonics {
 		}
 	}
 	
+	public void printRanges()
+	{
+		System.out.format("     %3.2f     %3.2f\n",       getSensorReadingInInches(UltrasonicSensor.FRONT_LEFT), 
+				                                          getSensorReadingInInches(UltrasonicSensor.FRONT_RIGHT));
+		System.out.format("%3.2f                %3.2f\n", getSensorReadingInInches(UltrasonicSensor.LEFT_FRONT),
+				                                          getSensorReadingInInches(UltrasonicSensor.RIGHT_FRONT));
+		System.out.format("%3.2f                %3.2f\n", getSensorReadingInInches(UltrasonicSensor.LEFT_REAR), 
+				                                          getSensorReadingInInches(UltrasonicSensor.RIGHT_REAR));
+		System.out.format("     %3.2f     %3.2f\n",       getSensorReadingInInches(UltrasonicSensor.REAR_LEFT), 
+				                                          getSensorReadingInInches(UltrasonicSensor.REAR_RIGHT));	
+	}
+	
 	public Reading getSensorReadingInVolts(UltrasonicSensor sensor)
 	{
 		double sensorVoltage = -10;

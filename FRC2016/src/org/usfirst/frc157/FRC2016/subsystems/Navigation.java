@@ -180,5 +180,10 @@ public class Navigation extends Subsystem {
 	{
 		robotLocation = here;
 	}
+	
+	public Ultrasonics Ultrasonics()
+	{
+		return ultrasonics;
+	}
 }
 

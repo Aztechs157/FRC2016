@@ -2,6 +2,7 @@ package org.usfirst.frc157.FRC2016.commands;
 
 import org.usfirst.frc157.FRC2016.Robot;
 import org.usfirst.frc157.FRC2016.RobotMap;
+import org.usfirst.frc157.FRC2016.Ultrasonics;
 import org.usfirst.frc157.FRC2016.Ultrasonics.UltrasonicSensor;
 
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -31,24 +32,24 @@ public class PrintIRRange extends Command {
 //    	System.out.print(" R-" + Robot.arm.getArmRetractedSwitch());
 //    	System.out.print(" S-" + Robot.arm.getShoulderHomeSwitch());
 
-    	System.out.println("Check LTech Presence");
-
-    	System.out.print("Type - " + Robot.oi.operatorLogitech.getType());
-    	System.out.println("   Name - " + Robot.oi.operatorLogitech.getName());
-    	
-    	System.out.print("Type - " + Robot.oi.operatorStick.getType());
-    	System.out.println("   Name - " + Robot.oi.operatorStick.getName());
-
-    	System.out.print("Type - " + Robot.oi.driverLeft.getType());
-    	System.out.println("   Name - " + Robot.oi.driverLeft.getName());
-
-    	System.out.print("Type - " + Robot.oi.driverRight.getType());
-    	System.out.println("   Name - " + Robot.oi.driverRight.getName());
-    	
-       	System.out.println("Driver Left Joystick is present & correct : " + Robot.oi.driverLeft.isPresent() + " " + Robot.oi.driverLeft.isCorrect());
-       	System.out.println("Driver Right Joystick is present & correct: " + Robot.oi.driverRight.isPresent() + " " + Robot.oi.driverRight.isCorrect());
-       	System.out.println("Operator Controller is present & correct  : " + Robot.oi.operatorLogitech.isPresent() + " " + Robot.oi.operatorLogitech.isCorrect());
-    	System.out.println("Operator Joystick is present & correct    : " + Robot.oi.operatorStick.isPresent() + " " + Robot.oi.operatorStick.isCorrect());
+//    	System.out.println("Check LTech Presence");
+//
+//    	System.out.print("Type - " + Robot.oi.operatorLogitech.getType());
+//    	System.out.println("   Name - " + Robot.oi.operatorLogitech.getName());
+//    	
+//    	System.out.print("Type - " + Robot.oi.operatorStick.getType());
+//    	System.out.println("   Name - " + Robot.oi.operatorStick.getName());
+//
+//    	System.out.print("Type - " + Robot.oi.driverLeft.getType());
+//    	System.out.println("   Name - " + Robot.oi.driverLeft.getName());
+//
+//    	System.out.print("Type - " + Robot.oi.driverRight.getType());
+//    	System.out.println("   Name - " + Robot.oi.driverRight.getName());
+//    	
+//       	System.out.println("Driver Left Joystick is present & correct : " + Robot.oi.driverLeft.isPresent() + " " + Robot.oi.driverLeft.isCorrect());
+//       	System.out.println("Driver Right Joystick is present & correct: " + Robot.oi.driverRight.isPresent() + " " + Robot.oi.driverRight.isCorrect());
+//       	System.out.println("Operator Controller is present & correct  : " + Robot.oi.operatorLogitech.isPresent() + " " + Robot.oi.operatorLogitech.isCorrect());
+//    	System.out.println("Operator Joystick is present & correct    : " + Robot.oi.operatorStick.isPresent() + " " + Robot.oi.operatorStick.isCorrect());
 
     	
 //    	System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
@@ -72,6 +73,8 @@ public class PrintIRRange extends Command {
 //    	}
 //    	System.out.println("<");
 //    	
+    	
+    	Robot.navigation.u
     }
 
     // Make this return true when this Command no longer needs to run execute()
