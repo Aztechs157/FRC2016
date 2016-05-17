@@ -74,7 +74,7 @@ public class PrintIRRange extends Command {
 //    	System.out.println("<");
 //    	
     	
-    	Robot.navigation.u
+    	Robot.navigation.Ultrasonics().printRanges();
     }
 
     // Make this return true when this Command no longer needs to run execute()
