@@ -41,7 +41,7 @@ public class AutoDriveTurnToHeading extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double deltaHeading = Robot.navigation.getHeading() - targetHeading;
+    	double deltaHeading = 0;//Robot.navigation.getHeading() - targetHeading;
     	
     	// bring the delta heading into -180 to 180
     	while (deltaHeading > 180)
@@ -90,15 +90,16 @@ public class AutoDriveTurnToHeading extends Command {
     		return true;
     	}
 
-    	
-    	if(Math.abs((Robot.navigation.getHeading() - targetHeading)%360) < HEADING_TOLERANCE)
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
+    	return true;
+//    	
+//    	if(Math.abs((Robot.navigation.getHeading() - targetHeading)%360) < HEADING_TOLERANCE)
+//    	{
+//    		return true;
+//    	}
+//    	else
+//    	{
+//    		return false;
+//    	}
     }
 
     // Called once after isFinished returns true

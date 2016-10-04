@@ -33,15 +33,15 @@ public class PrintIMUOutput extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.print(text);
-    	System.out.print(" H:");
-    	System.out.print(Robot.navigation.getHeading());
-    	System.out.print(" P:");
-    	System.out.print(Robot.navigation.getPitch());
-    	System.out.print(" R:");
-    	System.out.print(Robot.navigation.getRoll());
-    	System.out.print(" Y:");
-    	System.out.print(Robot.navigation.getYaw());
-    	System.out.println("-");
+//    	System.out.print(" H:");
+//    	System.out.print(Robot.navigation.getHeading());
+//    	System.out.print(" P:");
+//    	System.out.print(Robot.navigation.getPitch());
+//    	System.out.print(" R:");
+//    	System.out.print(Robot.navigation.getRoll());
+//    	System.out.print(" Y:");
+//    	System.out.print(Robot.navigation.getYaw());
+//    	System.out.println("-");
     }
 
     // Make this return true when this Command no longer needs to run execute()
