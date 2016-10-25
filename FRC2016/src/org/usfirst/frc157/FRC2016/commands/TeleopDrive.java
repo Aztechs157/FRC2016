@@ -70,7 +70,8 @@ public class TeleopDrive extends Command {
     	right += tempRight;
     	    	
     	// DEMO MODE DRIVE REDUCTION
-    	double maxPercent = 0.33;
+//    	double maxPercent = 0.33;
+    	double maxPercent = 1.00;
     	
     	// Feed Control Values to Drive
     	Robot.drive.setLeftDrive(left * maxPercent);
